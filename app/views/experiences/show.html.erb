@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <% @experience.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.comment %></li>
+  <% end %>
+</ul>
