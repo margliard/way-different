@@ -5,8 +5,22 @@
 
 <ul class="list-group">
   <% @experience.review_experiences.each do |review| %>
-    <li class="list-group-item"><%= review.comment %></li>
+    <li class="list-group-item">
+      <%= review.comment %>
+      <%= review.rating %>
+      <%= link_to "Remove",
+                  experience_review_experience_path(@experience, review),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
   <% end %>
 </ul>
+<h3>Leave a review</h3>
+  <div class="container">
+    <%= simple_form_for [ @experience, @review] do |f| %>
+      <%= f.input :comment %>
+      <%= f.input :rating %>
+      <%= f.submit "Submit review", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 
 <%= link_to "Back to all experiences", experiences_path %>
