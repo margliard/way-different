@@ -69,8 +69,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_135659) do
     t.date "start_date"
     t.date "end_date"
     t.string "country"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
