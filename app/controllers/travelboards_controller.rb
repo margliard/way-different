@@ -5,6 +5,7 @@ class TravelboardsController < ApplicationController
 
   def show
     @travelboard = Travelboard.find(params[:id])
+    @review = ReviewTravelboard.new
   end
 
   def new

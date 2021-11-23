@@ -1,1 +1,22 @@
 <h1>Travel board show</h1>
+  <ul class="list-group">
+    <% @travelboard.review_travelboards.each do |review| %>
+      <li class="list-group-item">
+        <%= review.comment %>
+        <%= review.rating %>
+        <%= link_to "Remove",
+                    experience_review_travelboard_path(@travelboard, review),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %></li>
+      <% end %>
+  </ul>
+<h3>Leave a review</h3>
+  <div class="container">
+    <%= simple_form_for [ @travelboard, @review] do |f| %>
+      <%= f.input :comment %>
+      <%= f.input :rating %>
+      <%= f.submit "Submit review", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+<p><%= link_to "Back to home", root_path %></p>
