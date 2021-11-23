@@ -1,12 +1,14 @@
+<div class="container">
+  <h1>Way different<h1>
 
-<h1>Way different<h1>
+  <h5><%= @experience.name%></h5>
 
-<h5><%= @experience.name%></h5>
+  <ul class="list-group">
+    <% @experience.review_experiences.each do |review| %>
+      <li class="list-group-item"><%= review.comment %></li>
+    <% end %>
+  </ul>
 
-<ul class="list-group">
-  <% @experience.reviews.each do |review| %>
-    <li class="list-group-item"><%= review.comment %></li>
-  <% end %>
-</ul>
+  <p><%= link_to "Add favorite", new_experience_favorite_path(@experience), class:"btn btn-primary" %></p>
 
-<p><%= link_to "Add favorite", new_experience_favorite_path, class:"btn btn-primary" %></p>
+</div>

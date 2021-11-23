@@ -1,4 +1,7 @@
 class FavoritesController < ApplicationController
+  before_action :set_favorite, only: :destroy
+  before_action :set_travelboard, only: [:new, :create]
+
   def new
     @favorite = Favorite.new
   end
