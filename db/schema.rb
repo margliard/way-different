@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_11_23_135659) do
+=======
+ActiveRecord::Schema.define(version: 2021_11_23_162500) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_11_23_135659) do
     t.boolean "booked"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_url"
   end
 
   create_table "favorites", force: :cascade do |t|

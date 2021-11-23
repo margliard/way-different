@@ -1,7 +1,32 @@
-<h1>Way different<h1>
+<div class="container">
+  <h1>All experiences<h1>
 
-<ul>
-  <% @experiences.each do |experience|%>
-    <li><h3><%= link_to experience.name, experience_path(experience) %> (category: <%= experience.category%>) </h3></li>
-  <% end %>
-</ul>
+  <p><%= pluralize @experiences.length, "experience" %> available for your dates </p>
+
+
+    <div class="row">
+      <% @experiences.each do |experience|%>
+        <div class="col-6">
+        <%= link_to experience_path(experience) do %>
+          <div class="card-trip">
+            <img src= <%= experience.image_url%> >
+            <div class="card-trip-infos">
+              <div>
+                <p><%= experience.name %> (category: <%= experience.category%>) </p>
+                <p>Short description here!</p>
+              </div>
+              <h2 class="card-trip-pricing"><%= experience.price if experience.price? %>€</h2>
+            </div>
+          </div>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+
+
+  <ul>
+
+  </ul>
+
+  <p><%= link_to "Back to home", root_path %></p>
+</div>

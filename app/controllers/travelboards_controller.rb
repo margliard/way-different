@@ -28,6 +28,7 @@ class TravelboardsController < ApplicationController
 
   def destroy
   end
+
   private
 
   def travelboard_params
