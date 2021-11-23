@@ -1,0 +1,2 @@
+class Travelboard < ApplicationRecord
+end
