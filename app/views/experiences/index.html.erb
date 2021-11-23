@@ -1,0 +1,7 @@
+<h1>Way different<h1>
+
+<ul>
+  <% @experiences.each do |experience|%>
+    <li><h3><%= link_to experience.name, experience_path(experience) %> (category: <%= experience.category%>) </h3></li>
+  <% end %>
+</ul>
