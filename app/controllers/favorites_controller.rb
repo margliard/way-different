@@ -21,7 +21,7 @@ class FavoritesController < ApplicationController
   private
 
   def favorite_params
-    params.require(:favorite).permit(:comment, :experience_id)
+    params.require(:favorite).permit(:experience_id)
   end
 
   def set_favorite
