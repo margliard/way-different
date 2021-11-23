@@ -1,0 +1,2 @@
+class ReviewTravelboardsController < ApplicationController
+end
