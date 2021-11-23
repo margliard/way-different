@@ -12,7 +12,12 @@ class TravelboardsController < ApplicationController
   end
 
   def create
-    @travelboard = Travelboard.new
+    @travelboard = Travelboard.new(travelboard_params)
+    if @travelboard.save
+      redirect_to travelboard_path(@travelboard)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -22,6 +27,11 @@ class TravelboardsController < ApplicationController
   end
 
   def destroy
+  end
+  private
+
+  def travelboard_params
+    params.require(:travelboard).permit(:name, :user_id, :start_date, :end_date, :status) #
   end
 
 end
