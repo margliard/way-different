@@ -7,6 +7,7 @@ class ExperiencesController < ApplicationController
   end
 
   def show
+    @review = ReviewExperience.new
   end
 
   private
