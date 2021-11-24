@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_11_24_105435) do
     t.boolean "booked"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_url"
   end
 
   create_table "favorites", force: :cascade do |t|
