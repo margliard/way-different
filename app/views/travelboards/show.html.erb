@@ -1,7 +1,11 @@
 <h1>Travel board <%= @travelboard.name %></h1>
-  <%@travelboard.favorites.each do |favorite| %>
-    <%= favorite.assigned_day %>
-    <%= favorite.experience.name %>
+  <%@travelboard.traveldays.each do |travelday| %>
+    <h2>Day <%=travelday.day_number%></h2>
+    <%travelday.favorites.each do |favorite| %>
+      <div class="favorite">
+`       <%= favorite.experience.name %>
+      </div>
+    <% end %>
   <% end %>
   <ul class="list-group">
     <% @travelboard.review_travelboards.each do |review| %>

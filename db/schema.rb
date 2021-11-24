@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_105306) do
+ActiveRecord::Schema.define(version: 2021_11_24_155402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +34,11 @@ ActiveRecord::Schema.define(version: 2021_11_24_105306) do
 
   create_table "favorites", force: :cascade do |t|
     t.bigint "experience_id", null: false
+    t.bigint "travelday_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["experience_id"], name: "index_favorites_on_experience_id"
+    t.index ["travelday_id"], name: "index_favorites_on_travelday_id"
   end
 
   create_table "review_experiences", force: :cascade do |t|
@@ -75,11 +77,9 @@ ActiveRecord::Schema.define(version: 2021_11_24_105306) do
 
   create_table "traveldays", force: :cascade do |t|
     t.integer "day_number"
-    t.bigint "favorite_id", null: false
     t.bigint "travelboard_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["favorite_id"], name: "index_traveldays_on_favorite_id"
     t.index ["travelboard_id"], name: "index_traveldays_on_travelboard_id"
   end
 
@@ -96,11 +96,11 @@ ActiveRecord::Schema.define(version: 2021_11_24_105306) do
   end
 
   add_foreign_key "favorites", "experiences"
+  add_foreign_key "favorites", "traveldays"
   add_foreign_key "review_experiences", "experiences"
   add_foreign_key "review_experiences", "users"
   add_foreign_key "review_travelboards", "travelboards"
   add_foreign_key "review_travelboards", "users"
   add_foreign_key "travelboards", "users"
-  add_foreign_key "traveldays", "favorites"
   add_foreign_key "traveldays", "travelboards"
 end
