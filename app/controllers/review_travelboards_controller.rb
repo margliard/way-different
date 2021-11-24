@@ -7,17 +7,24 @@ class ReviewTravelboardsController < ApplicationController
   def create
     @review = ReviewTravelboard.new(review_params)
     @travelboard = Travelboard.find(params[:travelboard_id])
-    @review.experience = @travelboard
-    if @travelboard.save
-    redirect_to travelboard_path(@travelboard)
+    @review.travelboard = @travelboard
+    @review.user = current_user
+    if @review.save
+      redirect_to travelboard_path(@travelboard)
     else
-      render :new
+      render "travelboards/show"
     end
+  end
+
+  def destroy
+    @review = ReviewTravelboard.find(params[:id])
+    @review.destroy
+    redirect_to travelboard_path(@review.travelboard)
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:comment, :rating)
+    params.require(:review_travelboard).permit(:comment, :rating)
   end
 end

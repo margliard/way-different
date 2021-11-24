@@ -9,8 +9,11 @@ class ReviewExperiencesController < ApplicationController
     @experience = Experience.find(params[:experience_id])
     @review.experience = @experience
     @review.user = current_user
-    @review.save!
-    redirect_to experience_path(@experience)
+    if @review.save
+      redirect_to experience_path(@experience)
+    else
+      render "experiences/show"
+    end
   end
 
   def destroy
