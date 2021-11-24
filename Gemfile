@@ -34,6 +34,8 @@ gem 'simple_form'
 gem 'pundit'
 gem "geocoder"
 
+gem 'pg_search', '~> 2.3.0'
+
 
 group :development, :test do
   gem 'pry-byebug'
