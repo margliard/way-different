@@ -5,10 +5,16 @@ class TravelboardsController < ApplicationController
 
   def show
     @travelboard = Travelboard.find(params[:id])
+    # @favorite = Favorite.find(params[:favorite_id])
   end
 
   def new
-    @travelboard = TravelBoard.new
+    @travelboard = Travelboard.new
+    #@favorite = Favorite.new
+    @user = current_user # devise
+    @travelboards = Travelboard.where(user_id: @user)
+    # @favorites = Favorite.where(user_id: @user)
+    # authorize @travelboard
   end
 
   def create
