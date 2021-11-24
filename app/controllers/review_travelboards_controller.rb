@@ -9,8 +9,11 @@ class ReviewTravelboardsController < ApplicationController
     @travelboard = Travelboard.find(params[:travelboard_id])
     @review.travelboard = @travelboard
     @review.user = current_user
-    @review.save!
-    redirect_to travelboard_path(@travelboard)
+    if @review.save
+      redirect_to travelboard_path(@travelboard)
+    else
+      render "travelboards/show"
+    end
   end
 
   def destroy
