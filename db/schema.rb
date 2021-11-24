@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 2021_11_24_112317) do
     t.index ["user_id"], name: "index_travelboards_on_user_id"
   end
 
+  create_table "traveldays", force: :cascade do |t|
+    t.integer "day_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "travelboard_id"
+    t.index ["travelboard_id"], name: "index_traveldays_on_travelboard_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -93,4 +101,5 @@ ActiveRecord::Schema.define(version: 2021_11_24_112317) do
   add_foreign_key "review_travelboards", "travelboards"
   add_foreign_key "review_travelboards", "users"
   add_foreign_key "travelboards", "users"
+  add_foreign_key "traveldays", "travelboards"
 end
