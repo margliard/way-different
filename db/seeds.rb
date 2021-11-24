@@ -54,14 +54,18 @@ activity2 = Experience.create(category: "Activity", name: "Reserva Nacional Lago
 
 puts "Experiences ok..."
 
-puts "creating favorites"
-fav1 = Favorite.create(experience_id: hotel1.id)
-fav2 = Favorite.create(experience_id: hotel2.id)
-
 puts "Traveldays creation..."
-td1 = Travelday.create(favorite_id: fav1.id, travelboard_id: canada.id, day_number: 1)
-td2 = Travelday.create(favorite_id: fav2.id, travelboard_id: sri.id, day_number: 1)
+td1 = Travelday.create(travelboard_id: canada.id, day_number: 1)
+td2 = Travelday.create(travelboard_id: canada.id, day_number: 2)
+td3 = Travelday.create(travelboard_id: canada.id, day_number: 3)
+td4 = Travelday.create(travelboard_id: canada.id, day_number: 4)
 
 puts "Traveldays ok"
+
+puts "creating favorites"
+fav1 = Favorite.create(experience_id: hotel1.id, travelday_id: td1.id)
+fav2 = Favorite.create(experience_id: hotel2.id, travelday_id: td2.id)
+fav3 = Favorite.create(experience_id: hotel1.id, travelday_id: td3.id)
+fav4 = Favorite.create(experience_id: hotel2.id, travelday_id: td4.id)
 
 puts "Finished"
