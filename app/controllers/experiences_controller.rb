@@ -9,13 +9,20 @@ class ExperiencesController < ApplicationController
     else
       @experiences = Experience.all
     end
+
+    @markers = @experiences.geocoded.map do |experience|
+      {
+        lat: experience.latitude,
+        lng: experience.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { experience: experience })
+      }
   end
 
   def show
-    @user = current_user
     @favorite = Favorite.new
     @review = ReviewExperience.new
-    @travelboards = @user.travelboards
+    @travelboards = Travelboard.where(user_id: current_user)
+    @travelboard = Travelboard.new
   end
 
   private
