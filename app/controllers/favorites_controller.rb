@@ -21,6 +21,10 @@ class FavoritesController < ApplicationController
     redirect_to travelboard_path(@favorite.travelboard)
   end
 
+  def update
+
+  end
+
   private
 
   def favorite_params

@@ -7,11 +7,8 @@ class ExperiencesController < ApplicationController
   end
 
   def show
-<<<<<<< HEAD
     @favorite = Favorite.new
-=======
     @review = ReviewExperience.new
->>>>>>> master
   end
 
   private
