@@ -1,1 +1,5 @@
-<h1>Travel board show</h1>
+<h1>Travel board <%= @travelboard.name %></h1>
+  <%@travelboard.favorites.each do |favorite| %>
+    <%= favorite.assigned_day %>
+    <%= favorite.experience.name %>
+  <% end %>

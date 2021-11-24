@@ -35,7 +35,9 @@ puts "users ok"
 puts "------"
 puts "Creating travelboards..."
 
-Travelboard.create(user_id: 1, name: "Canada", start_date: "02/11/2021", end_date: "14/11/2021", status: false)
+canada = Travelboard.create(user_id: margot.id, name: "Canada", start_date: "02/11/2021", end_date: "14/11/2021", status: false)
+chile = Travelboard.create(user_id: camille.id, name: "Chile", start_date: "02/11/2021", end_date: "14/11/2021", status: false)
+sri = Travelboard.create(user_id: sophie.id, name: "Sri Lanka", start_date: "02/11/2021", end_date: "14/11/2021", status: false)
 
 
 puts "Travelboards ok..."
@@ -51,5 +53,15 @@ restaurant2 = Experience.create(category: "Restaurant", name: "Ápice Cocina De 
 activity2 = Experience.create(category: "Activity", name: "Reserva Nacional Lago Penuelas", address: "89 de la ruta 68, Valparaiso 2520000 Chile", availability: true, price: 50, country: "Chili", city: "Valparaíso", description: "Visit this wonderful natural reserve", booked: false, image_url: "https://i.ytimg.com/vi/2fdBb0c9Z6g/maxresdefault.jpg")
 
 puts "Experiences ok..."
+
+puts "creating favorites"
+fav1 = Favorite.create(assigned_day: "02/11/2021", travelboard_id: canada.id, experience_id: hotel1.id)
+fav2 = Favorite.create(assigned_day: "02/11/2021", travelboard_id: sri.id, experience_id: hotel2.id)
+
+puts "Traveldays creation..."
+td1 = Travelday.create(favorite_id: fav1.id, travelboard_id: canada.id, assigned_day: 1)
+td2 = Travelday.create(favorite_id: fav2.id, travelboard_id: sri.id, assigned_day: 1)
+
+puts "Traveldays ok"
 
 puts "Finished"
