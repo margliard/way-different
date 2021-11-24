@@ -19,7 +19,17 @@ class TravelboardsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @travelboard = Travelboard.new(travelboard_params)
+    @travelboard.user = @user
+    if params[:experience_id].exist?
+      @favorite = Favorite.new(favorite_params)
+      @favorite.save
+      @travelday = Travelday.new(travelday_params)
+      @travelday.day_number = 0
+    else
+
+    end
     if @travelboard.save
       redirect_to travelboard_path(@travelboard)
     else
@@ -39,7 +49,14 @@ class TravelboardsController < ApplicationController
   private
 
   def travelboard_params
-    params.require(:travelboard).permit(:name, :user_id, :start_date, :end_date, :status) #
+    params.require(:travelboard).permit(:name, :user_id, :start_date, :end_date, :status)
   end
 
+  def favorite_params
+    params.require(:favorite).permit(:experience_id)
+  end
+
+  def travelday_params
+    params.require(:travelday).permit(:favorite_id, :travelboard_id)
+  end
 end

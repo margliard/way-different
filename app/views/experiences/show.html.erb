@@ -13,14 +13,23 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+          <h5 class="modal-title" id="exampleModalToggleLabel">Your travelboards</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Show a second modal and hide this one with the button below.
+          <h5>Existing travelboards</h5>
+          <% @travelboards.each do |travelboard| %>
+            <div class="card-travelboard-existing">
+              <img src="https://storage.googleapis.com/chile-travel-newsite-static-content/2021/04/norte.jpg">
+              <div>
+                <p><%= travelboard.name %></p>
+                <p id="date"><%= travelboard.start_date %> to <%= travelboard.end_date %></p>
+              </div>
+            </div>
+          <% end %>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
+        <div class="">
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Modal 2</button>
         </div>
       </div>
     </div>
@@ -30,14 +39,20 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+          <h5 class="modal-title" id="exampleModalToggleLabel2">Create a new travelboard</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Hide this modal and show the first with the button below.
+        <%= simple_form_for @travelboard do |f| %>
+            <%= f.input :name %>
+            <%# <%= f.input :country %>
+            <%= f.input :start_date %>
+            <%= f.input :end_date %>
+            <%= f.submit "Create a travelboard" %>
+          <% end %>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
         </div>
       </div>
     </div>

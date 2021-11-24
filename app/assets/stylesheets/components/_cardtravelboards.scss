@@ -1,0 +1,21 @@
+.card-travelboard-existing {
+  display: flex;
+  align-items: center;
+}
+
+.card-travelboard-existing img{
+  width: 75px;
+  height: 75px;
+  border-radius: 4px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.card-travelboard-existing p{
+  line-height: 0.5;
+}
+
+#date {
+  font-size: 14px;
+  color: darkgray;
+}
