@@ -7,8 +7,10 @@ class ExperiencesController < ApplicationController
   end
 
   def show
+    @user = current_user
     @favorite = Favorite.new
     @review = ReviewExperience.new
+    @travelboards = @user.travelboards
   end
 
   private
