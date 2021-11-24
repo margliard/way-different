@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_112317) do
+ActiveRecord::Schema.define(version: 2021_11_24_134139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,11 @@ ActiveRecord::Schema.define(version: 2021_11_24_112317) do
 
   create_table "favorites", force: :cascade do |t|
     t.bigint "experience_id", null: false
-    t.bigint "travelboard_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "traveldays_id"
     t.index ["experience_id"], name: "index_favorites_on_experience_id"
-    t.index ["travelboard_id"], name: "index_favorites_on_travelboard_id"
+    t.index ["traveldays_id"], name: "index_favorites_on_traveldays_id"
   end
 
   create_table "review_experiences", force: :cascade do |t|
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 2021_11_24_112317) do
     t.integer "day_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "travelboard_id"
-    t.index ["travelboard_id"], name: "index_traveldays_on_travelboard_id"
+    t.bigint "travelboards_id"
+    t.index ["travelboards_id"], name: "index_traveldays_on_travelboards_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,10 +96,11 @@ ActiveRecord::Schema.define(version: 2021_11_24_112317) do
   end
 
   add_foreign_key "favorites", "experiences"
+  add_foreign_key "favorites", "traveldays", column: "traveldays_id"
   add_foreign_key "review_experiences", "experiences"
   add_foreign_key "review_experiences", "users"
   add_foreign_key "review_travelboards", "travelboards"
   add_foreign_key "review_travelboards", "users"
   add_foreign_key "travelboards", "users"
-  add_foreign_key "traveldays", "travelboards"
+  add_foreign_key "traveldays", "travelboards", column: "travelboards_id"
 end
