@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_162500) do
+ActiveRecord::Schema.define(version: 2021_11_24_112317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_162500) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.date "assigned_day"
     t.bigint "experience_id", null: false
     t.bigint "travelboard_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -89,7 +88,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_162500) do
   end
 
   add_foreign_key "favorites", "experiences"
-  add_foreign_key "favorites", "travelboards"
   add_foreign_key "review_experiences", "experiences"
   add_foreign_key "review_experiences", "users"
   add_foreign_key "review_travelboards", "travelboards"

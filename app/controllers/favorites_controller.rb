@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: :destroy
-  before_action :set_travelboard, only: [:new, :create]
+  before_action :set_experience, only: [:new, :create]
 
   def new
     @favorite = Favorite.new
@@ -36,6 +36,10 @@ class FavoritesController < ApplicationController
   end
 
   def set_travelboard
-    @travelboard = travelboard.find(params[:travelboard_id])
+    @travelboard = Travelboard.find(params[:travelboard_id])
+  end
+
+  def set_experience
+    @experience = Experience.find(params[:experience_id])
   end
 end
