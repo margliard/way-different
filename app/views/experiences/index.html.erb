@@ -1,32 +1,30 @@
-<div class="container">
+<div class="container mt-4">
   <h1>All experiences<h1>
-
   <p><%= pluralize @experiences.length, "experience" %> available for your dates </p>
-
-
-    <div class="row">
-      <% @experiences.each do |experience|%>
-        <div class="col-6">
-        <%= link_to experience_path(experience) do %>
-          <div class="card-trip">
-            <img src= <%= experience.image_url%> >
-            <div class="card-trip-infos">
-              <div>
-                <p><%= experience.name %> (category: <%= experience.category%>) </p>
-                <p>Short description here!</p>
+  <div class="container d-flex">
+    <div class="col-6">
+      <ul>
+        <div class="row my-4">
+          <% @experiences.each do |experience|%>
+            <div class="col-6 cards">
+            <%= link_to experience_path(experience) do %>
+              <div class="card-trip">
+                <img src= <%= experience.image_url%> >
+                <div class="card-trip-infos">
+                  <div>
+                    <p><%= experience.name %> (category: <%= experience.category%>) </p>
+                    <p>Short description here!</p>
+                  </div>
+                <h2 class="card-trip-pricing"><%= experience.price if experience.price? %>€</h2>
+                </div>
               </div>
-              <h2 class="card-trip-pricing"><%= experience.price if experience.price? %>€</h2>
+            <% end %>
             </div>
-          </div>
-        <% end %>
+          <% end %>
         </div>
-      <% end %>
+        <p> hi i'm trying the paragraph </p>
+        <p><%= link_to "Back to home", root_path %></p>
+      </ul>
     </div>
-
-
-  <ul>
-
-  </ul>
-
-  <p><%= link_to "Back to home", root_path %></p>
+  </div>
 </div>

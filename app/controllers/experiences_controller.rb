@@ -4,13 +4,19 @@ class ExperiencesController < ApplicationController
   def index
     @experiences = Experience.all
     # @experiences = policy_scope(Experience)
+    @markers = @experiences.geocoded.map do |experience|
+      {
+        lat: experience.latitude,
+        lng: experience.longitude
+      }
+    end
   end
 
   def show
     @user = current_user
     @favorite = Favorite.new
     @review = ReviewExperience.new
-    @travelboards = @user.travelboards
+    # @travelboards = @user.travelboards
   end
 
   private
