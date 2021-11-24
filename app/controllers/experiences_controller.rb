@@ -10,7 +10,7 @@ class ExperiencesController < ApplicationController
     @user = current_user
     @favorite = Favorite.new
     @review = ReviewExperience.new
-    @travelboards = @user.travelboards
+    # @travelboards = @user.travelboards
   end
 
   private

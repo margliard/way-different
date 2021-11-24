@@ -1,2 +1,20 @@
 // Import page-specific CSS files here.
 @import "home";
+
+body {
+  background-color: white;
+}
+
+ul {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: #678D7A;
+}
