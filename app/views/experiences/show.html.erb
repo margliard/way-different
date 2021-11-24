@@ -28,8 +28,9 @@
             </div>
           <% end %>
         </div>
-        <div class="">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Modal 2</button>
+        <div class="card-travelboard-existing">
+          <button class="btn btn-create-travelboard" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">+</button>
+          <p>Create a new travelboard</p>
         </div>
       </div>
     </div>
@@ -48,6 +49,7 @@
             <%# <%= f.input :country %>
             <%= f.input :start_date %>
             <%= f.input :end_date %>
+            <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
             <%= f.submit "Create a travelboard" %>
           <% end %>
         </div>
@@ -59,11 +61,6 @@
   </div>
   <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Add to travelboard</a>
 
-
-
-
-
-  <p><%= link_to "Add favorite", new_experience_favorite_path(@experience), class:"btn btn-primary" %></p>
 
 
 
