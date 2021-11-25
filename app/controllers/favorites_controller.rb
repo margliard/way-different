@@ -7,13 +7,10 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @favorite = Favorite.new(favorite_params)
-    @favorite.travelboard = @travelboard
-    if @favorite.save
-      redirect_to travelboard_path(@travelboard)
-    else
-      render :new
-    end
+    @travelboard = Travelboard.find(params[:travelboard_id])
+    @travelday = Travelday.create(day_number: 0, travelboard: @travelboard)
+    @favorite = Favorite.create(experience: @experience, travelday: @travelday)
+    redirect_to experience_path(@experience)
   end
 
   def destroy
@@ -28,7 +25,7 @@ class FavoritesController < ApplicationController
   private
 
   def favorite_params
-    params.require(:favorite).permit(:experience_id)
+    params.require(:favorite).permit(:experience_id, :travelday_id)
   end
 
   def set_favorite

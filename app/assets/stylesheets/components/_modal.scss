@@ -1,6 +1,8 @@
 .card-travelboard-existing {
   display: flex;
+  background-color: white;
   align-items: center;
+  border: none;
 }
 
 .card-travelboard-existing img{
@@ -36,4 +38,10 @@
   background-color: #678D7A;
   color: white;
   border: white;
+}
+
+.card-travelboard-existing-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
