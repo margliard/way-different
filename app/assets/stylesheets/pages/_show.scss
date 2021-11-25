@@ -1,0 +1,12 @@
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-group-item a {
+  font-weight: bold;
+}
+
+.body {
+  font-family: $body-font;
+}

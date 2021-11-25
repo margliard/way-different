@@ -26,10 +26,10 @@ puts "Creating database..."
 
 puts "Creating Users..."
 
-margot = User.create(email: "margot@gmail.com", password: "password")
-camille = User.create(email: "camille@gmail.com", password: "password")
-sophie = User.create(email: "sophie@gmail.com", password: "password")
-aymeric = User.create(email: "aymeric@gmail.com", password: "password")
+margot = User.create(email: "margot@gmail.com", password: "password", profile_photo: "")
+camille = User.create(email: "camille@gmail.com", password: "password", profile_photo: "")
+sophie = User.create(email: "sophie@gmail.com", password: "password", profile_photo: "téléchargement_zycnie")
+aymeric = User.create(email: "aymeric@gmail.com", password: "password", profile_photo: "")
 
 puts "users ok"
 puts "------"

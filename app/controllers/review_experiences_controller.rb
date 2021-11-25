@@ -8,6 +8,8 @@ class ReviewExperiencesController < ApplicationController
     @review = ReviewExperience.new(review_params)
     @experience = Experience.find(params[:experience_id])
     @review.experience = @experience
+    @travelboards = Travelboard.where(user_id: current_user)
+    @travelboard = Travelboard.new
     @review.user = current_user
     if @review.save
       redirect_to experience_path(@experience)
