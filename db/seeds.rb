@@ -17,6 +17,7 @@ Experience.destroy_all
 # Travelboard.destroy_all (method not created yet inside the controller)
 User.destroy_all
 
+
 puts "Creating database..."
 # USER CONTROLLER NOT CREATED YET
 # margot = User.create(first_name: "Margot", last_name: "Liard", email: "margot@gmail.com", password: "password")
@@ -69,5 +70,7 @@ fav1 = Favorite.create(experience_id: hotel1.id, travelday_id: td1.id)
 fav2 = Favorite.create(experience_id: hotel2.id, travelday_id: td2.id)
 fav3 = Favorite.create(experience_id: hotel1.id, travelday_id: td3.id)
 fav4 = Favorite.create(experience_id: hotel2.id, travelday_id: td4.id)
+# fav5 = Favorite.create(experience_id: hotel2.id, travelday_id: td1.id)
+fav6 = Favorite.create(experience_id: hotel1.id, travelday_id: td2.id)
 
 puts "Finished"

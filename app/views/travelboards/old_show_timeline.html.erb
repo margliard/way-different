@@ -1,0 +1,44 @@
+<div class="container">
+			<%# LINK TO _old_travelboard_timeline.scss %>
+
+      <header class="">
+
+				<nav>
+					<a href="https://tympanus.net/Blueprints/ScrollingLayout/" class="bp-icon bp-icon-prev" data-info="previous Blueprint"><span>Previous Blueprint</span></a>
+					<a href="https://tympanus.net/Blueprints/HorizontalSlideOutMenu/" class="bp-icon bp-icon-next" data-info="next Blueprint"><span>Next Blueprint</span></a>
+					<a href="https://tympanus.net/codrops/?p=14941" class="bp-icon bp-icon-drop" data-info="back to the Codrops article"><span>back to the Codrops article</span></a>
+					<a href="https://tympanus.net/codrops/category/blueprints/" class="bp-icon bp-icon-archive" data-info="Blueprints archive"><span>Go to the archive</span></a>
+				</nav>
+			</header>
+      <div class="d-flex">
+        <div class="main_travelboard">
+          <ul class="cbp_tmtimeline">
+          <%@travelboard.traveldays.each do |travelday| %>
+            <% if travelday.day_number.even? %>
+                <li>
+                  <%# <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span></span> <span></span></time> %>
+                    <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                    <div class="cbp_tmlabel d-flex">
+                      <%travelday.favorites.each do |favorite| %>
+                        <h3>Day <%= travelday.day_number %></h3>
+                        <p><%= favorite.experience.name %></p>
+                      <% end %>
+                    </div>
+                </li>
+              <% else %>
+                <li>
+                  <time class="cbp_tmtime" datetime="2013-04-11T12:04"><span></span> <span></span></time>
+                  <div class="cbp_tmicon cbp_tmicon-screen"></div>
+                  <div class="cbp_tmlabel d-flex">
+                      <%travelday.favorites.each do |favorite| %>
+                        <h3>Day <%= travelday.day_number %></h3>
+                        <p><%= favorite.experience.name %></p>
+                      <% end %>
+                  </div>
+                </li>
+            <% end %>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
