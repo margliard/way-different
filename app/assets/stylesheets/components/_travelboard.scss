@@ -1,24 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Niramit:300,300i,700');
 
 // reset some browser default styles
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+// * {
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+// }
 
-// colors
-$primary: #1d8cf8;
-$secondary: #4f537b;
-$info: #11cdef;
-$success: #00bf9a;
-$warning: #ff8d72;
-$danger: #fd5d93;
 
 // timeline variables
-$body-bg: #1e1e2f;
-$timeline-before-bg : #222a42;
-$timeline-body-bg: #27293d;
+// $body-bg: #1e1e2f;
+// $timeline-before-bg : #222a42;
+// $timeline-body-bg: #27293d;
 $timeline-body-round: 3px;
 $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 
@@ -27,12 +20,6 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 //     background: $body-bg;
 //     letter-spacing: 1px;
 // }
-
-// page container
-.container-travelboard {
-    max-width: 650px;
-    margin: 50px auto;
-}
 
 .row {
   display: flex;
@@ -43,6 +30,10 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   margin-bottom: 0px;
   // padding: 10px;
   // height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.review {
+  margin-top:30px;
 }
 
 // typography
@@ -58,8 +49,13 @@ p {
     position: relative;
     padding-left: 4rem;
     margin: 0 0 0 30px;
-    color: white;
+    color: $light-gray;
     width: auto;
+    margin-top: 51px;
+
+    .span {
+      margin: 0px;
+    }
 
     &:before {
         content: '';
@@ -67,7 +63,7 @@ p {
         left: 0;
         top: 0;
         width: 4px;
-        height: 115%;
+        height: 123%;
         background: $green;
     }
 
@@ -102,9 +98,15 @@ p {
         }
 
         .timeline-body-light {
+          border-color: $green;
+        }
+
+         .timeline-body-dark {
+          border-color: $darkgreen;
+        }
+        .timeline-body {
             // background: $green;
             border-style: solid;
-            border-color: $green;
             border-width: 3px;
             border-radius: $timeline-body-round;
             padding: 20px 20px 15px;
@@ -112,7 +114,7 @@ p {
 
             &:before {
                 content: '';
-                background: white;
+                background: $light-gray;
                 border-bottom: solid;
                 border-left: solid;
                 border-color: $green;
@@ -130,54 +132,11 @@ p {
 
                 .badge {
                     background: $secondary;
-                    padding: 4px 8px;
+                    // padding: 4px 8px;
                     border-radius: 3px;
                     font-size: 12px;
                     font-weight: bold;
-                }
-            }
-
-            .timeline-subtitle {
-                font-weight: 300;
-                font-style: italic;
-                opacity: .4;
-                margin-top: 16px;
-                font-size: 11px;
-            }
-        }
-
-        .timeline-body-dark {
-            // background: $darkgreen;
-            border-style: solid;
-            border-color: $darkgreen;
-            border-radius: $timeline-body-round;
-            padding: 20px 20px 15px;
-            box-shadow: $timeline-body-shadow;
-
-            &:before {
-                content: '';
-                background: white;
-                border-bottom: solid;
-                border-left: solid;
-                border-color: $darkgreen;
-                width: 20px;
-                height: 20px;
-                display: block;
-                position: absolute;
-                left: -9px;
-                transform: rotate(45deg);
-                border-radius: 0 0 0 2px;
-            }
-
-            .timeline-title {
-
-
-                .badge {
-                    background: $secondary;
-                    padding: 4px 8px;
-                    border-radius: 3px;
-                    font-size: 12px;
-                    font-weight: bold;
+                    margin: -7px
                 }
             }
 
@@ -210,17 +169,29 @@ p {
     }
 }
 
+.button-travelboard {
+  text-decoration: none;
+  position: absolute;
+  font-weight: bold;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: $light-gray;
+  background-color: transparent;
+  border: none;
+}
+
 
 .author{
 	font-family: inherit;
 	padding: 3em;
 	text-align: center;
 	width: 100%;
-		color: white;
+		color: $light-gray;
 
 	a:link,
 	a:visited{
-		color: white;
+		color: $light-gray;
 		&:hover{
 			text-decoration: none;
 		}
@@ -232,7 +203,7 @@ p {
 		display: inline-block;
 		font-family: inherit;
 		font-weight: 100;
-		color: white;
+		color: $light-gray;
 		text-align: center;
 		vertical-align: middle;
 		user-select: none;
