@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :review_travelboards, dependent: :destroy
   has_many :review_experiences, dependent: :destroy
   has_many :travelboards, dependent: :destroy
+  validates :username, presence: true, uniqueness: true
 end
