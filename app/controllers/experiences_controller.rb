@@ -2,10 +2,9 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: :show
 
   def index
-    @experiences = Experience.all
     # @experiences = policy_scope(Experience)
     if params[:query].present?
-      @experiences = Experience.search_by_city(params[:query])
+      p @experiences = Experience.search_by_city_and_country(params[:query])
     else
       @experiences = Experience.all
     end

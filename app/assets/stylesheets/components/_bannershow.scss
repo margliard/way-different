@@ -1,0 +1,94 @@
+.banner-show {
+  background-size: cover;
+  background-position: center;
+  padding: 50px 0;
+}
+
+.banner-show img {
+  height: 300px;
+  width: 600px;
+  border-radius: 4px;
+}
+
+.banner-show h2 {
+  margin-top: 28px;
+  color: white;
+}
+
+.image-grid {
+  display: flex;
+}
+#image-grid-2 {
+  height: 300px;
+  width: 200px;
+}
+
+#image-grid-3 {
+  height: 300px;
+  width: 200px;
+}
+
+.banner-show h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner-show p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.banner-bg-show {
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset_url('road.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.main-show {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.review-show {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.description-show {
+  width: 700px;
+  margin-top: 18px;
+}
+
+.description-show h3 {
+  color: #3B6363;
+}
+
+.addtofavorite-show {
+  padding-right: 30px;
+}
+
+.hr.solid {
+  border-top: 3px solid #bbb;
+}
+
+.infos-show {
+  width: 700px;
+  margin-bottom: 14px;
+}
+
+.infos-show h3 {
+  color: #3B6363;
+}
+
+.form-review {
+  width: 350px;
+  padding-right: 28px;
+}
