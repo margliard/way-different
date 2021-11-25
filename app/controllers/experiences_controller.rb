@@ -16,6 +16,7 @@ class ExperiencesController < ApplicationController
         lng: experience.longitude,
         info_window: render_to_string(partial: "info_window", locals: { experience: experience })
       }
+    end
   end
 
   def show

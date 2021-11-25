@@ -22,6 +22,8 @@ export default class extends Controller {
       this.markersValue.forEach((marker) => {
         new mapboxgl.Marker()
           .setLngLat([marker.lng, marker.lat])
+          .setPopup(new mapboxgl.Popup()
+          .setHTML(marker.info_window))
           .addTo(this.map);
       });
     }
