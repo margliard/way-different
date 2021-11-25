@@ -12,11 +12,8 @@
     "jquery": "^3.6.0",
     "mapbox-gl": "^2.6.1",
     "popper.js": "^1.16.1",
-<<<<<<< HEAD
     "stimulus-flatpickr": "^1.4.0",
-=======
     "stimulus": "^3.0.1",
->>>>>>> master
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
