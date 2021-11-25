@@ -12,6 +12,9 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// app/assets/stylesheets/application.scss
+@import "flatpickr/dist/flatpickr";
 @import "pages/info_window";
 @import "pages/show";
 @import "components/travelboard"

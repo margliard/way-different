@@ -1,16 +1,18 @@
 
 <div class="banner banner-bg" ;>
   <div class="container">
-    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
+    <h1 class="title-banner">Find ecofriendly experiences all around the world</h1>
 
     <div class="container d-flex justify-content-center my-4">
       <%= form_tag experiences_path, method: :get do %>
       <div class="search-form-control input-group d-flex">
-        <div class= "form-control p-2", id= "search_query">
-          <%= text_field_tag :query, params[:query], class: "form-control" %>
-        </div>
-          <%= submit_tag " Let's go! ", class: "search btn btn-ghost"%>
-        <% end %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find an experience"
+        %>
+      <% end %>
+      <%= submit_tag "Search", class: "btn btn-ghost" %>
       </div>
     </div>
   </div>
