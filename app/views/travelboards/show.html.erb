@@ -1,46 +1,70 @@
-<h1>Travel board <%= @travelboard.name %></h1>
-    <%# Timieline Vertical %>
-    <div class="container">
-			<header class="">
-				<nav>
-					<a href="https://tympanus.net/Blueprints/ScrollingLayout/" class="bp-icon bp-icon-prev" data-info="previous Blueprint"><span>Previous Blueprint</span></a>
-					<a href="https://tympanus.net/Blueprints/HorizontalSlideOutMenu/" class="bp-icon bp-icon-next" data-info="next Blueprint"><span>Next Blueprint</span></a>
-					<a href="https://tympanus.net/codrops/?p=14941" class="bp-icon bp-icon-drop" data-info="back to the Codrops article"><span>back to the Codrops article</span></a>
-					<a href="https://tympanus.net/codrops/category/blueprints/" class="bp-icon bp-icon-archive" data-info="Blueprints archive"><span>Go to the archive</span></a>
-				</nav>
-			</header>
-      <div class="d-flex">
-        <div class="main_travelboard">
-          <ul class="cbp_tmtimeline">
-          <%@travelboard.traveldays.each do |travelday| %>
-            <% if travelday.day_number.even? %>
-                <li>
-                  <%# <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span></span> <span></span></time> %>
-                    <div class="cbp_tmicon cbp_tmicon-phone"></div>
-                    <div class="cbp_tmlabel d-flex">
-                      <%travelday.favorites.each do |favorite| %>
-                        <h3>Day <%= travelday.day_number %></h3>
-                        <p><%= favorite.experience.name %></p>
-                      <% end %>
+
+<%# Horizontal timeline %>
+    <%# <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vertical Dark Timeline</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    </head> %>
+    <%# <body> %>
+<div class="container-travelboards">
+  <%# 'timeline-map is the div surround the the timeline and map %>
+  <h2>Travelboard: <%= @travelboard.name %></h2>
+    <div class="timeline-map row">
+      <div class="column">
+        <%@travelboard.traveldays.each do |travelday| %>
+          <div class="timeline">
+            <% if travelday.day_number.odd? %>
+                <div class="timeline-container primary">
+                    <div class="timeline-icon">
+                      <p><%= travelday.day_number %></p>
+                      <%# <i class="far fa-grin-wink"></i> %>
                     </div>
-                </li>
-              <% else %>
-                <li>
-                  <time class="cbp_tmtime" datetime="2013-04-11T12:04"><span></span> <span></span></time>
-                  <div class="cbp_tmicon cbp_tmicon-screen"></div>
-                  <div class="cbp_tmlabel d-flex">
-                      <%travelday.favorites.each do |favorite| %>
-                        <h3>Day <%= travelday.day_number %></h3>
-                        <p><%= favorite.experience.name %></p>
-                      <% end %>
+                    <div class="timeline-body-light">
+                    <%travelday.favorites.each do |favorite| %>
+                      <div class="card-product card-product-light">
+                        <div class="card-product-infos">
+                          <h4 class="timeline-title"><span class="badge"><%= favorite.experience.name %></span></h4>
+                          <p><%= favorite.experience.description %></p>
+                          <p class="timeline-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus molestiae nemo expedita quae magni tempora, sapiente consequatur ipsum, inventore recusandae deserunt pariatur temporibus, cumque unde provident corrupti obcaecati quibusdam neque!</p>
+                        </div>
+                      </div>
+                    <% end %>
+                    </div>
+                </div>
+            <% else %>
+              <div class="timeline-container danger">
+                  <div class="timeline-icon">
+                    <p><%= travelday.day_number %></p>
+                    <%# <i class="far fa-grin-hearts"></i> %>
                   </div>
-                </li>
+                  <div class="timeline-body-dark">
+                    <%travelday.favorites.each do |favorite| %>
+                      <div class="card-product card-product-dark">
+                        <div class="card-product-infos">
+                          <h4 class="timeline-title"><span class="badge"><%= favorite.experience.name %></span></h4>
+                          <p><%= favorite.experience.description %></p>
+                          <p class="timeline-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque id eius consectetur perferendis incidunt asperiores atque ab, voluptate praesentium cupiditate fugiat tenetur recusandae provident dicta, reprehenderit inventore repellendus illum? Praesentium!</p>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+              </div>
             <% end %>
-          <% end %>
-          </ul>
-        </div>
+          </div>
+        <% end %>
+      </div>
+    <div class="column">
+      <div class="map">
       </div>
     </div>
+
+
+  </div>
+
+</div>
+
+
   <%# Reviews part %>
   <ul class="list-group">
     <% @travelboard.review_travelboards.each do |review| %>
