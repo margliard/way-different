@@ -64,13 +64,14 @@
       <li class="list-group-item">
         <%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face %>
         <%= review.comment %>
-        <%= review.rating %>
+        <strong><%= review.rating %>/5</strong>
         <%= link_to "Remove",
                     experience_review_experience_path(@experience, review),
                     method: :delete,
                     data: { confirm: "Are you sure?" } %></li>
     <% end %>
   </ul>
+  <% if user_signed_in? == true %>
   <h3>Leave a review</h3>
     <div class="container">
       <%= simple_form_for [ @experience, @review] do |f| %>
@@ -78,6 +79,7 @@
         <%= f.input :rating %>
         <%= f.submit "Submit review", class: "btn btn-primary" %>
       <% end %>
+  <% end %>
     </div>
 
   <%= link_to "Back to all experiences", experiences_path %>
