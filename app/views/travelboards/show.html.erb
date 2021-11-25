@@ -1,92 +1,102 @@
 
-<%# Horizontal timeline %>
-    <%# <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Vertical Dark Timeline</title>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    </head> %>
-    <%# <body> %>
-<div class="container-travelboards">
-  <%# 'timeline-map is the div surround the the timeline and map %>
-  <h2>Travelboard: <%= @travelboard.name %></h2>
-    <div class="timeline-map row">
-      <div class="column">
-        <%@travelboard.traveldays.each do |travelday| %>
-          <div class="timeline">
-            <% if travelday.day_number.odd? %>
-                <div class="timeline-container primary">
+  <%# Horizontal timeline %>
+      <%# <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Vertical Dark Timeline</title>
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+      </head> %>
+      <%# <body> %>
+<div class="container">
+  <div class="container-travelboards">
+    <%# 'timeline-map is the div surround the the timeline and map %>
+    <h2>Travelboard: <%= @travelboard.name %></h2>
+      <div class="timeline-map row">
+        <div class="column">
+          <%@travelboard.traveldays.each do |travelday| %>
+            <div class="timeline">
+              <% if travelday.day_number.odd? %>
+                  <div class="timeline-container primary">
+                      <div class="timeline-icon">
+                        <p><%= travelday.day_number %></p>
+                        <%# <i class="far fa-grin-wink"></i> %>
+                      </div>
+                      <div class="timeline-body-light">
+                      <%travelday.favorites.each do |favorite| %>
+                        <div class="card-product card-product-light">
+                          <div class="card-product-infos">
+                            <h4 class="timeline-title"><span class="badge"><%= favorite.experience.name %></span></h4>
+                            <p><%= favorite.experience.description %></p>
+                            <p class="timeline-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus molestiae nemo expedita quae magni tempora, sapiente consequatur ipsum, inventore recusandae deserunt pariatur temporibus, cumque unde provident corrupti obcaecati quibusdam neque!</p>
+                          </div>
+                        </div>
+                      <% end %>
+                      </div>
+                  </div>
+              <% else %>
+                <div class="timeline-container danger">
                     <div class="timeline-icon">
                       <p><%= travelday.day_number %></p>
-                      <%# <i class="far fa-grin-wink"></i> %>
+                      <%# <i class="far fa-grin-hearts"></i> %>
                     </div>
-                    <div class="timeline-body-light">
-                    <%travelday.favorites.each do |favorite| %>
-                      <div class="card-product card-product-light">
-                        <div class="card-product-infos">
-                          <h4 class="timeline-title"><span class="badge"><%= favorite.experience.name %></span></h4>
-                          <p><%= favorite.experience.description %></p>
-                          <p class="timeline-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus molestiae nemo expedita quae magni tempora, sapiente consequatur ipsum, inventore recusandae deserunt pariatur temporibus, cumque unde provident corrupti obcaecati quibusdam neque!</p>
+                    <div class="timeline-body-dark">
+                      <%travelday.favorites.each do |favorite| %>
+                        <div class="card-product card-product-dark">
+                          <div class="card-product-infos">
+                            <h4 class="timeline-title"><span class="badge"><%= favorite.experience.name %></span></h4>
+                            <p><%= favorite.experience.description %></p>
+                            <p class="timeline-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque id eius consectetur perferendis incidunt asperiores atque ab, voluptate praesentium cupiditate fugiat tenetur recusandae provident dicta, reprehenderit inventore repellendus illum? Praesentium!</p>
+                          </div>
                         </div>
-                      </div>
-                    <% end %>
+                      <% end %>
                     </div>
                 </div>
-            <% else %>
-              <div class="timeline-container danger">
-                  <div class="timeline-icon">
-                    <p><%= travelday.day_number %></p>
-                    <%# <i class="far fa-grin-hearts"></i> %>
-                  </div>
-                  <div class="timeline-body-dark">
-                    <%travelday.favorites.each do |favorite| %>
-                      <div class="card-product card-product-dark">
-                        <div class="card-product-infos">
-                          <h4 class="timeline-title"><span class="badge"><%= favorite.experience.name %></span></h4>
-                          <p><%= favorite.experience.description %></p>
-                          <p class="timeline-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque id eius consectetur perferendis incidunt asperiores atque ab, voluptate praesentium cupiditate fugiat tenetur recusandae provident dicta, reprehenderit inventore repellendus illum? Praesentium!</p>
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <div class="column">
+        <div class="mapbox"
+            data-controller="mapbox"
+            data-mapbox-markers-value="<%= @markers.to_json %>"
+            data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+        </div>
       </div>
-    <div class="column">
-      <div class="map">
-      </div>
-    </div>
 
+
+    </div>
 
   </div>
+  <hr class="solid">
 
-</div>
-
-
-  <%# Reviews part %>
-      <ul class="list-group">
-        <% @experience.review_experiences.each do |review| %>
-          <li class="list-group-item">
-            <%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face %>
-            <%= review.comment %>
-            <strong><%= review.rating %></strong>
-            <%= link_to "Remove",
-                        experience_review_experience_path(@experience, review),
-                        method: :delete,
-                        data: { confirm: "Are you sure?" } %></li>
-            <% end %>
-        </ul>
-    </div>
-    <% if user_signed_in? == true %>
-    <div class="form-review">
-      <h5>Already went to <%= @experience.name%>? Give your feedback</h5>
-        <%= simple_form_for [ @experience, @review] do |f| %>
-        <%= f.input :comment, :label => "How was your experience?" %>
-        <%= f.input :rating, :label => "Rate your experience" %>
-        <%= f.submit "Submit review", class: "btn btn-primary" %>
+    <%# Reviews part %>
+    <div class="review-show">
+      <div class="infos-show">
+        <ul class="list-group">
+          <% @travelboard.review_travelboards.each do |review| %>
+            <li class="list-group-item">
+              <%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>
+              <%= review.user.username  %>
+              <%= review.comment %>
+              <strong><%= review.rating %></strong>
+              <%= link_to "Remove",
+                          travelboard_review_travelboard_path(@travelboard, review),
+                          method: :delete,
+                          data: { confirm: "Are you sure?" } %></li>
+              <% end %>
+          </ul>
+    <hr class="solid">
+      </div>
+      <% if user_signed_in? == true %>
+      <div class="form-review">
+        <h5>Give your feedback</h5>
+          <%= simple_form_for [ @travelboard, @reviewtrav] do |f| %>
+          <%= f.input :comment, :label => "How was your experience?" %>
+          <%= f.input :rating, :label => "Rate your experience" %>
+          <%= f.submit "Submit review", class: "btn btn-primary" %>
+        <% end %>
+      </div>
       <% end %>
-     <% end %>
-
-<p><%= link_to "Back to home", root_path %></p>
+    </div>
+  <p><%= link_to "Back to home", root_path %></p>
+</div>

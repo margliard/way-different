@@ -5,7 +5,10 @@ class TravelboardsController < ApplicationController
 
   def show
     @travelboard = Travelboard.find(params[:id])
-    @review = ReviewTravelboard.new
+    @experience = Experience.new
+    @reviewtrav = ReviewTravelboard.new
+    @review_exp = ReviewExperience.new
+
     # @favorite = Favorite.find(params[:favorite_id])
   end
 
