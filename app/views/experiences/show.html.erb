@@ -106,7 +106,8 @@
       <ul class="list-group">
         <% @experience.review_experiences.each do |review| %>
           <li class="list-group-item">
-            <%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face %>
+            <%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>
+            <%= review.user.username  %>
             <%= review.comment %>
             <strong><%= review.rating %></strong>
             <%= link_to "Remove",

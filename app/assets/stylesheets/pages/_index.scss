@@ -20,14 +20,14 @@ a:hover {
   color: #678D7A;
 }
 
-.card {
-  display: flex;
+.col-6 {
+  padding-right: 3px;
+  padding-left: 3px;
 }
-
  .mapbox {
     height: 400px;
     border-radius: 4px;
     position: -webkit-sticky;
     position: sticky;
-    top: 195px;
+    top: 150px;
  }
