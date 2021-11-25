@@ -1,65 +1,89 @@
-<h1>Travel board <%= @travelboard.name %></h1>
-    <%# Timieline Vertical %>
-    <div class="container">
-			<header class="">
-				<nav>
-					<a href="https://tympanus.net/Blueprints/ScrollingLayout/" class="bp-icon bp-icon-prev" data-info="previous Blueprint"><span>Previous Blueprint</span></a>
-					<a href="https://tympanus.net/Blueprints/HorizontalSlideOutMenu/" class="bp-icon bp-icon-next" data-info="next Blueprint"><span>Next Blueprint</span></a>
-					<a href="https://tympanus.net/codrops/?p=14941" class="bp-icon bp-icon-drop" data-info="back to the Codrops article"><span>back to the Codrops article</span></a>
-					<a href="https://tympanus.net/codrops/category/blueprints/" class="bp-icon bp-icon-archive" data-info="Blueprints archive"><span>Go to the archive</span></a>
-				</nav>
-			</header>
-      <div class="d-flex">
-        <div class="main_travelboard">
-          <ul class="cbp_tmtimeline">
-          <%@travelboard.traveldays.each do |travelday| %>
-            <% if travelday.day_number.even? %>
-                <li>
-                  <%# <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span></span> <span></span></time> %>
-                    <div class="cbp_tmicon cbp_tmicon-phone"></div>
-                    <div class="cbp_tmlabel d-flex">
-                      <%travelday.favorites.each do |favorite| %>
-                        <h3>Day <%= travelday.day_number %></h3>
-                        <p><%= favorite.experience.name %></p>
-                      <% end %>
-                    </div>
-                </li>
-              <% else %>
-                <li>
-                  <time class="cbp_tmtime" datetime="2013-04-11T12:04"><span></span> <span></span></time>
-                  <div class="cbp_tmicon cbp_tmicon-screen"></div>
-                  <div class="cbp_tmlabel d-flex">
-                      <%travelday.favorites.each do |favorite| %>
-                        <h3>Day <%= travelday.day_number %></h3>
-                        <p><%= favorite.experience.name %></p>
-                      <% end %>
-                  </div>
-                </li>
-            <% end %>
-          <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
-  <%# Reviews part %>
-  <ul class="list-group">
-    <% @travelboard.review_travelboards.each do |review| %>
-      <li class="list-group-item">
-        <%= review.comment %>
-        <%= review.rating %>
-        <%= link_to "Remove",
-                    travelboard_review_travelboard_path(@travelboard, review),
-                    method: :delete,
-                    data: { confirm: "Are you sure?" } %></li>
-      <% end %>
-  </ul>
-  <h5>Leave a review</h5>
-  <div class="container">
-    <%= simple_form_for [ @travelboard, @review] do |f| %>
-      <%= f.input :comment %>
-      <%= f.input :rating %>
-      <%= f.submit "Submit review", class: "btn btn-primary" %>
-    <% end %>
-  </div>
 
-<p><%= link_to "Back to home", root_path %></p>
+<%# Horizontal timeline %>
+    <%# <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vertical Dark Timeline</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    </head> %>
+    <%# <body> %>
+<div class="container">
+  <%# 'timeline-map is the div surround the the timeline and map %>
+  <h2>Travelboard: <%= @travelboard.name %></h2>
+    <div class="timeline-map row">
+      <div class="column">
+        <%@travelboard.traveldays.each do |travelday| %>
+          <div class="timeline">
+            <% if travelday.day_number.odd? %>
+                <%= travelday.day_number.odd? %>
+                <div class="timeline-container primary">
+                    <div class="timeline-icon" data-bs-toggle="collapse" data-bs-target="#collapseExample<%=travelday.day_number%>" aria-expanded="false" aria-controls="collapseExample">
+                      <p><button class="button-travelboard"><%= travelday.day_number %></button></p>
+                      <%# <i class="far fa-grin-wink"></i> %>
+                    </div>
+                    <div class="timeline-body-light timeline-body collapse" id="collapseExample<%=travelday.day_number%>">
+                    <%travelday.favorites.each do |favorite| %>
+                      <div class="card-product card-product-light">
+                        <div class="card-product-infos">
+                          <h4 class="timeline-title"><span class="badge"><%= favorite.experience.name %></span></h4>
+                          <p class="card-category"><%= favorite.experience.category %></p>
+                          <p class="timeline-subtitle"><%= favorite.experience.address %></p>
+                        </div>
+                      </div>
+                    <% end %>
+                    </div>
+                </div>
+            <% else %>
+              <%= travelday.day_number.odd? %>
+              <div class="timeline-container danger">
+                  <div class="timeline-icon" data-bs-toggle="collapse" data-bs-target="#collapseExample<%=travelday.day_number%>" aria-expanded="false" aria-controls="collapseExample">
+                    <p><button class="button-travelboard"><%= travelday.day_number %></button></p>
+                    <%# <i class="far fa-grin-hearts"></i> %>
+                  </div>
+                  <div class="timeline-body-dark timeline-body collapse" id="collapseExample<%=travelday.day_number%>">
+                    <%travelday.favorites.each do |favorite| %>
+                      <div class="card-product card-product-dark">
+                        <div class="card-product-infos">
+                          <h4 class="timeline-title"><span class="badge"><%= favorite.experience.name %></span></h4>
+                          <p class="card-category"><%= favorite.experience.category %></p>
+                          <p class="timeline-subtitle"><%= favorite.experience.address %></p>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <div class="column">
+    <div class="map">
+</div>
+
+
+    </div>
+    <%# Reviews part %>
+    <div class="review">
+      <ul class="list-group">
+        <% @travelboard.review_travelboards.each do |review| %>
+          <li class="list-group-item">
+            <%= review.comment %>
+            <%= review.rating %>
+            <%= link_to "Remove",
+                        travelboard_review_travelboard_path(@travelboard, review),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" } %></li>
+          <% end %>
+      </ul>
+      <h5>Leave a review</h5>
+      <div class="container">
+        <%= simple_form_for [ @travelboard, @review] do |f| %>
+          <%= f.input :comment %>
+          <%= f.input :rating %>
+          <%= f.submit "Submit review", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <p><%= link_to "Back to home", root_path %></p>
+    </div>
+  </div>
+</div>
