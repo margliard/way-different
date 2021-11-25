@@ -3,11 +3,6 @@
 
   <h5><%= @experience.name%></h5>
 
-  <ul class="list-group">
-    <% @experience.review_experiences.each do |review| %>
-      <li class="list-group-item"><%= review.comment %></li>
-    <% end %>
-  </ul>
 
   <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
