@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   end
   resources :travelboards
   resources :favorites, only: [:destroy]
+
+  get 'search_accommodations', to: "pages#search_accommodations"
+  get 'search_activities', to: "pages#search_activities"
+  get 'search_inspirations', to: "pages#search_inspirations"
 end
