@@ -51,7 +51,7 @@
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset_url('road.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 80vh;
 }
 
 .main-show {
@@ -93,6 +93,9 @@
 }
 
 .form-review {
-  width: 350px;
-  padding-right: 28px;
+  width: 400px;
+  padding: 28px;
+  border: $lightgreen 0.5px solid;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
