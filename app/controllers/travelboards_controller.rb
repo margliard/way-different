@@ -11,7 +11,7 @@ class TravelboardsController < ApplicationController
 
   def new
     @travelboard = Travelboard.new
-    #@favorite = Favorite.new
+    @favorite = Favorite.new
     @user = current_user # devise
     @travelboards = Travelboard.where(user_id: @user)
     # @favorites = Favorite.where(user_id: @user)
@@ -19,9 +19,18 @@ class TravelboardsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @travelboard = Travelboard.new(travelboard_params)
+    @travelboard.user = @user
     if @travelboard.save
-      redirect_to travelboard_path(@travelboard)
+      if params[:experience_id]
+        @experience = Experience.find(params[:experience_id])
+        @travelday = Travelday.create(travelboard: @travelboard, day_number: 0)
+        @favorite = Favorite.create(experience: @experience, travelday: @travelday)
+        redirect_to experience_path(@experience)
+      else
+        redirect_to travelboard_path(@travelboard)
+      end
     else
       render :new
     end
@@ -39,7 +48,14 @@ class TravelboardsController < ApplicationController
   private
 
   def travelboard_params
-    params.require(:travelboard).permit(:name, :user_id, :start_date, :end_date, :status) #
+    params.require(:travelboard).permit(:name, :user_id, :start_date, :end_date, :status)
   end
 
+  def favorite_params
+    params.require(:favorite).permit(:experience_id)
+  end
+
+  def travelday_params
+    params.require(:travelday).permit(:favorite_id, :travelboard_id)
+  end
 end
