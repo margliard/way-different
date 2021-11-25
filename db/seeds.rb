@@ -27,7 +27,7 @@ puts "Creating database..."
 puts "Creating Users..."
 
 margot = User.create(email: "margot@gmail.com", password: "password", profile_photo: "")
-camille = User.create(email: "camille@gmail.com", password: "password", profile_photo: "")
+camille = User.create(email: "camille@gmail.com", password: "password", profile_photo: "ozet13ypf1lmhn10v2ezt7i8yl9t")
 sophie = User.create(email: "sophie@gmail.com", password: "password", profile_photo: "téléchargement_zycnie")
 aymeric = User.create(email: "aymeric@gmail.com", password: "password", profile_photo: "")
 
