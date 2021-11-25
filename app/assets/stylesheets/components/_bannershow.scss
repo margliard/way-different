@@ -5,14 +5,18 @@
 }
 
 .banner-show img {
-  height: 300px;
+  height: 406px;
   width: 600px;
-  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 .banner-show h2 {
   margin-top: 28px;
   color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .image-grid {
@@ -52,7 +56,7 @@
 
 .main-show {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
 }
 

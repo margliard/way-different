@@ -23,7 +23,13 @@ class ExperiencesController < ApplicationController
     @review = ReviewExperience.new
     @travelboards = Travelboard.where(user_id: current_user)
     @travelboard = Travelboard.new
+    @nearby_experiences = Experience.near(@experience.to_coordinates, 200)
+    @markers_show = [{
+      lat: @experience.latitude,
+      lng: @experience.longitude,
+    }]
   end
+
 
   private
 
