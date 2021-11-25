@@ -7285,12 +7285,11 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
-<<<<<<< HEAD
 stimulus-flatpickr@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/stimulus-flatpickr/-/stimulus-flatpickr-1.4.0.tgz#a41071a3e69cfc50b7eaaacf356fc0ab1ab0543c"
   integrity sha512-rcC/c9+E+f5W2kOjaaLShtf3i+p95ACqt+oGzSAgeuZh2YeIN8gW4EWO7h0STBLzSVPl6BjIfPWP7upMPavIVQ==
-=======
+
 stimulus@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/stimulus/-/stimulus-3.0.1.tgz#370e3054eb3b8068904af1888949821255d375d3"
@@ -7298,7 +7297,6 @@ stimulus@^3.0.1:
   dependencies:
     "@hotwired/stimulus" "^3.0.1"
     "@hotwired/stimulus-webpack-helpers" "^1.0.0"
->>>>>>> master
 
 stream-browserify@^2.0.1:
   version "2.0.2"
