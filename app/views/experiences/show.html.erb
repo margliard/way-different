@@ -1,21 +1,16 @@
-<div class="container">
-  <h1>Way different<h1>
 
-  <h5><%= @experience.name%></h5>
 
-<div class="banner-show" style="background-color: #95B2A3">
-  <div class="container">
-    <div class="image-grid">
-      <img src= <%= @experience.image_url%> id="image-grid-1" >
-      <img src= <%= @experience.image_url%> id="image-grid-2">
-      <img src= <%= @experience.image_url%> id="image-grid-3">
-      <div>
+  <div class="banner-show" style="background-color: #95B2A3">
+    <div class="container">
+      <div class="image-grid">
+        <img src= <%= @experience.image_url%> id="image-grid-1" >
+        <img src= <%= @experience.image_url%> id="image-grid-2">
+        <img src= <%= @experience.image_url%> id="image-grid-3">
       </div>
+      <h2><%= @experience.name%></h2>
+      <p><%= @experience.address%></p>
     </div>
-  <h2><%= @experience.name%></h2>
-  <p><%= @experience.address%></p>
   </div>
-</div>
 
 <div class="container">
   <div class="main-show">
