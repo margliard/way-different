@@ -4,6 +4,12 @@ class ExperiencesController < ApplicationController
   def index
     @experiences = Experience.all
     # @experiences = policy_scope(Experience)
+    if params[:query].present?
+      @experiences = Experience.search_by_city(params[:query])
+    else
+      @experiences = Experience.all
+    end
+
     @markers = @experiences.geocoded.map do |experience|
       {
         lat: experience.latitude,
