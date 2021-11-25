@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :review_travelboards, dependent: :destroy
   has_many :review_experiences, dependent: :destroy
+  has_many :travelboards, dependent: :destroy
 end
