@@ -1,47 +1,39 @@
 
 <div class="banner banner-bg" ;>
-
-    <h1 class="title-banner">Find ecofriendly experiences all around the world</h1>
-
-    <div class="search-bar">
-
-      <ul class="list-inline tabs-underlined">
-        <li>
-          <%= link_to "Accommodations", search_accommodations_path, class: "tab-underlined active" %>
-        </li>
-        <li>
-          <%= link_to "Activities", search_activities_path, class: "tab-underlined" %>
-        </li>
-        <li>
-          <%= link_to "Inspirations", search_inspirations_path, class: "tab-underlined" %>
-        </li>
-      </ul>
-
-      <div class="container d-flex justify-content-center">
-        <%= form_tag experiences_path, method: :get do %>
-        <div class="search-form-control input-group d-flex">
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Find an experience"
-          %>
-        <% end %>
-        <%= submit_tag "Search", class: "btn btn-ghost" %>
-        </div>
+  <h1 class="title-banner">Find ecofriendly experiences all around the world</h1>
+  <div class="search-bar">
+    <ul class="list-inline tabs-underlined">
+      <li>
+        <%= link_to "Accommodations", search_accommodations_path, class: "tab-underlined active" %>
+      </li>
+      <li>
+        <%= link_to "Activities", search_activities_path, class: "tab-underlined" %>
+      </li>
+      <li>
+        <%= link_to "Inspirations", search_inspirations_path, class: "tab-underlined" %>
+      </li>
+    </ul>
+    <div class="container d-flex justify-content-center">
+      <%= form_tag experiences_path, method: :get do %>
+      <div class="search-form-control input-group d-flex">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find an experience"
+        %>
+      <% end %>
+      <%= submit_tag "Search", class: "btn btn-ghost" %>
       </div>
-
     </div>
-
-
-
+  </div>
 </div>
 
 <div class="container-inspo">
-  <h3 class="title-ideas">Ideas for your next trip</h3>
+  <h1 class="title-ideas">Ideas for your next trip</h1>
   <div class="cards-home">
-    <div class="card-trip">
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg)">
-        <div class="card-trip-infos">
+    <div class="card-trip-inspo">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
+        <div class="card-trip-infos-inspo">
           <div>
             <h2>Travel board name</h2>
             <p>Country location</p>
@@ -50,9 +42,9 @@
         </div>
       </div>
     </div>
-    <div class="card-trip">
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg)">
-        <div class="card-trip-infos">
+    <div class="card-trip-inspo">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
+        <div class="card-trip-infos-inspo">
           <div>
             <h2>Travel board name</h2>
             <p>Country location</p>
@@ -61,9 +53,9 @@
         </div>
       </div>
     </div>
-    <div class="card-trip">
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg)">
-        <div class="card-trip-infos">
+    <div class="card-trip-inspo">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
+        <div class="card-trip-infos-inspo">
           <div>
             <h2>Travel board name</h2>
             <p>Country location</p>
@@ -72,9 +64,9 @@
         </div>
       </div>
     </div>
-    <div class="card-trip">
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg)">
-        <div class="card-trip-infos">
+    <div class="card-trip-inspo">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
+        <div class="card-trip-infos-inspo">
           <div>
             <h2>Travel board name</h2>
             <p>Country location</p>
@@ -86,9 +78,7 @@
   </div>
 </div>
 
-
-
-<div class="color-block my-4">
+<div class="color-block">
   <div class="block-1">
     <h1>block 1</h1>
   </div>
