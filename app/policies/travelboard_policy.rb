@@ -3,11 +3,16 @@ class TravelboardPolicy < ApplicationPolicy
     # index
     def resolve
       scope.all
+      # scope.where(user: user)
     end
   end
 
-  def show?
+  def index?
     true
+  end
+
+  def show?
+    record.user == user
   end
 
   def new?

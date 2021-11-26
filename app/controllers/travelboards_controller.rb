@@ -1,6 +1,9 @@
 class TravelboardsController < ApplicationController
+  # before_action :set_travelboard
+
   def index
     @travelboards = Travelboard.all
+    # @travelboards = policy_scope(Machine)
   end
 
   def show
@@ -49,6 +52,11 @@ class TravelboardsController < ApplicationController
   end
 
   private
+
+  # def set_travelboard
+  #   @travelboard = Travelboard.find(params[:id])
+  #   authorize @travelboard
+  # end
 
   def travelboard_params
     params.require(:travelboard).permit(:name, :user_id, :start_date, :end_date, :status)

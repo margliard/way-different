@@ -1,1 +1,51 @@
-<h1>All travelboards</h1>
+<h1>All travelboards (<%= @travelboards.length%>) </h1>
+<div class="cards-home">
+  <% @travelboards.each do |travelboard| %>
+    <%= link_to travelboard_path(travelboard) do %>
+      <div class="card-trip-inspo">
+        <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://source.unsplash.com/featured/?<%=travelboard.country.downcase%>)">
+          <div class="card-trip-infos-inspo">
+            <div>
+              <h2><%= travelboard.name  %></h2>
+              <p><%= travelboard.country %></p>
+            </div>
+            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <%= link_to root_path do %>
+    <div id="card-travelboard-existing2" class="ml-2">
+      <button class="btn btn-create-travelboard" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">+</button>
+      <p>Create a new travelboard</p>
+    </div>
+  <% end %>
+
+  <%# MODAL CREATION FOR ADDING A TRAVELBOARD %>
+  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel2">Create a new travelboard</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <%= simple_form_for @travelboard do |f| %>
+            <%= f.input :name, :label => "Travelboard name", :placeholder => "My trip to France" %>
+            <%# <%= f.input :country %>
+            <%= f.input :start_date, :label => "Start of my trip" %> %>
+            <%= f.input :end_date, :label => "End of my trip" %>
+            <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
+            <%= f.submit "Create a travelboard", class:"btn-ghost" %>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
