@@ -1,25 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Niramit:300,300i,700');
 
-// reset some browser default styles
-// * {
-//     margin: 0;
-//     padding: 0;
-//     box-sizing: border-box;
-// }
-
-
-// timeline variables
-// $body-bg: #1e1e2f;
-// $timeline-before-bg : #222a42;
-// $timeline-body-bg: #27293d;
 $timeline-body-round: 3px;
 $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
-
-// body {
-//     font-family: 'K2D', sans-serif;
-//     background: $body-bg;
-//     letter-spacing: 1px;
-// }
 
 .row {
   display: flex;
@@ -28,8 +10,6 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 .column {
   flex: 50%;
   margin-bottom: 0px;
-  // padding: 10px;
-  // height: 300px; /* Should be removed. Only for demonstration */
 }
 
 .review {
@@ -38,11 +18,19 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 
 // typography
 p {
-    font-weight: 300;
-    line-height: 1.5;
-    font-size: 14px;
-    opacity: .8;
+  font-family: $body-font;
+  font-weight: 300;
+  line-height: 1.5;
+  font-size: 14px;
+  opacity: .8;
 }
+
+// h2 {
+//   justify-content: center;
+//   font-family: $headers-font;
+//   font-size: 40px;
+//   color: $light-gray;
+// }
 
 // timeline style
 .timeline {
@@ -99,10 +87,18 @@ p {
 
         .timeline-body-light {
           border-color: $green;
+
+          &:before {
+            border-color: $green;
+          }
         }
 
          .timeline-body-dark {
           border-color: $darkgreen;
+
+          &:before {
+            border-color: $darkgreen;
+          }
         }
         .timeline-body {
             // background: $green;
@@ -117,7 +113,7 @@ p {
                 background: $light-gray;
                 border-bottom: solid;
                 border-left: solid;
-                border-color: $green;
+                // border-color: $green;
                 border-width: 3px;
                 width: 20px;
                 height: 20px;
@@ -217,4 +213,22 @@ p {
 			background-color: lighten(black, 10%);
 		}
 	}
+}
+
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  margin-bottom: 10px;
+}
+
+.banner h2 {
+  margin-bottom: 10px;
+  color: $light-gray;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-family: $headers-font;
+  display: flex;
+  justify-content: center;
+
 }
