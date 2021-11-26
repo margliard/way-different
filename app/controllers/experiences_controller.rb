@@ -2,7 +2,11 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: :show
 
   def index
+
     # @experiences = policy_scope(Experience)
+
+    # Experience.where(category: params[:filter])
+
     if params[:query].present?
       @experiences = Experience.search_by_city_and_country(params[:query])
     else
@@ -14,7 +18,6 @@ class ExperiencesController < ApplicationController
     else
       @travelboards = Travelboard.all
     end
-
 
     @markers = @experiences.geocoded.map do |experience|
       {
