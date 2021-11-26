@@ -1,16 +1,16 @@
-.navbar-lewagon {
-  position: -webkit-sticky;
+.navbar {
 	position: sticky;
+  z-index: 7;
 	top: 0;
   justify-content: space-between;
   background: #678D7A;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar .navbar-brand img {
   width: 250px;
   cursor: pointer;
 }

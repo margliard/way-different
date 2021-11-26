@@ -18,3 +18,7 @@
 @import "pages/info_window";
 @import "pages/show";
 @import "components/travelboard";
+
+.content-wrapper {
+  min-height: calc(100vh - 70px - 80px);
+}
