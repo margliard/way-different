@@ -3,33 +3,33 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.card-trip {
+.card-trip-inspo {
   overflow: hidden;
   background: rgba(0, 0, 0, 0.227);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 0px 20px;
 }
 
-.card-trip > img {
+.card-trip-inspo > img {
   height: 200px;
   width: 100%;
   object-fit: cover;
 }
 
-.card-trip h2 {
+.card-trip-inspo h2 {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
 }
 
-.card-trip p {
+.card-trip-inspo p {
   font-size: 12px;
   opacity: .7;
   margin: 0;
 }
 
-
-.card-trip-infos {
-  padding: 16px;
+.card-trip-infos-inspo {
+  padding: 16px 0px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -37,7 +37,7 @@
   background-color: #0000005f;
 }
 
-.card-trip-infos .card-trip-user {
+.card-trip-infos-inspo .card-trip-user {
   position: absolute;
   right: 16px;
   top: -20px;
@@ -45,7 +45,7 @@
 }
 
 
-.card-category {
+.card-category-inspo {
   background-size: cover;
   background-position: center;
   height: 250px;
@@ -56,49 +56,48 @@
   font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 
 
-.cards {
+.cards-home {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 16px;
 }
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
-  .cards {
+  .cards-home {
     grid-template-columns: 1fr;
   }
 }
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-  .cards {
+  .cards-home {
     grid-template-columns: 1fr;
   }
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  .cards {
+  .cards-home {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  .cards {
-    grid-template-columns: 1fr 1fr 1fr;
+  .cards-home {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-  .cards {
-    grid-template-columns: 1fr 1fr 1fr;
+  .cards-home {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
