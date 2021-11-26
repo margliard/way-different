@@ -6,6 +6,7 @@ class ReviewExperiencesController < ApplicationController
 
   def create
     @review = ReviewExperience.new(review_params)
+    @favorite = Favorite.new
     @experience = Experience.find(params[:experience_id])
     @review.experience = @experience
     @travelboards = Travelboard.where(user_id: current_user)

@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import mapboxgl from '!mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 
 export default class extends Controller {
   static values = {
@@ -14,17 +14,24 @@ export default class extends Controller {
       container: this.element,
       style: 'mapbox://styles/scalvogli/ckwdp8oy34cw115odm13tmubl'
     });
-      this._addMarkersToMap();
-      this._fitMapToMarkers();
-    }
+    this._addMarkersToMap();
+    this._fitMapToMarkers();
+    console.log(this.map);
+  }
 
   _addMarkersToMap() {
       this.markersValue.forEach((marker) => {
-        new mapboxgl.Marker()
-          .setLngLat([marker.lng, marker.lat])
-          .setPopup(new mapboxgl.Popup()
-          .setHTML(marker.info_window))
-          .addTo(this.map);
+        if (this.markersValue.length == 1) {
+          new mapboxgl.Marker()
+            .setLngLat([marker.lng, marker.lat])
+            .addTo(this.map);
+        } else {
+          new mapboxgl.Marker()
+            .setLngLat([marker.lng, marker.lat])
+            .setPopup(new mapboxgl.Popup()
+            .setHTML(marker.info_window))
+            .addTo(this.map);
+        }
       });
     }
   _fitMapToMarkers() {

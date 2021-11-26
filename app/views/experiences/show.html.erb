@@ -4,8 +4,16 @@
     <div class="container">
       <div class="image-grid">
         <img src= <%= @experience.image_url%> id="image-grid-1" >
-        <img src= <%= @experience.image_url%> id="image-grid-2">
-        <img src= <%= @experience.image_url%> id="image-grid-3">
+        <div class="cards-img-nearby">
+          <div class="card-img-nearby" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+          </div>
+          <div class="card-img-nearby" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+          </div>
+          <div class="card-img-nearby" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+          </div>
+          <div class="card-img-nearby" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+          </div>
+        </div>
       </div>
       <h2><%= @experience.name%></h2>
       <p><%= @experience.address%></p>
@@ -83,17 +91,23 @@
       <h3>Infos</h3>
       <p><%= @experience.country%></p>
     </div>
+    <div class="mapbox"
+          data-controller="mapbox"
+          data-mapbox-markers-value="<%= @markers_show.to_json %>"
+          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
   </div>
 
   <hr class="solid">
 
-  <div class="review-show">
+  <div class="review-show mb-3">
     <div class="infos-show">
       <h3>Reviews from the community</h3>
       <ul class="list-group">
         <% @experience.review_experiences.each do |review| %>
           <li class="list-group-item">
-            <%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face %>
+            <%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>
+            <%= review.user.username  %>
             <%= review.comment %>
             <strong><%= review.rating %></strong>
             <%= link_to "Remove",
@@ -109,10 +123,33 @@
         <%= simple_form_for [ @experience, @review] do |f| %>
         <%= f.input :comment, :label => "How was your experience?" %>
         <%= f.input :rating, :label => "Rate your experience" %>
-        <%= f.submit "Submit review", class: "btn btn-primary" %>
+        <%= f.submit "Submit review", class: "btn btn-ghost" %>
       <% end %>
      <% end %>
-      <%= link_to "Back to all experiences", experiences_path %>
+    </div>
+  </div>
+</div>
+
+<div style="background-color: #1A3835">
+  <div class="container">
+    <div class="infos-show">
+      <h3 class="pt-3" style="color: white">Experiences nearby</h3>
+    </div>
+    <div class="cards-nearby">
+      <% @nearby_experiences.each do |experience|%>
+          <%= link_to experience_path(experience) do %>
+            <div class="card-trip">
+              <img src= <%= experience.image_url%> >
+              <div class="card-trip-infos">
+                <div>
+                  <p><%= experience.name %> (category: <%= experience.category%>) </p>
+                  <p>Short description here!</p>
+                </div>
+                <h2 class="card-trip-pricing"><%= experience.price if experience.price? %>€</h2>
+              </div>
+            </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
