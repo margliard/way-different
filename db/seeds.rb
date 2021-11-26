@@ -34,7 +34,6 @@ sophie = User.create(email: "sophie@gmail.com", password: "password", profile_ph
 aymeric = User.create(email: "aymeric@gmail.com", password: "password", profile_photo: "téléchargement_zycnie", username: "Aymeric")
 
 puts "users ok"
-puts "------"
 puts "Creating travelboards..."
 
 canada = Travelboard.create(user_id: margot.id, name: "Canada", start_date: "02/11/2021", end_date: "14/11/2021", status: false)

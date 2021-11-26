@@ -1,11 +1,11 @@
-.card-travelboard-existing {
+#card-travelboard-existing {
   display: flex;
   background-color: white;
   align-items: center;
   border: none;
 }
 
-.card-travelboard-existing img{
+#card-travelboard-existing img{
   width: 75px;
   height: 75px;
   border-radius: 4px;
@@ -13,8 +13,43 @@
   margin-bottom: 8px;
 }
 
-.card-travelboard-existing p{
+#card-travelboard-existing p{
   line-height: 0.5;
+  color: black;
+  text-shadow: none;
+}
+
+#card-travelboard-existing-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#card-travelboard-existing2 {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  border: none;
+}
+
+#card-travelboard-existing2 img{
+  width: 75px;
+  height: 75px;
+  border-radius: 4px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+#card-travelboard-existing2 p{
+  line-height: 0.5;
+  color: black;
+  text-shadow: none;
+}
+
+#card-travelboard-existing-details2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 #date {
@@ -26,7 +61,7 @@
   width: 75px;
   height: 75px;
   border: darkgray solid 1px;
-  margin-left: 16px;
+  margin-left: 21px;
   margin-bottom: 16px;
   margin-right: 8px;
   border-radius: 4px;
@@ -38,10 +73,4 @@
   background-color: #678D7A;
   color: white;
   border: white;
-}
-
-.card-travelboard-existing-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }

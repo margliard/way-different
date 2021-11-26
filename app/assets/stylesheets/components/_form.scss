@@ -1,3 +1,11 @@
 .form-label {
   font-family: $body-font;
 }
+
+.form-review {
+  width: 400px;
+  padding: 28px;
+  border: $lightgreen 0.5px solid;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

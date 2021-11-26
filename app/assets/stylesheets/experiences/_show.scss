@@ -2,3 +2,45 @@
   width: 400px;
   height: 300px;
 }
+
+.main-show {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.review-show {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.description-show {
+  width: 700px;
+  margin-top: 18px;
+}
+
+.description-show p {
+  font-size: 16px;
+}
+
+.description-show h3 {
+  color: #3B6363;
+}
+
+.addtofavorite-show {
+  padding-right: 30px;
+}
+
+.hr.solid {
+  border-top: 3px solid #bbb;
+}
+
+.infos-show {
+  width: 700px;
+  margin-bottom: 14px;
+}
+
+.infos-show h3 {
+  color: #3B6363;
+}
