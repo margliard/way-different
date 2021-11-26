@@ -69,4 +69,50 @@
   padding-top: 8px;
 }
 
-//=== Button styling, semi-ignore
+
+#bouton-sticky {
+  position:fixed;
+  bottom:3%;
+  right:3%;
+  z-index:9999;
+  color: white;
+  text-align: center;
+  font-size: 28px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: $darkgreen;
+  padding-top: 6px;
+}
+
+.hide {
+  display: none;
+}
+
+.myDIV:hover + .hide {
+  display: block;
+  color:white;
+  background-color: $darkgreen;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.stickytext {
+  position:fixed;
+  bottom:4%;
+  right:7%;
+  z-index:9999;
+}
+
+#btn-add-favorite {
+  background-color: $green;
+  color:white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+#btn-add-favorite:hover {
+  color: $darkgreen;
+  background-color: $green;
+}

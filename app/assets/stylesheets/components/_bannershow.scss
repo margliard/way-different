@@ -21,7 +21,37 @@
 
 .image-grid {
   display: flex;
+  position: relative;
 }
+
+.bubble-review {
+  width: 140px;
+  height: 160px;
+  background-color: white;
+  opacity: 0.6;
+  position: absolute;
+  bottom: 220px;
+  left: -40px;
+  border-radius: 25%;
+}
+
+.bubble-review img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 45px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  opacity: 1;
+}
+
+#bubble-quote {
+  color: black;
+  font-size: 14px;
+  font-weight: bolder;
+  text-align: center;
+}
+
 #image-grid-2 {
   height: 300px;
   width: 200px;
@@ -51,48 +81,5 @@
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset_url('road.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100vh;
-}
-
-.main-show {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-}
-
-.review-show {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-}
-
-.description-show {
-  width: 700px;
-  margin-top: 18px;
-}
-
-.description-show h3 {
-  color: #3B6363;
-}
-
-.addtofavorite-show {
-  padding-right: 30px;
-}
-
-.hr.solid {
-  border-top: 3px solid #bbb;
-}
-
-.infos-show {
-  width: 700px;
-  margin-bottom: 14px;
-}
-
-.infos-show h3 {
-  color: #3B6363;
-}
-
-.form-review {
-  width: 350px;
-  padding-right: 28px;
+  height: 80vh;
 }

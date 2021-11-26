@@ -3,6 +3,16 @@
   <div class="banner-show" style="background-color: #95B2A3">
     <div class="container">
       <div class="image-grid">
+        <div class="bubble-review">
+          <img src="https://avatars.githubusercontent.com/u/90713759?v=4">
+          <div class="d-flex align-items-center justify-content-center">
+            <div class="text-center">
+              <i class="fas fa-quote-left" style="font-size: 14px"></i>
+              <span id="bubble-quote">Awesome experience at this place</span>
+              <i class="fas fa-quote-right" style="font-size: 14px"></i>
+            </div>
+          </div>
+        </div>
         <img src= <%= @experience.image_url%> id="image-grid-1" >
         <div class="cards-img-nearby">
           <div class="card-img-nearby" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
@@ -15,8 +25,69 @@
           </div>
         </div>
       </div>
-      <h2><%= @experience.name%></h2>
-      <p><%= @experience.address%></p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h2><%= @experience.name%></h2>
+          <p><strong><%= @experience.address%></strong></p>
+        </div>
+        <div>
+          <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">Your travelboards</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h5>Existing travelboards</h5>
+              <% @travelboards.each do |travelboard| %>
+                <%= simple_form_for [@experience, @favorite] do |f| %>
+                  <button id="card-travelboard-existing" type="submit">
+                    <img src="https://storage.googleapis.com/chile-travel-newsite-static-content/2021/04/norte.jpg">
+                    <div id="card-travelboard-existing-details">
+                      <p><%= travelboard.name %></p>
+                      <p id="date"><%= travelboard.start_date %> to <%= travelboard.end_date %></p>
+                    </div>
+                    <input type="hidden" name="travelboard_id" value='<%= travelboard.id %>'>
+                  </button>
+                <% end %>
+              <% end %>
+            </div>
+            <div id="card-travelboard-existing" class="ml-2">
+              <button class="btn btn-create-travelboard" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">+</button>
+              <p>Create a new travelboard</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel2">Create a new travelboard</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <%= simple_form_for @travelboard do |f| %>
+                <%= f.input :name, :label => "Travelboard name", :placeholder => "My trip to France" %>
+                <%# <%= f.input :country %>
+                <%= f.input :start_date, :label => "Start of my trip" %>
+                <%= f.input :end_date, :label => "End of my trip"  %>
+                <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
+                <%= f.submit "Create a travelboard", class:"btn btn-ghost" %>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-ghost" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a id="btn-add-favorite" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-suitcase"></i>  Add to my travelboard</a>
+
+        </div>
+      </div>
     </div>
   </div>
 
@@ -38,9 +109,9 @@
               <h5>Existing travelboards</h5>
               <% @travelboards.each do |travelboard| %>
                 <%= simple_form_for [@experience, @favorite] do |f| %>
-                  <button class="card-travelboard-existing" type="submit">
+                  <button id="card-travelboard-existing2" type="submit">
                     <img src="https://storage.googleapis.com/chile-travel-newsite-static-content/2021/04/norte.jpg">
-                    <div class="card-travelboard-existing-details">
+                    <div id="card-travelboard-existing-details2">
                       <p><%= travelboard.name %></p>
                       <p id="date"><%= travelboard.start_date %> to <%= travelboard.end_date %></p>
                     </div>
@@ -49,7 +120,7 @@
                 <% end %>
               <% end %>
             </div>
-            <div class="card-travelboard-existing">
+            <div id="card-travelboard-existing2" class="ml-2">
               <button class="btn btn-create-travelboard" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">+</button>
               <p>Create a new travelboard</p>
             </div>
@@ -66,23 +137,27 @@
             </div>
             <div class="modal-body">
             <%= simple_form_for @travelboard do |f| %>
-                <%= f.input :name %>
+                <%= f.input :name, :label => "Travelboard name", :placeholder => "My trip to France" %>
                 <%# <%= f.input :country %>
-                <%= f.input :start_date %>
-                <%= f.input :end_date %>
+                <%= f.input :start_date, :label => "Start of my trip" %> %>
+                <%= f.input :end_date, :label => "End of my trip" %>
                 <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
-                <%= f.submit "Create a travelboard" %>
+                <%= f.submit "Create a travelboard", class:"btn-ghost" %>
               <% end %>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
+              <button class="btn btn-ghost" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
             </div>
           </div>
         </div>
       </div>
-      <a class="btn draw-border" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Add to travelboard</a>
+      <div class="myDIV">
+        <a id="bouton-sticky" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-plus"></i></a>
+      </div>
+      <div class="hide stickytext"><i class="fas fa-suitcase"></i>  Add to my travelboard</div>
     </div>
   </div>
+
 
   <hr class="solid">
 
@@ -121,9 +196,9 @@
     <div class="form-review">
       <h5>Already went to <%= @experience.name%>? Give your feedback</h5>
         <%= simple_form_for [ @experience, @review] do |f| %>
-        <%= f.input :comment, :label => "How was your experience?" %>
-        <%= f.input :rating, :label => "Rate your experience" %>
-        <%= f.submit "Submit review", class: "btn btn-ghost" %>
+        <%= f.input :comment, :label => "How was your experience?", :placeholder => "Great stay and wonderful hosts" %>
+        <%= f.input :rating, :label => "Rate your experience", :placeholder => "4" %>
+        <%= f.submit "Submit your review", class: "btn btn-ghost" %>
       <% end %>
      <% end %>
     </div>
@@ -133,19 +208,19 @@
 <div style="background-color: #1A3835">
   <div class="container">
     <div class="infos-show">
-      <h3 class="pt-3" style="color: white">Experiences nearby</h3>
+      <h3 class="py-3" style="color: white">Experiences nearby</h3>
     </div>
     <div class="cards-nearby">
       <% @nearby_experiences.each do |experience|%>
           <%= link_to experience_path(experience) do %>
-            <div class="card-trip">
+            <div class="card-experience">
               <img src= <%= experience.image_url%> >
-              <div class="card-trip-infos">
+              <div class="card-experience-infos">
                 <div>
                   <p><%= experience.name %> (category: <%= experience.category%>) </p>
                   <p>Short description here!</p>
                 </div>
-                <h2 class="card-trip-pricing"><%= experience.price if experience.price? %>€</h2>
+                <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
               </div>
             </div>
         <% end %>
