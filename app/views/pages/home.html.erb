@@ -13,10 +13,6 @@
       <label for="inspirations">Inspirations</label>
       <hr class="solid">
       <%= form_tag experiences_path, method: :get do %>
-        <%= check_box_tag 'filter[]', "Accommodation", false %>Accommodations
-        <%= check_box_tag 'filter[]', "Restaurant", false %>Restaurants
-        <%= check_box_tag 'filter[]', "Activity", false %>Activities
-        <%= check_box_tag 'filter[]', "Inspirations", false %>Inspirations
         <div class="search-form-control input-group d-flex">
           <%= text_field_tag :query,
             params[:query],
