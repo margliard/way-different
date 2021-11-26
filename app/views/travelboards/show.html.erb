@@ -8,7 +8,7 @@
       </head> %>
       <%# <body> %>
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/featured/?<%=@travelboard.country.downcase.gsub(" ","") %>);">
-  <h2>Travelboard: <%= @travelboard.name %></h2>
+  <h2>Travelboard of <%= @travelboard.user.username %> : <%= @travelboard.name %></h2>
 </div>
 <div class="container">
   <div class="container-travelboards">
@@ -88,10 +88,10 @@
                 <div style="color: grey"><%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>   <%= review.user.username %> said :</div>
                 <div><%= review.comment %></div>
                 <div><strong><%= review.rating %></strong></div>
-                <div><%= link_to "Remove",
+                <%# <div><%= link_to "Remove",
                               travelboard_review_travelboard_path(@travelboard, review),
                               method: :delete,
-                              data: { confirm: "Are you sure?" } %></div>
+                              data: { confirm: "Are you sure?" }</div> %>
               </div>
           <% end %>
       </div>
