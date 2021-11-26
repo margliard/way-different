@@ -163,8 +163,10 @@
 
   <div class="main-show">
     <div class="infos-show">
-      <h3>Infos</h3>
-      <p><%= @experience.country%></p>
+      <div>
+        <h3 class="mb-3">Infos</h3>
+        <p><%= @experience.country%></p>
+      </div>
     </div>
     <div class="mapbox"
           data-controller="mapbox"
@@ -174,7 +176,7 @@
   </div>
 
   <hr class="solid">
-  <h3>Reviews from the community</h3>
+  <h3 style="color: #1A3835">Reviews from the Way Travellers community</h3>
   <div class="review-show mb-3">
     <div class="infos-show">
         <% @experience.review_experiences.each do |review| %>
