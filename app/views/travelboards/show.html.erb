@@ -7,10 +7,12 @@
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
       </head> %>
       <%# <body> %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/featured/?<%=@travelboard.country %>);">
+  <h2>Travelboard: <%= @travelboard.name %></h2>
+</div>
 <div class="container">
   <div class="container-travelboards">
     <%# 'timeline-map is the div surround the the timeline and map %>
-    <h2>Travelboard: <%= @travelboard.name %></h2>
     <div class="timeline-map row">
       <div class="column">
         <%@travelboard.traveldays.each do |travelday| %>
@@ -24,12 +26,14 @@
                     </div>
                     <div class="timeline-body-light timeline-body collapse" id="collapseExample<%=travelday.day_number%>">
                     <%travelday.favorites.each do |favorite| %>
-                      <div class="card-product card-product-light">
-                        <div class="card-product-infos">
-                          <h4 class="timeline-title"><span class="badge"><%= favorite.experience.name %></span></h4>
-                          <p class="card-category"><%= favorite.experience.category %></p>
-                          <p class="timeline-subtitle"><%= favorite.experience.address %></p>
+                      <div class="tb-card-product tb-card-product-light">
+                        <div class="tb-card-product-infos d-flex justify-content-between">
+                          <p class="tb-card-experience-name"><%= favorite.experience.name %></span>
+                          <p class="tb-card-category"><%= favorite.experience.category %></p>
                         </div>
+                        <p class="tb-card-experience-address"><i class="fas fa-map-marked-alt"><%= favorite.experience.address %></p></i>
+                        <%# <p class="tb-card-experience-address"><strong>Address:</strong></p> %>
+
                       </div>
                     <% end %>
                     </div>
@@ -43,12 +47,14 @@
                   </div>
                   <div class="timeline-body-dark timeline-body collapse" id="collapseExample<%=travelday.day_number%>">
                     <%travelday.favorites.each do |favorite| %>
-                      <div class="card-product card-product-dark">
-                        <div class="card-product-infos">
-                          <h4 class="timeline-title"><span class="badge"><%= favorite.experience.name %></span></h4>
-                          <p class="card-category"><%= favorite.experience.category %></p>
-                          <p class="timeline-subtitle"><%= favorite.experience.address %></p>
+                      <div class="tb-card-product tb-card-product-dark">
+                        <div class="tb-card-product-infos d-flex justify-content-between">
+                          <p class="tb-card-experience-name"><%= favorite.experience.name %></span>
+                          <p class="tb-card-category"><%= favorite.experience.category %></p>
                         </div>
+                        <p class="timeline-subtitle"><i class="fas fa-map-marked-alt"><%= favorite.experience.address %></p></i>
+                        <%# <p class="tb-card-experience-address"><strong>Address:</strong></p> %>
+
                       </div>
                     <% end %>
                   </div>
