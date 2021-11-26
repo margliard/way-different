@@ -71,7 +71,7 @@
             <div class="modal-body">
             <%= simple_form_for @travelboard do |f| %>
                 <%= f.input :name, :label => "Travelboard name", :placeholder => "My trip to France" %>
-                <%# <%= f.input :country %>
+                <%= f.input :country, as: :string %>
                 <%= f.input :start_date, :label => "Start of my trip" %>
                 <%= f.input :end_date, :label => "End of my trip"  %>
                 <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
@@ -138,7 +138,7 @@
             <div class="modal-body">
             <%= simple_form_for @travelboard do |f| %>
                 <%= f.input :name, :label => "Travelboard name", :placeholder => "My trip to France" %>
-                <%# <%= f.input :country %>
+                <%= f.input :country, as: :string %>
                 <%= f.input :start_date, :label => "Start of my trip" %> %>
                 <%= f.input :end_date, :label => "End of my trip" %>
                 <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
@@ -205,25 +205,27 @@
 
 
 <div style="background-color: #1A3835">
-  <div class="container">
-    <div class="infos-show">
-      <h3 class="py-3" style="color: white">Experiences nearby</h3>
-    </div>
-    <div class="cards-nearby">
-      <% @nearby_experiences.each do |experience|%>
-          <%= link_to experience_path(experience) do %>
-            <div class="card-experience">
-              <img src= <%= experience.image_url%> >
-              <div class="card-experience-infos">
-                <div>
-                  <p><%= experience.name %> (category: <%= experience.category%>) </p>
-                  <p>Short description here!</p>
+  <div class="d-flex justify-content-center">
+    <div class="container">
+      <div class="infos-show">
+        <h3 class="py-3" style="color: white">Experiences nearby</h3>
+      </div>
+      <div class="cards-nearby">
+        <% @nearby_experiences.each do |experience|%>
+            <%= link_to experience_path(experience) do %>
+              <div class="card-experience">
+                <img src= <%= experience.image_url%> >
+                <div class="card-experience-infos">
+                  <div>
+                    <p><%= experience.name %> (category: <%= experience.category%>) </p>
+                    <p>Short description here!</p>
+                  </div>
+                  <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
                 </div>
-                <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
               </div>
-            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

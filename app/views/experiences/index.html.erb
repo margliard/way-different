@@ -26,5 +26,34 @@
           data-mapbox-markers-value="<%= @markers.to_json %>"
           data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   </div>
-  <p><%= link_to "Back to home", root_path %></p>
+</div>
+
+<div style="background-color: #1A3835">
+  <div class="d-flex justify-content-center">
+  <div class="container" style="width: 2000px">
+  <div class="infos-show">
+      <h3 class="py-3 text-center" style="color: white; width: 1100px">Itineraries from the Way Travellers community</h3>
+  </div>
+  <% if @travelboards.empty? == false  %>
+  <div class="cards-home-index">
+    <% @travelboards.each do |travelboard| %>
+    <div class="card-trip-inspo">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
+        <div class="card-trip-infos-inspo">
+          <div class="link-white">
+            <h2><%= link_to travelboard.name, travelboard_path(travelboard) %></h2>
+            <p><%= travelboard.country %></p>
+            <p>created by <%= travelboard.user.username %></p>
+          </div>
+          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+        </div>
+      </div>
+    </div>
+    <% end %>
+    </div>
+    </div>
+  </div>
+
+  <% end %>
+  </div>
 </div>
