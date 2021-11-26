@@ -19,10 +19,10 @@ puts "Creating database..."
 # sophie = User.create(first_name: "Sophie", last_name: "Callault", email: "sophie@gmail.com", password: "password")
 # aymeric = User.create(first_name: "Aymeric", last_name: "Payen", email: "aymeric@gmail.com", password: "password")
 puts "Creating Users..."
-margot = User.create(email: "margot@gmail.com", password: "password", profile_photo: "margot_liard_trombi_cw3tx8", username: "Margot")
-camille = User.create(email: "camille@gmail.com", password: "password", profile_photo: "960151_1573833412_YRTF3U_kk1ekh", username: "Camille")
-sophie = User.create(email: "sophie@gmail.com", password: "password", profile_photo: "Screenshot_2021-11-26_at_11.57.36_ifl2jj", username: "Sophie")
-aymeric = User.create(email: "aymeric@gmail.com", password: "password", profile_photo: "Screenshot_2021-11-26_at_11.57.59_f2t8qm", username: "Aymeric")
+margot = User.create(email: "margot@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Margot")
+camille = User.create(email: "camille@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Camille")
+sophie = User.create(email: "sophie@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1499887142886-791eca5918cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Sophie")
+aymeric = User.create(email: "aymeric@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1484186139897-d5fc6b908812?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Aymeric")
 puts "users ok"
 puts "Creating travelboards..."
 costa1 = Travelboard.create(user_id: margot.id, country: "Costa Rica", name: "My travel in Costa Rica", start_date: "05/08/2021", end_date: "20/08/2021", status: false)

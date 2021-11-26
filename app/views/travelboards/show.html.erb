@@ -85,7 +85,7 @@
           <% @travelboard.review_travelboards.each do |review| %>
 
               <div class="list-group-item" style="border-radius: 7px;">
-                <div style="color: grey"><%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>   <%= review.user.username %> said :</div>
+                <div style="color: grey"><%= image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>   <%= review.user.username %> said :</div>
                 <div><%= review.comment %></div>
                 <div><strong><%= review.rating %></strong></div>
                 <%# <div><%= link_to "Remove",
