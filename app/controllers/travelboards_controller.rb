@@ -2,16 +2,20 @@ class TravelboardsController < ApplicationController
   # before_action :set_travelboard
 
   def index
+    @travelboard = Travelboard.new
     @travelboards = Travelboard.all
     # @travelboards = policy_scope(Machine)
+    @experience = Experience.new
+    @favorite = Favorite.new
   end
 
   def show
     @travelboard = Travelboard.find(params[:id])
+    @travelboards = Travelboard.where(user_id: current_user)
     @experience = Experience.new
     @reviewtrav = ReviewTravelboard.new
     @review_exp = ReviewExperience.new
-
+    @favorite = Favorite.new
     # @favorite = Favorite.find(params[:favorite_id])
   end
 
@@ -59,7 +63,7 @@ class TravelboardsController < ApplicationController
   # end
 
   def travelboard_params
-    params.require(:travelboard).permit(:name, :user_id, :start_date, :end_date, :status)
+    params.require(:travelboard).permit(:name, :user_id, :start_date, :end_date, :status, :country)
   end
 
   def favorite_params
