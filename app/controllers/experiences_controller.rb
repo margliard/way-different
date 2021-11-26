@@ -12,6 +12,13 @@ class ExperiencesController < ApplicationController
     else
       @experiences = Experience.all
     end
+
+    if params[:query].present?
+      @travelboards = Travelboard.search_by_city_and_country(params[:query])
+    else
+      @travelboards = Travelboard.all
+    end
+
     @markers = @experiences.geocoded.map do |experience|
       {
         lat: experience.latitude,
@@ -19,6 +26,7 @@ class ExperiencesController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { experience: experience })
       }
     end
+
   end
 
   def show
