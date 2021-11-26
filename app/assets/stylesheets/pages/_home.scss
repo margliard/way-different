@@ -56,7 +56,7 @@
 
 .search-bar{
   margin: 0 auto;
-  background-color: #56766672;
+  background-color: #ffffff30;
   padding: 20px;
   border-radius: 10px;
   width: 600px;
@@ -65,4 +65,41 @@
 .container-inspo {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.checkbox1 {
+  position: absolute;
+  transform: scale(0);
+}
+
+
+.checkbox1+label {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 50rem;
+  padding: 3px 6px;
+  background-color: #F4F4F4;
+  color: $darkgreen;
+  border: 2px solid $darkgreen;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.checkbox1+label:hover {
+  cursor: pointer;
+  font-style: bold;
+  display: inline-block;
+  border-radius: 50rem;
+  padding: 3px 6px;
+  background-color: #F4F4F4;
+  color: $darkgreen;
+  border: 2px solid $darkgreen;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+  box-shadow: #274335bb 0px 1px 2px 0px, #274335bb 0px 2px 6px 2px;
+}
+
+.checkbox1:checked+label {
+  background-color: $darkgreen;
+  color: #F4F4F4;
 }

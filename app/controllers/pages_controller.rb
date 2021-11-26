@@ -1,13 +1,6 @@
 class PagesController < ApplicationController
   def home
-  end
-
-  def search_accommodations
-  end
-
-  def search_activities
-  end
-
-  def search_inspirations
+    @experiences = Experience.where(params[:id])
+    @travelboards = Travelboard.where(params[:id])
   end
 end
