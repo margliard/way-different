@@ -72,33 +72,35 @@
   <hr class="solid">
 
     <%# Reviews part %>
-    <div class="review-show">
+  <div class="container">
+    <h3>Reviews from the community</h3>
+    <div class="review-show mb-3">
       <div class="infos-show">
-        <ul class="list-group">
           <% @travelboard.review_travelboards.each do |review| %>
-            <li class="list-group-item">
-              <%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>
-              <%= review.user.username  %>
-              <%= review.comment %>
-              <strong><%= review.rating %></strong>
-              <%= link_to "Remove",
-                          travelboard_review_travelboard_path(@travelboard, review),
-                          method: :delete,
-                          data: { confirm: "Are you sure?" } %></li>
-              <% end %>
-          </ul>
-    <hr class="solid">
+
+              <div class="list-group-item" style="border-radius: 7px;">
+                <div style="color: grey"><%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>   <%= review.user.username %> said :</div>
+                <div><%= review.comment %></div>
+                <div><strong><%= review.rating %></strong></div>
+                <div><%= link_to "Remove",
+                              travelboard_review_travelboard_path(@travelboard, review),
+                              method: :delete,
+                              data: { confirm: "Are you sure?" } %></div>
+              </div>
+          <% end %>
       </div>
-      <% if user_signed_in? == true %>
-      <div class="form-review">
-        <h5>Give your feedback</h5>
-          <%= simple_form_for [ @travelboard, @reviewtrav] do |f| %>
-          <%= f.input :comment, :label => "How was your experience?" %>
-          <%= f.input :rating, :label => "Rate your experience" %>
-          <%= f.submit "Submit review", class: "btn btn-primary" %>
+
+        <% if user_signed_in? == true %>
+        <div class="form-review">
+          <h5>Give your feedback</h5>
+            <%= simple_form_for [ @travelboard, @reviewtrav] do |f| %>
+            <%= f.input :comment, :label => "How was your experience?" %>
+            <%= f.input :rating, collection: (1..5).to_a, :label => "Rate your experience" %>
+            <%= f.submit "Submit your review", class: "btn btn-ghost" %>
+          <% end %>
         <% end %>
+        </div>
       </div>
-      <% end %>
-    </div>
+  </div>
   <p><%= link_to "Back to home", root_path %></p>
 </div>

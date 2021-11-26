@@ -1,11 +1,17 @@
-.list-group-item {
-  display: flex;
-  justify-content: space-between;
-}
-
 .list-group-item a {
   font-weight: bold;
+  justify-content: end;
 }
+
+.infos-show {
+  grid-template-columns: 1fr 1fr;
+  display: grid;
+}
+
+ul {
+list-style-type: none;
+}
+
 
 .body {
   font-family: $body-font;
