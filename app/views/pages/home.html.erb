@@ -13,10 +13,6 @@
       <label for="inspirations">Inspirations</label>
       <hr class="solid">
       <%= form_tag experiences_path, method: :get do %>
-        <%= check_box_tag 'filter[]', "Accommodation", false %>Accommodations
-        <%= check_box_tag 'filter[]', "Restaurant", false %>Restaurants
-        <%= check_box_tag 'filter[]', "Activity", false %>Activities
-        <%= check_box_tag 'filter[]', "Inspirations", false %>Inspirations
         <div class="search-form-control input-group d-flex">
           <%= text_field_tag :query,
             params[:query],
@@ -34,13 +30,13 @@
   <h1 class="title-ideas">Ideas for your next trip</h1>
   <div class="cards-home">
     <div class="card-trip-inspo">
-      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80)">
         <div class="card-trip-infos-inspo">
           <div>
-            <h2>Travel board name</h2>
-            <p>Country location</p>
+            <h2>Roadtrip in Brazil</h2>
+            <p>Brazil</p>
           </div>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
         </div>
       </div>
     </div>
@@ -48,43 +44,34 @@
       <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
         <div class="card-trip-infos-inspo">
           <div>
-            <h2>Travel board name</h2>
-            <p>Country location</p>
+            <h2>Winter in North America</h2>
+            <p>Canada</p>
           </div>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
         </div>
       </div>
     </div>
     <div class="card-trip-inspo">
-      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1529686342540-1b43aec0df75?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)">
         <div class="card-trip-infos-inspo">
           <div>
-            <h2>Travel board name</h2>
-            <p>Country location</p>
+            <h2>Paradise islands</h2>
+            <p>Philippines</p>
           </div>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          <img src="https://images.unsplash.com/photo-1499887142886-791eca5918cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
         </div>
       </div>
     </div>
     <div class="card-trip-inspo">
-      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1065&q=80)">
         <div class="card-trip-infos-inspo">
           <div>
-            <h2>Travel board name</h2>
-            <p>Country location</p>
+            <h2>London trip</h2>
+            <p>United Kingdom</p>
           </div>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          <img src="https://images.unsplash.com/photo-1484186139897-d5fc6b908812?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="color-block">
-  <div class="block-1">
-    <h1>block 1</h1>
-  </div>
-  <div class="block-2">
-    <h1>block 2</h1>
   </div>
 </div>
