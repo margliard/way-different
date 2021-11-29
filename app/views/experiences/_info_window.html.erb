@@ -1,5 +1,7 @@
 <div class="map-card">
-  <h1><%= experience.name %></h1>
-  <p><%= experience.category %></p>
-  <p><%= experience.address %></p>
+  <div class="rounded-4">
+    <h1><%= experience.name %></h1>
+    <%= image_tag src="https://storage.googleapis.com/chile-travel-newsite-static-content/2021/04/norte.jpg", height: 100, width: 200, crop: :fill %>
+    <p><%= experience.category %></p>
+    <p><%= experience.address %></p>
 </div>
