@@ -1,0 +1,14 @@
+<div class="card-message-chatbot" id="message-<%= message.id %>">
+  <div class="image-chatbot">
+    <%= image_tag message.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face %>
+  </div>
+  <div class="d-flex justify-content-end">
+    <div>
+      <p class="username-chatbot"><%= message.user.username %></p>
+      <p class="content-chatbot"><%= message.content %></p>
+    </div>
+    <div>
+      <p class="date-chatbot">(sent on <%= message.created_at.strftime("%a %b %e at %l:%M %p") %>)</p>
+    </div>
+  </div>
+</div>

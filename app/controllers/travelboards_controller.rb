@@ -17,6 +17,8 @@ class TravelboardsController < ApplicationController
     @review_exp = ReviewExperience.new
     @favorite = Favorite.new
     # @favorite = Favorite.find(params[:favorite_id])
+    @chatroom = Chatroom.find(params[:id])
+    @message = Message.new
   end
 
   def new

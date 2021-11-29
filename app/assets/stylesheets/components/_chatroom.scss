@@ -1,0 +1,62 @@
+.wrapper-chatroom {
+  background-color: $darkgreen;
+  padding-top: 18px;;
+}
+
+.chatroom {
+  background: white;
+  margin-top: 9px;
+  height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  .chatroom-title {
+    border-bottom: 1px solid $gray-200;
+    margin-bottom: 0;
+    padding: 1rem;
+    color: $darkgreen;
+  }
+
+  .image-chatbot {
+    margin-right: 18px;
+  }
+
+  .content-chatbot {
+    font-size: 20px;
+    line-height: 0em;
+    width: 800px;
+  }
+
+  .username-chatbot {
+    font-size: 20px;
+    color: $darkgreen;
+    font-weight: bolder;
+  }
+
+  .date-chatbot {
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  .card-message-chatbot {
+    display: flex;
+    margin-bottom: 22px;
+  }
+
+  .messages {
+    height: 100%;
+    overflow: scroll;
+    padding: 1rem;
+  }
+
+  #new_message {
+    border-top: 1px solid $gray-200;
+    padding: 1rem;
+
+    .form-group {
+      margin-bottom: 0;
+    }
+  }
+}
