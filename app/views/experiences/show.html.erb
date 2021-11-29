@@ -144,7 +144,7 @@
             <%= simple_form_for @travelboard do |f| %>
                 <%= f.input :name, :label => "Travelboard name", :placeholder => "My trip to France" %>
                 <%= f.input :country, as: :string %>
-                <%= f.input :start_date, :label => "Start of my trip" %> %>
+                <%= f.input :start_date, :label => "Start of my trip" %>
                 <%= f.input :end_date, :label => "End of my trip" %>
                 <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
                 <%= f.submit "Create a travelboard", class:"btn-ghost" %>
@@ -210,7 +210,7 @@
     </div>
     <div class="mapbox"
           data-controller="mapbox"
-          data-mapbox-markers-value="<%= @markers_show.to_json %>"
+          data-mapbox-markers-value="<%= @markers.to_json %>"
           data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
