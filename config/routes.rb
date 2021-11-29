@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :travelboards do
     resources :review_travelboards, only: [ :new, :create, :destroy ]
+    resources :chatrooms, only: :show do
+      resources :messages, only: :create
+    end
   end
-  resources :travelboards
+
   resources :favorites, only: [:destroy]
 end

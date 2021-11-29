@@ -1,12 +1,15 @@
 class TravelboardsController < ApplicationController
   # before_action :set_travelboard
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  # before_action :set_experience, only: :show
+
 
   def index
     @travelboard = Travelboard.new
     @travelboards = Travelboard.all
-    # @travelboards = policy_scope(Machine)
     @experience = Experience.new
     @favorite = Favorite.new
+    policy_scope(Travelboard)
   end
 
   def show
@@ -17,6 +20,7 @@ class TravelboardsController < ApplicationController
     @review_exp = ReviewExperience.new
     @experiences = @travelboard.experiences
     @favorite = Favorite.new
+    authorize @travelboard
     # @favorite = Favorite.find(params[:favorite_id])
     @markers = @experiences.geocoded.map do |experience|
     if experience.category == "Accommodation"
@@ -34,6 +38,9 @@ class TravelboardsController < ApplicationController
         image_url: image_url
       }
     end
+    # @travelboards = policy_scope(Experience)
+    @chatroom = Chatroom.find(params[:id])
+    @message = Message.new
   end
 
   def new
@@ -42,7 +49,7 @@ class TravelboardsController < ApplicationController
     @user = current_user # devise
     @travelboards = Travelboard.where(user_id: @user)
     # @favorites = Favorite.where(user_id: @user)
-    # authorize @travelboard
+    authorize @travelboard
   end
 
   def create

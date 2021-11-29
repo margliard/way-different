@@ -1,18 +1,15 @@
 class ExperiencesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_experience, only: :show
 
   def index
-
-    # @experiences = policy_scope(Experience)
-
+    @experiences = policy_scope(Experience)
     # Experience.where(category: params[:filter])
-
     if params[:query].present?
       @experiences = Experience.search_by_city_and_country(params[:query])
     else
       @experiences = Experience.all
     end
-
     if params[:query].present?
       @travelboards = Travelboard.search_by_city_and_country(params[:query])
     else
@@ -41,6 +38,7 @@ class ExperiencesController < ApplicationController
     @travelboards = Travelboard.where(user_id: current_user)
     @travelboard = Travelboard.new
     @nearby_experiences = Experience.near(@experience.to_coordinates, 200)
+
       if @experience.category == "Accommodation"
         image_url = helpers.asset_url("housethree.png")
       elsif @experience.category == "Activity"
@@ -56,12 +54,14 @@ class ExperiencesController < ApplicationController
         image_url: image_url
       }
     ]
+    authorize @experience
+
   end
 
   private
 
   def set_experience
     @experience = Experience.find(params[:id])
-    # authorize @experience
+    authorize @experience
   end
 end
