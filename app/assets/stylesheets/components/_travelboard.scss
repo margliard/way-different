@@ -7,8 +7,13 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   display: flex;
 }
 
-.column {
-  flex: 50%;
+.column2 {
+  flex: 35%;
+  margin-bottom: 0px;
+}
+
+.column1 {
+  flex: 65%;
   margin-bottom: 0px;
 }
 
@@ -17,13 +22,13 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 }
 
 // typography
-p {
-  font-family: $body-font;
-  font-weight: 300;
-  line-height: 1.5;
-  font-size: 14px;
-  opacity: .8;
-}
+//p {
+//  font-family: $body-font;
+//  font-weight: 300;
+//  line-height: 1.5;
+ // font-size: 14px;
+ // opacity: .8;
+//}
 
 // h2 {
 //   justify-content: center;
@@ -232,4 +237,36 @@ p {
   display: flex;
   justify-content: center;
 
+}
+
+
+.cards-day-travelboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-right: 24px;
+  grid-gap: 24px;
+  margin-bottom: 24px;
+}
+
+.card-day-travelboard {
+  background-color: $lightgreen;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-day-travelboard h5 {
+  color: white;
+  text-align: center;
+}
+
+.card-day-travelboard-container {
+  margin: 14px;
+}
+
+.location-travelboard {
+  margin-bottom: 44px;
+}
+
+.header-travelboard p {
+  line-height: 1px;
 }
