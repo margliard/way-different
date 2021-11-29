@@ -9,9 +9,18 @@ require "open-uri"
 puts "Cleaning database..."
 # ReviewTravelboard.destroy_all (method not created yet inside the controller)
 # ReviewExperience.destroy_all (method not created yet inside the controller)
-Experience.destroy_all
+
 # Travelboard.destroy_all (method not created yet inside the controller)
 User.destroy_all
+Favorite.destroy_all
+ReviewExperience.destroy_all
+Experience.destroy_all
+Message.destroy_all
+Chatroom.destroy_all
+ReviewTravelboard.destroy_all
+Travelboard.destroy_all
+Travelday.destroy_all
+
 puts "Creating database..."
 # USER CONTROLLER NOT CREATED YET
 # margot = User.create(first_name: "Margot", last_name: "Liard", email: "margot@gmail.com", password: "password")
@@ -111,4 +120,12 @@ fav9 = Favorite.create(experience_id: restaurant2.id, travelday_id: td5.id)
 fav10 = Favorite.create(experience_id: activity2.id, travelday_id: td7.id)
 fav11 = Favorite.create(experience_id: restaurant3.id, travelday_id: td7.id)
 
+puts "Favorites ok"
+puts "creating chatroom"
+
+chat1 = Chatroom.create(travelboard_id: costa1.id, name: "My travel in Costa Rica")
+chat2 = Chatroom.create(travelboard_id: costa2.id, name: "Costa Rica 2019")
+chat3 = Chatroom.create(travelboard_id: costa3.id, name: "Costa Rica - East Coast")
+
+puts "Chatrooms ok"
 puts "Finished"
