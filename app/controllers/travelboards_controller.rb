@@ -15,8 +15,25 @@ class TravelboardsController < ApplicationController
     @experience = Experience.new
     @reviewtrav = ReviewTravelboard.new
     @review_exp = ReviewExperience.new
+    @experiences = @travelboard.experiences
     @favorite = Favorite.new
     # @favorite = Favorite.find(params[:favorite_id])
+    @markers = @experiences.geocoded.map do |experience|
+    if experience.category == "Accommodation"
+        image_url = helpers.asset_url("houseone.png")
+      elsif experience.category == "Activity"
+        image_url = helpers.asset_url("backpack.png")
+      else
+        image_url = helpers.asset_url("housetwo.png")
+    end
+      {
+        lat: experience.latitude,
+        lng: experience.longitude,
+        category: experience.category,
+        info_window: render_to_string(partial: "experiences/info_window", locals: { experience: experience }),
+        image_url: image_url
+      }
+    end
   end
 
   def new

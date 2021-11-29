@@ -20,10 +20,19 @@ class ExperiencesController < ApplicationController
     end
 
     @markers = @experiences.geocoded.map do |experience|
+      if experience.category == "Accommodation"
+        image_url = helpers.asset_url("houseone.png")
+      elsif experience.category == "Activity"
+        image_url = helpers.asset_url("backpack.png")
+      else
+        image_url = helpers.asset_url("housetwo.png")
+      end
       {
         lat: experience.latitude,
         lng: experience.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { experience: experience })
+        info_window: render_to_string(partial: "info_window", locals: { experience: experience }),
+        image_url: image_url
+        # end
       }
     end
 
