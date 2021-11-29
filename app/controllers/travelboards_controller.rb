@@ -1,12 +1,15 @@
 class TravelboardsController < ApplicationController
   # before_action :set_travelboard
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  # before_action :set_experience, only: :show
+
 
   def index
     @travelboard = Travelboard.new
     @travelboards = Travelboard.all
-    # @travelboards = policy_scope(Machine)
     @experience = Experience.new
     @favorite = Favorite.new
+    policy_scope(Travelboard)
   end
 
   def show
@@ -16,7 +19,9 @@ class TravelboardsController < ApplicationController
     @reviewtrav = ReviewTravelboard.new
     @review_exp = ReviewExperience.new
     @favorite = Favorite.new
+    authorize @travelboard
     # @favorite = Favorite.find(params[:favorite_id])
+    # @travelboards = policy_scope(Experience)
   end
 
   def new
@@ -25,7 +30,7 @@ class TravelboardsController < ApplicationController
     @user = current_user # devise
     @travelboards = Travelboard.where(user_id: @user)
     # @favorites = Favorite.where(user_id: @user)
-    # authorize @travelboard
+    authorize @travelboard
   end
 
   def create

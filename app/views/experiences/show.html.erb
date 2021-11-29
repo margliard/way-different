@@ -84,7 +84,12 @@
           </div>
         </div>
       </div>
-      <a id="btn-add-favorite" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-suitcase"></i>  Add to my travelboard</a>
+      <% if user_signed_in? %>
+        <a id="btn-add-favorite" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-suitcase"></i>  Add to my travelboard</a>
+      <% else %>
+        <a id="btn-add-favorite" data-bs-toggle="modal" href="#logInModalToggle" role="button">Log-in to add to your favorites !</a>
+      <% end %>
+
 
         </div>
       </div>
@@ -151,10 +156,45 @@
           </div>
         </div>
       </div>
-      <div class="myDIV">
-        <a id="bouton-sticky" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-plus"></i></a>
-      </div>
+      <% if user_signed_in? %>
+        <div class="myDIV">
+          <a id="bouton-sticky" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-plus"></i></a>
+        </div>
+      <% end %>
       <div class="hide stickytext"><i class="fas fa-suitcase"></i>  Add to my travelboard</div>
+      <%# ----------- %>
+      <div class="modal fade" id="logInModalToggle" tabindex="-1" role="dialog" aria-labelledby="logInLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="logInLabel">Log-in !</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="form-inputs">
+                <%= f.input :email,
+                            required: false,
+                            autofocus: true,
+                            input_html: { autocomplete: "email" } %>
+                <%= f.input :password,
+                            required: false,
+                            input_html: { autocomplete: "current-password" } %>
+                <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="form-actions">
+                <%= f.button :submit, "Log in", class:"btn-ghost" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+      <%# ----------- %>
     </div>
   </div>
 
