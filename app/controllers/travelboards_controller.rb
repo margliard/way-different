@@ -22,6 +22,8 @@ class TravelboardsController < ApplicationController
     authorize @travelboard
     # @favorite = Favorite.find(params[:favorite_id])
     # @travelboards = policy_scope(Experience)
+    @chatroom = Chatroom.find(params[:id])
+    @message = Message.new
   end
 
   def new
