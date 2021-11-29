@@ -71,7 +71,7 @@
             <div class="modal-body">
             <%= simple_form_for @travelboard do |f| %>
                 <%= f.input :name, :label => "Travelboard name", :placeholder => "My trip to France" %>
-                <%# <%= f.input :country %>
+                <%= f.input :country, as: :string %>
                 <%= f.input :start_date, :label => "Start of my trip" %>
                 <%= f.input :end_date, :label => "End of my trip"  %>
                 <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
@@ -138,7 +138,7 @@
             <div class="modal-body">
             <%= simple_form_for @travelboard do |f| %>
                 <%= f.input :name, :label => "Travelboard name", :placeholder => "My trip to France" %>
-                <%# <%= f.input :country %>
+                <%= f.input :country, as: :string %>
                 <%= f.input :start_date, :label => "Start of my trip" %> %>
                 <%= f.input :end_date, :label => "End of my trip" %>
                 <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
@@ -163,8 +163,10 @@
 
   <div class="main-show">
     <div class="infos-show">
-      <h3>Infos</h3>
-      <p><%= @experience.country%></p>
+      <div>
+        <h3 class="mb-3">Infos</h3>
+        <p><%= @experience.country%></p>
+      </div>
     </div>
     <div class="mapbox"
           data-controller="mapbox"
@@ -174,19 +176,19 @@
   </div>
 
   <hr class="solid">
-  <h3>Reviews from the community</h3>
+  <h3 style="color: #1A3835">Reviews from the Way Travellers community</h3>
   <div class="review-show mb-3">
     <div class="infos-show">
         <% @experience.review_experiences.each do |review| %>
 
             <div class="list-group-item" style="border-radius: 7px;">
-              <div style="color: grey"><%= cl_image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>   <%= review.user.username %> said :</div>
+              <div style="color: grey"><%= image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>   <%= review.user.username %> said :</div>
               <div><%= review.comment %></div>
               <div><strong><%= review.rating %></strong></div>
-              <div><%= link_to "Remove",
+              <%# <div><%= link_to "Remove",
                             experience_review_experience_path(@experience, review),
                             method: :delete,
-                            data: { confirm: "Are you sure?" } %></div>
+                            data: { confirm: "Are you sure?" }</div> %>
             </div>
         <% end %>
     </div>
@@ -205,25 +207,27 @@
 
 
 <div style="background-color: #1A3835">
-  <div class="container">
-    <div class="infos-show">
-      <h3 class="py-3" style="color: white">Experiences nearby</h3>
-    </div>
-    <div class="cards-nearby">
-      <% @nearby_experiences.each do |experience|%>
-          <%= link_to experience_path(experience) do %>
-            <div class="card-experience">
-              <img src= <%= experience.image_url%> >
-              <div class="card-experience-infos">
-                <div>
-                  <p><%= experience.name %> (category: <%= experience.category%>) </p>
-                  <p>Short description here!</p>
+  <div class="d-flex justify-content-center">
+    <div class="container">
+      <div class="infos-show">
+        <h3 class="py-3" style="color: white">Experiences nearby</h3>
+      </div>
+      <div class="cards-nearby">
+        <% @nearby_experiences.each do |experience|%>
+            <%= link_to experience_path(experience) do %>
+              <div class="card-experience">
+                <img src= <%= experience.image_url%> >
+                <div class="card-experience-infos">
+                  <div>
+                    <p><%= experience.name %> (category: <%= experience.category%>) </p>
+                    <p>Short description here!</p>
+                  </div>
+                  <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
                 </div>
-                <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
               </div>
-            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -2,13 +2,22 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: :show
 
   def index
+
     # @experiences = policy_scope(Experience)
+
+    # Experience.where(category: params[:filter])
+
     if params[:query].present?
       @experiences = Experience.search_by_city_and_country(params[:query])
     else
       @experiences = Experience.all
     end
 
+    if params[:query].present?
+      @travelboards = Travelboard.search_by_city_and_country(params[:query])
+    else
+      @travelboards = Travelboard.all
+    end
 
     @markers = @experiences.geocoded.map do |experience|
       {
@@ -17,6 +26,7 @@ class ExperiencesController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { experience: experience })
       }
     end
+
   end
 
   def show
