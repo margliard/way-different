@@ -9,14 +9,20 @@
       <%# <body> %>
 
 <div class="container">
+  <div class="header-travelboard">
+    <h2><%= @travelboard.name %></h2>
+  </div>
+  <div class="header-travelboard-details">
+    <div class="header-travelboard-user">
+      <%= image_tag @travelboard.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face %>
+      <p>Created by <%= @travelboard.user.username %></p>
+    </div>
+    <p><i class="fas fa-map-pin" style="color: #EC1820"></i> <%= @travelboard.country %></p>
+  </div>
+
     <div class="d-flex">
 
       <div class="column1">
-        <div class="header-travelboard">
-          <h4><%= @travelboard.name %></h4>
-          <p><i class="far fa-calendar-check"></i> From <%= @travelboard.start_date %> to <%= @travelboard.end_date %></p>
-          <p><i class="fas fa-user"></i>Created by <%= @travelboard.user.username %></p>
-        </div>
 
         <div class="cards-day-travelboard">
             <%@travelboard.traveldays.each do |travelday| %>
