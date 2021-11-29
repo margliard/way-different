@@ -46,6 +46,7 @@ class TravelboardsController < ApplicationController
   def new
     @travelboard = Travelboard.new
     @favorite = Favorite.new
+    @chatroom = Chatroom.new
     @user = current_user # devise
     @travelboards = Travelboard.where(user_id: @user)
     # @favorites = Favorite.where(user_id: @user)
@@ -55,6 +56,8 @@ class TravelboardsController < ApplicationController
   def create
     @user = current_user
     @travelboard = Travelboard.new(travelboard_params)
+    @chatroom = Chatroom.create
+    @chatroom.travelboard = @travelboard
     @travelboard.user = @user
     if @travelboard.save
       if params[:experience_id]
