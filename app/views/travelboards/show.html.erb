@@ -26,15 +26,17 @@
                     </div>
                     <div class="timeline-body-light timeline-body collapse" id="collapseExample<%=travelday.day_number%>">
                     <%travelday.favorites.each do |favorite| %>
+                    <%= link_to experience_path(favorite.experience) do %>
                       <div class="tb-card-product tb-card-product-light">
-                        <div class="tb-card-product-infos d-flex justify-content-between">
+                        <div class="tb-card-product-infos d-flex align-items-center justify-content-between">
+                          <%= image_tag favorite.experience.image_url%>
                           <p class="tb-card-experience-name"><%= favorite.experience.name %></span>
                           <p class="tb-card-category"><%= favorite.experience.category %></p>
                         </div>
                         <p class="tb-card-experience-address"><i class="fas fa-map-marked-alt"><%= favorite.experience.address %></p></i>
                         <%# <p class="tb-card-experience-address"><strong>Address:</strong></p> %>
-
                       </div>
+                    <% end %>
                     <% end %>
                     </div>
                 </div>
@@ -47,15 +49,17 @@
                   </div>
                   <div class="timeline-body-dark timeline-body collapse" id="collapseExample<%=travelday.day_number%>">
                     <%travelday.favorites.each do |favorite| %>
+                    <%= link_to experience_path(favorite.experience) do %>
                       <div class="tb-card-product tb-card-product-dark">
-                        <div class="tb-card-product-infos d-flex justify-content-between">
+                        <div class="tb-card-product-infos d-flex align-items-center justify-content-between">
+                          <%= image_tag favorite.experience.image_url %>
                           <p class="tb-card-experience-name"><%= favorite.experience.name %></span>
                           <p class="tb-card-category"><%= favorite.experience.category %></p>
                         </div>
                         <p class="timeline-subtitle"><i class="fas fa-map-marked-alt"><%= favorite.experience.address %></p></i>
                         <%# <p class="tb-card-experience-address"><strong>Address:</strong></p> %>
-
                       </div>
+                    <% end %>
                     <% end %>
                   </div>
               </div>

@@ -16,10 +16,18 @@ class ExperiencesController < ApplicationController
       @travelboards = Travelboard.all
     end
     @markers = @experiences.geocoded.map do |experience|
+      if experience.category == "Accommodation"
+        image_url = helpers.asset_url("houseone.png")
+      elsif experience.category == "Activity"
+        image_url = helpers.asset_url("backpack.png")
+      else
+        image_url = helpers.asset_url("housetwo.png")
+      end
       {
         lat: experience.latitude,
         lng: experience.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { experience: experience })
+        info_window: render_to_string(partial: "info_window", locals: { experience: experience }),
+        image_url: image_url
       }
     end
   end
@@ -30,13 +38,25 @@ class ExperiencesController < ApplicationController
     @travelboards = Travelboard.where(user_id: current_user)
     @travelboard = Travelboard.new
     @nearby_experiences = Experience.near(@experience.to_coordinates, 200)
-    @markers_show = [{
-      lat: @experience.latitude,
-      lng: @experience.longitude,
-    }]
-    authorize @experience
-  end
 
+      if @experience.category == "Accommodation"
+        image_url = helpers.asset_url("housethree.png")
+      elsif @experience.category == "Activity"
+        image_url = helpers.asset_url("bicycle.png")
+      else
+        image_url = helpers.asset_url("cutlery(3).png")
+      end
+      @markers = [
+      {
+        lat: @experience.latitude,
+        lng: @experience.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { experience: @experience }),
+        image_url: image_url
+      }
+    ]
+    authorize @experience
+
+  end
 
   private
 
