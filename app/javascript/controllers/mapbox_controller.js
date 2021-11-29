@@ -8,6 +8,7 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log(this.markersValue)
     mapboxgl.accessToken = this.apiKeyValue;
 
     this.map = new mapboxgl.Map({
@@ -20,23 +21,41 @@ export default class extends Controller {
   }
 
   _addMarkersToMap() {
-      this.markersValue.forEach((marker) => {
-        if (this.markersValue.length == 1) {
-          new mapboxgl.Marker()
-            .setLngLat([marker.lng, marker.lat])
-            .addTo(this.map);
-        } else {
-          new mapboxgl.Marker()
-            .setLngLat([marker.lng, marker.lat])
-            .setPopup(new mapboxgl.Popup()
-            .setHTML(marker.info_window))
-            .addTo(this.map);
-        }
-      });
-    }
+    this.markersValue.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window); // add this
+      // Create a HTML element for your custom marker
+      const customMarker = document.createElement('div');
+      customMarker.className = 'marker';
+      customMarker.style.backgroundImage = `url('${marker.image_url}')`;
+      customMarker.style.backgroundSize = 'contain';
+      customMarker.style.width = '40px';
+      customMarker.style.height = '40px';
+
+      // Pass the element as an argument to the new marker
+      new mapboxgl.Marker(customMarker)
+        .setLngLat([marker.lng, marker.lat])
+        .setPopup(popup)
+        .addTo(this.map);
+    });
+  }
+  // _addMarkersToMap() {
+  //     this.markersValue.forEach((marker) => {
+  //       if (this.markersValue.length == 1) {
+  //         new mapboxgl.Marker()
+  //           .setLngLat([marker.lng, marker.lat])
+  //           .addTo(this.map);
+  //       } else {
+  //         new mapboxgl.Marker()
+  //           .setLngLat([marker.lng, marker.lat])
+  //           .setPopup(new mapboxgl.Popup()
+  //           .setHTML(marker.info_window))
+  //           .addTo(this.map);
+  //       }
+  //     });
+  //   }
   _fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds();
     this.markersValue.forEach(marker => bounds.extend([marker.lng, marker.lat]));
-    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+    this.map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 0 });
   }
 }
