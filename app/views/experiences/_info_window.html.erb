@@ -1,7 +1,8 @@
 <div class="map-card">
-  <div class="rounded-4">
+  <%= link_to experience_path(experience) do %>
     <h1><%= experience.name %></h1>
-    <%= image_tag experience.image_url, height: 100, width: 200, crop: :fill %>
+    <%= image_tag experience.image_url, height: 100, width: 200, crop: :fill if experience.image_url %>
+    <% end %>
     <p><%= experience.category %></p>
     <p><%= experience.address %></p>
 </div>

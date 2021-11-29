@@ -8,6 +8,7 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log(this.markersValue)
     mapboxgl.accessToken = this.apiKeyValue;
 
     this.map = new mapboxgl.Map({
@@ -29,20 +30,7 @@ export default class extends Controller {
       customMarker.style.backgroundSize = 'contain';
       customMarker.style.width = '40px';
       customMarker.style.height = '40px';
-      //   customMarker.style.backgroundImage = `url('${marker.image_url[0]}')`;
-      // else
-      //   if (marker.category == "Restaurant")
-      //     customMarker.style.backgroundImage = `url('${marker.image_url[1]}')`;
-      //   else
-      //     customMarker.style.backgroundImage = `url('${marker.image_url[2]}')`;
 
-    // if (marker.category == "Accommodation")
-    //     customMarker.style.backgroundImage = ("montagne.png");
-    //   else
-    //     if (marker.category == "Restaurant")
-    //       customMarker.style.backgroundImage = ("voyager.png");
-    //   else
-    //       customMarker.style.backgroundImage = ("account.png");
       // Pass the element as an argument to the new marker
       new mapboxgl.Marker(customMarker)
         .setLngLat([marker.lng, marker.lat])
@@ -68,6 +56,6 @@ export default class extends Controller {
   _fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds();
     this.markersValue.forEach(marker => bounds.extend([marker.lng, marker.lat]));
-    this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+    this.map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 0 });
   }
 }
