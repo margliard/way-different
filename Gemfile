@@ -36,6 +36,10 @@ gem "geocoder"
 
 gem 'pg_search', '~> 2.3.0'
 
+gem 'open-uri'
+gem 'nokogiri'
+gem 'ferrum'
+
 
 group :development, :test do
   gem 'pry-byebug'

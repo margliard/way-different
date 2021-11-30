@@ -29,6 +29,31 @@ costa1 = Travelboard.create(user_id: margot.id, country: "Costa Rica", name: "My
 costa2 = Travelboard.create(user_id: camille.id, country: "Costa Rica", name: "Costa Rica 2019", start_date: "02/08/19", end_date: "14/08/2019", status: false)
 costa3 = Travelboard.create(user_id: sophie.id, country: "Costa Rica", name: "Costa Rica - East Coast", start_date: "06/07/2021", end_date: "22/07/2021", status: false)
 puts "Travelboards ok..."
+
+# SCRAPING -- ONLY IN FRANCE !
+puts "Creating hotels..."
+# mettre le résultat de la query
+doc = Nokogiri::HTML(URI.open("https://www.ethik-hotels.com/en/infrance"))
+doc.search('.post').each do |element|
+  # Experience names
+  titles = element.search('.entry-title-post').text.strip
+  # Experience descriptions
+  descriptions = element.search('.entry-content-post p').text.strip
+  # Experience photos
+  link_show = element.search('.more-link').attribute('href')
+  link_show_content = Nokogiri::HTML(URI.open(link_show))
+  images = link_show_content.search('a .attachment-post-thumbnail').attribute('data-jpibfi-src').value
+  # Experience addresses
+  link2 = element.search('.more-link').attribute('href').value
+  browser = Ferrum::Browser.new
+  browser.go_to(link2)
+  address = browser.at_css(".leaflet-popup-content").text
+  sleep 2
+  browser.quit
+  Experience.create(category: "Accommodation", name: "#{titles}", address: "#{address}", availability: true, price: 90, country: "France", city: "", description: "#{descriptions}", booked: false, image_url: "#{images}")
+  puts "One hotel created, please wait!"
+end
+
 puts "Creating experiences..."
 hotel1 = Experience.create(category: "Accommodation", name: "Tranquilo Bay Eco Adventure Lodge", address: "Monteverde Costa Rica", availability: true, price: 80, country: "Costa Rica", city: "Monteverde", description: "Centrally located among the most biologically diverse protected areas in Central America, this adventure eco-lodge in Panama will give you the authentic vacation experience you desire. When you stay in one of Tranquilo Bay’s nine stylish cabanas, you can start your morning by walking out onto the wrap-around elevated porch to get a view of the mangrove forest and the Caribbean Sea meeting the lush green rainforest. You can be sure you’re having a sustainable, environmentally-friendly vacation when you stay at this boutique hotel", booked: false, image_url: "https://regenerativetravel.com/wp-content/uploads/2019/07/4-1024x684-1.jpg")
 restaurant1 = Experience.create(category: "Restaurant", name: "Farm to Table Escondido", address: "Santa Elena Costa Rica", availability: true, country: "Costa Rica", city: "Santa Elena", description: "Little hidden gem of a cafe with a big view to boast. Great seating area upstairs to enjoy the views and with a lovely garden.", booked: false, image_url: "https://media-cdn.tripadvisor.com/media/photo-s/15/9f/ee/5f/cafe-second-floor-view.jpg")
