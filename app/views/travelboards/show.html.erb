@@ -8,92 +8,123 @@
       </head> %>
       <%# <body> %>
 
-<div class="container">
-  <div class="header-travelboard">
-    <h2><%= @travelboard.name %></h2>
-    <hr class="solid">
-  </div>
-  <div class="header-travelboard-details">
-    <div class="header-travelboard-user">
-      <%= image_tag @travelboard.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face %>
-      <p>Created by <%= @travelboard.user.username %></p>
-    </div>
-    <p><i class="fas fa-map-pin" style="color: #EC1820"></i> <%= @travelboard.country %></p>
-  </div>
+    <% travelday_zero = [] %>
+    <% @travelboard.traveldays.each do |travelday| %>
+      <% if travelday.day_number == 0 %>
+        <% travelday_zero << travelday %>
+      <% end %>
+    <% end %>
 
-  <div class="d-flex">
-
-    <div class="column1">
-
-      <div class="cards-day-travelboard">
-          <%@travelboard.traveldays.each do |travelday| %>
-            <% if travelday.day_number > 0 %>
-              <div class="card-day-travelboard">
+    <% if @travelboard.user == current_user && travelday_zero.empty? == false %>
+      <div class="flexbox-headers-cards-map">
+        <div class="header-and-cards">
+          <div class="header-travelboard">
+            <h2><%= @travelboard.name %></h2>
+            <p><i class="fas fa-map-pin" style="color: #EC1820"></i> <%= @travelboard.country %></p>
+          </div>
+          <div class="d-flex">
+            <div class="column1">
+              <div class="cards-day-travelboard">
+                <div class="card-day-travelboard-day-zero">
                 <div class="card-day-travelboard-container">
-                  <h5>DAY <%= travelday.day_number %></h5>
-                  <div>
+                  <h5 class="title-say-zero">Add experiences</h5>
+                  <% travelday_zero.each do |travelday| %>
                     <%travelday.favorites.each do |favorite| %>
-                      <div class="tb-card-product">
+                      <div class="tb-card-product-day-zero">
                         <%= image_tag favorite.experience.image_url %>
                         <div>
                           <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
-                          <p class="tb-card-experience-address"><i class="fas fa-map-pin"></i> <%= favorite.experience.address %></p>
                           <p class="tb-card-category"><%= favorite.experience.category %></p>
                         </div>
                       </div>
                     <% end %>
-                  </div>
+                  <% end %>
+                </div>
                 </div>
               </div>
-            <% end %>
-          <% end %>
-      </div>
+            </div>
 
-
-    </div>
-
-    <div class="column2">
-      <div class="mapbox"
-          data-controller="mapbox"
-          data-mapbox-markers-value="<%= @markers.to_json %>"
-          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-      </div>
-    </div>
-
-
-
-  <div>
-    <% if @travelboard.user == current_user %>
-      <hr class="solid">
-      <h4 class="title-day-zero">Add experiences to your travelboard</h4>
-      <div class="cards-day-travelboard">
-        <% travelday_zero = [] %>
-        <% @travelboard.traveldays.each do |travelday| %>
-          <% if travelday.day_number == 0 %>
-            <% travelday_zero << travelday %>
-          <% end %>
-        <% end %>
-
-        <% travelday_zero.each do |travelday| %>
-          <div>
-            <%travelday.favorites.each do |favorite| %>
-              <div class="tb-card-product-day-zero">
-                <%= image_tag favorite.experience.image_url %>
-                <div>
-                  <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
-                  <p class="tb-card-experience-address"><i class="fas fa-map-pin"></i> <%= favorite.experience.address %></p>
-                  <p class="tb-card-category"><%= favorite.experience.category %></p>
-                </div>
+            <div class="column2">
+              <div class="cards-day-travelboard">
+                  <%@travelboard.traveldays.each do |travelday| %>
+                    <% if travelday.day_number > 0 %>
+                      <div class="card-day-travelboard">
+                        <div class="card-day-travelboard-container">
+                          <h5>DAY <%= travelday.day_number %></h5>
+                          <div>
+                            <%travelday.favorites.each do |favorite| %>
+                              <div class="tb-card-product">
+                                <%= image_tag favorite.experience.image_url %>
+                                <div>
+                                  <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
+                                  <p class="tb-card-experience-address"><i class="fas fa-map-pin"></i> <%= favorite.experience.address %></p>
+                                  <p class="tb-card-category"><%= favorite.experience.category %></p>
+                                </div>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
               </div>
-            <% end %>
+            </div>
           </div>
-        <% end %>
+        </div>
+
+        <div class="column3">
+          <div class="travelboardmap"
+              data-controller="mapbox"
+              data-mapbox-markers-value="<%= @markers.to_json %>"
+              data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+          </div>
+        </div>
+      </div>
+
+
+    <% else %>
+      <div class="flexbox-headers-cards-map">
+        <div class="header-and-cards-day-zero">
+          <div class="header-travelboard">
+            <h2><%= @travelboard.name %></h2>
+            <p><i class="fas fa-map-pin" style="color: #EC1820"></i> <%= @travelboard.country %></p>
+          </div>
+          <div class="column2-if-not-user">
+            <div class="cards-day-travelboard">
+                <%@travelboard.traveldays.each do |travelday| %>
+                  <% if travelday.day_number > 0 %>
+                    <div class="card-day-travelboard">
+                      <div class="card-day-travelboard-container">
+                        <h5>DAY <%= travelday.day_number %></h5>
+                        <div>
+                          <%travelday.favorites.each do |favorite| %>
+                            <div class="tb-card-product">
+                              <%= image_tag favorite.experience.image_url %>
+                              <div>
+                                <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
+                                <p class="tb-card-experience-address"><i class="fas fa-map-pin"></i> <%= favorite.experience.address %></p>
+                                <p class="tb-card-category"><%= favorite.experience.category %></p>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="column3-if-not-user">
+          <div class="travelboardmap"
+              data-controller="mapbox"
+              data-mapbox-markers-value="<%= @markers.to_json %>"
+              data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+          </div>
+        </div>
       </div>
     <% end %>
-  </div>
-
-  </div>
-
 </div>
 
 

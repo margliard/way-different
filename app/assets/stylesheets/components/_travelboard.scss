@@ -3,18 +3,25 @@
 $timeline-body-round: 3px;
 $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 
-.row {
-  display: flex;
+
+.column1 {
+  flex: 20%;
 }
 
 .column2 {
-  flex: 35%;
-  margin-bottom: 0px;
+  flex: 80%;
 }
 
-.column1 {
-  flex: 65%;
-  margin-bottom: 0px;
+.column3 {
+  flex: 30%;
+}
+
+.column2-if-not-user {
+  flex: 50%;
+}
+
+.column3-if-not-user {
+  flex: 50%;
 }
 
 .review {
@@ -224,8 +231,8 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 
 .cards-day-travelboard {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-right: 24px;
+  grid-template-columns: 1fr;
+  margin-right: 8px;
   grid-gap: 24px;
   margin-bottom: 24px;
 }
@@ -236,7 +243,18 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
+.card-day-travelboard-day-zero {
+  background-color: $beige;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
 .card-day-travelboard h5 {
+  color: white;
+  text-align: center;
+}
+
+.card-day-travelboard-day-zero h5 {
   color: white;
   text-align: center;
 }
@@ -251,7 +269,7 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 
 
 .header-travelboard {
-  text-align: center;
+  text-align: start;
   color: $darkgreen;
   margin-top: 36px;
   margin-bottom: 22px;
@@ -277,3 +295,20 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 .header-travelboard-user p {
   margin-left: 10px;
 }
+
+.flexbox-headers-cards-map {
+  display: flex;
+}
+
+ .travelboardmap {
+    height: 100%;
+ }
+
+ .header-and-cards {
+  margin-left: 8px;;
+ }
+
+ .header-and-cards-day-zero {
+  margin-left: 8px;
+  flex: 50%
+ }
