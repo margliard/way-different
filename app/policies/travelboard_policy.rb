@@ -16,11 +16,7 @@ class TravelboardPolicy < ApplicationPolicy
   end
 
   def new?
-    false
-  end
-
-  def create?
-    false
+    create?
   end
 
   # CAN BE EMPTY AS EDIT IS TAKING UPDATE VALUE ACCORDING TO APPLICATION_POLICY
@@ -28,6 +24,10 @@ class TravelboardPolicy < ApplicationPolicy
   end
 
   def update?
+    user == record.user || user.admin
+  end
+
+  def create?
     user == record.user || user.admin
   end
 

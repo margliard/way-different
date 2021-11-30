@@ -8,4 +8,8 @@ class FavoritePolicy < ApplicationPolicy
   def changeday?
     true
   end
+
+  def create?
+    true
+  end
 end
