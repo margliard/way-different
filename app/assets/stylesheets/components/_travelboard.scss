@@ -5,15 +5,15 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 
 
 .column1 {
-  flex: 20%;
+  flex: 25%;
 }
 
 .column2 {
-  flex: 80%;
+  flex: 40%;
 }
 
 .column3 {
-  flex: 30%;
+  flex: 40%;
 }
 
 .column2-if-not-user {
@@ -233,7 +233,7 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   display: grid;
   grid-template-columns: 1fr;
   margin-right: 8px;
-  grid-gap: 24px;
+  grid-gap: 8px;
   margin-bottom: 24px;
 }
 
@@ -241,12 +241,16 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   background-color: $lightgreen;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 8px;
+  padding: 10px;
 }
 
 .card-day-travelboard-day-zero {
   background-color: $beige;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 8px;
+  padding: 10px;
 }
 
 .card-day-travelboard h5 {
@@ -259,14 +263,9 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   text-align: center;
 }
 
-.card-day-travelboard-container {
-  margin: 14px;
-}
-
 .location-travelboard {
   margin-bottom: 44px;
 }
-
 
 .header-travelboard {
   text-align: start;
@@ -308,7 +307,7 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   margin-left: 8px;;
  }
 
- .header-and-cards-day-zero {
+ .header-and-cards-if-not-user {
   margin-left: 8px;
   flex: 50%
  }

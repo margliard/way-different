@@ -7,7 +7,8 @@
   align-items: start;
   border-radius: 8px;
   color: black;
-  margin-bottom: 18px;
+  width: 100%;
+  margin-bottom: 8px;
 }
 
 .tb-card-product-day-zero {
@@ -20,8 +21,8 @@
   border-radius: 8px;
   border: dashed darkgrey 1px;
   color: black;
-  margin-bottom: 18px;
-  width: 260px;
+  width: 100%;
+  margin-bottom: 8px;
 }
 
 .tb-card-product img {
@@ -72,7 +73,7 @@
   color: white;
 }
 
-.title-say-zero {
+.title-day{
   margin-top: 9px;
   margin-bottom: 8px;
 }

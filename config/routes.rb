@@ -13,5 +13,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :favorites, only: [:destroy]
+  resources :favorites, only: [:destroy] do
+    member do
+      patch :changeday
+    end
+  end
 end

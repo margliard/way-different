@@ -26,20 +26,20 @@
             <div class="column1">
               <div class="cards-day-travelboard">
                 <div class="card-day-travelboard-day-zero">
-                <div class="card-day-travelboard-container">
-                  <h5 class="title-say-zero">Add experiences</h5>
-                  <% travelday_zero.each do |travelday| %>
-                    <%travelday.favorites.each do |favorite| %>
-                      <div class="tb-card-product-day-zero">
-                        <%= image_tag favorite.experience.image_url %>
-                        <div>
-                          <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
-                          <p class="tb-card-category"><%= favorite.experience.category %></p>
+                  <h5 class="title-day">Add experiences</h5>
+                  <div class="cards" data-controller="drag">
+                    <% travelday_zero.each do |travelday| %>
+                      <%travelday.favorites.each do |favorite| %>
+                        <div class="tb-card-product-day-zero">
+                          <%= image_tag favorite.experience.image_url %>
+                          <div>
+                            <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
+                            <p class="tb-card-category"><%= favorite.experience.category %></p>
+                          </div>
                         </div>
-                      </div>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -49,20 +49,17 @@
                   <%@travelboard.traveldays.each do |travelday| %>
                     <% if travelday.day_number > 0 %>
                       <div class="card-day-travelboard">
-                        <div class="card-day-travelboard-container">
-                          <h5>DAY <%= travelday.day_number %></h5>
-                          <div>
-                            <%travelday.favorites.each do |favorite| %>
-                              <div class="tb-card-product">
-                                <%= image_tag favorite.experience.image_url %>
-                                <div>
-                                  <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
-                                  <p class="tb-card-experience-address"><i class="fas fa-map-pin"></i> <%= favorite.experience.address %></p>
-                                  <p class="tb-card-category"><%= favorite.experience.category %></p>
-                                </div>
-                              </div>
-                            <% end %>
+                        <h5 class="title-day">DAY <%= travelday.day_number %></h5>
+                        <div class="cards" data-controller="drag" data-travelday="<%= travelday.id %>">
+                          <%travelday.favorites.each do |favorite| %>
+                          <div class="tb-card-product" data-favorite="<%= favorite.id %>">
+                            <%= image_tag favorite.experience.image_url %>
+                            <div>
+                              <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
+                              <p class="tb-card-category"><%= favorite.experience.category %></p>
+                            </div>
                           </div>
+                          <% end %>
                         </div>
                       </div>
                     <% end %>
@@ -84,7 +81,7 @@
 
     <% else %>
       <div class="flexbox-headers-cards-map">
-        <div class="header-and-cards-day-zero">
+        <div class="header-and-cards-if-not-user">
           <div class="header-travelboard">
             <h2><%= @travelboard.name %></h2>
             <p><i class="fas fa-map-pin" style="color: #EC1820"></i> <%= @travelboard.country %></p>
