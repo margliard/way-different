@@ -77,6 +77,7 @@
         </div>
       </div>
       <% if user_signed_in? %>
+      <button id="sweet-alert-demo" class="btn btn-primary">Click me!</button>
         <a id="btn-add-favorite" id="buttonfav" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-suitcase"></i>  Add to my travelboard</a>
       <% else %>
         <a id="btn-add-favorite" data-bs-toggle="modal" href="#logInModalToggle" role="button">Log-in to add to your favorites !</a>
@@ -106,7 +107,7 @@
               <h5>Existing travelboards</h5>
               <% @travelboards.each do |travelboard| %>
                 <%= simple_form_for [@experience, @favorite] do |f| %>
-                  <button id="card-travelboard-existing2" type="submit">
+                  <button id="sweet-alert-demo" class="card-travelboard-existing2" type="submit">
                     <img src="https://storage.googleapis.com/chile-travel-newsite-static-content/2021/04/norte.jpg">
                     <div id="card-travelboard-existing-details2">
                       <p><%= travelboard.name %></p>
@@ -153,7 +154,7 @@
           <a id="bouton-sticky" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-plus"></i></a>
         </div>
       <% end %>
-      <div class="hide stickytext"><i class="fas fa-suitcase"></i>  Add to my travelboard</div>
+      <div class="hide stickytext"><button id="sweet-alert-demo" id="buttonfav"><i class="fas fa-suitcase"></i>  Add to my travelboard</button></div>
       <%# ----------- %>
       <div class="modal fade" id="logInModalToggle" tabindex="-1" role="dialog" aria-labelledby="logInLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">

@@ -29,6 +29,13 @@ import { initStarRating } from '../plugins/init_star_rating';
 
 initStarRating();
 
+import { initSweetalert } from '../plugins/init_sweetalert';
+initSweetalert('#sweet-alert-demo', {
+  title: "Added to Travelboards",
+  text: "Favorite added to your travelboard :) tqt ça marche",
+  icon: "success"
+});
+
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
