@@ -29,6 +29,40 @@ costa1 = Travelboard.create(user_id: margot.id, country: "Costa Rica", name: "My
 costa2 = Travelboard.create(user_id: camille.id, country: "Costa Rica", name: "Costa Rica 2019", start_date: "02/08/19", end_date: "14/08/2019", status: false)
 costa3 = Travelboard.create(user_id: sophie.id, country: "Costa Rica", name: "Costa Rica - East Coast", start_date: "06/07/2021", end_date: "22/07/2021", status: false)
 puts "Travelboards ok..."
+
+puts 'Creating experience restaurant...'
+  doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
+  doc.search('.ecotables-ecotable').each do |element|
+    p '---------------------'
+    p 'LINK-SHOW'
+    p link = element.search('a').attribute('href').value
+    doc2 = Nokogiri::HTML(URI.open(link))
+    doc2.search('.page-ecotable').each do |element2|
+      p 'TITLES'
+      p titles = element2.search('h1').text
+      p '---------------------'
+      p 'DESC'
+      p descriptions = element2.search('.ecotable-paragraph p').text
+      p '---------------------'
+      p 'ADDRESS'
+      p loc= element2.search('.ecotable-address span').text.strip
+      p '---------------------'
+      p 'City'
+      p '---------------------'
+      p city=loc.split(',').last
+      p 'IMG'
+      p '---------------------'
+      p images = element2.search('.lazy-img').attribute('data-lazy-src').value
+      # p 'Price range'
+      # p '---------------------'
+      # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
+      p 'BADGE'
+      p '---------------------'
+      p badges = element2.search('.ecotable-badges').text.split(',')
+      Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+    end
+end
+
 puts "Creating experiences..."
 hotel1 = Experience.create(category: "Accommodation", name: "Tranquilo Bay Eco Adventure Lodge", address: "Monteverde Costa Rica", availability: true, price: 80, country: "Costa Rica", city: "Monteverde", description: "Centrally located among the most biologically diverse protected areas in Central America, this adventure eco-lodge in Panama will give you the authentic vacation experience you desire. When you stay in one of Tranquilo Bay’s nine stylish cabanas, you can start your morning by walking out onto the wrap-around elevated porch to get a view of the mangrove forest and the Caribbean Sea meeting the lush green rainforest. You can be sure you’re having a sustainable, environmentally-friendly vacation when you stay at this boutique hotel", booked: false, image_url: "https://regenerativetravel.com/wp-content/uploads/2019/07/4-1024x684-1.jpg")
 restaurant1 = Experience.create(category: "Restaurant", name: "Farm to Table Escondido", address: "Santa Elena Costa Rica", availability: true, country: "Costa Rica", city: "Santa Elena", description: "Little hidden gem of a cafe with a big view to boast. Great seating area upstairs to enjoy the views and with a lovely garden.", booked: false, image_url: "https://media-cdn.tripadvisor.com/media/photo-s/15/9f/ee/5f/cafe-second-floor-view.jpg")
