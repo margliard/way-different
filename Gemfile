@@ -33,6 +33,8 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'pundit'
 gem "geocoder"
+gem 'city-state'
+gem "chartkick"
 
 gem 'pg_search', '~> 2.3.0'
 
