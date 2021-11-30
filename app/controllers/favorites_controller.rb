@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: :destroy
+  before_action :set_favorite, only: [:destroy, :changeday]
   before_action :set_experience, only: [:new, :create]
 
   def new
@@ -18,8 +18,11 @@ class FavoritesController < ApplicationController
     redirect_to travelboard_path(@favorite.travelboard)
   end
 
-  def update
-
+  def changeday
+    @travelday = Travelday.find(params[:travelday])
+    @favorite.travelday = @travelday
+    @favorite.save
+    authorize @favorite
   end
 
   private
