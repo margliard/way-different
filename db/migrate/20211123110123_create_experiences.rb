@@ -5,7 +5,7 @@ class CreateExperiences < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :address
       t.boolean :availability
-      t.integer :price
+      t.string :price
       t.string :city
       t.string :country
       t.float :latitude
