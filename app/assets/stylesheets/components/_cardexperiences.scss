@@ -14,23 +14,29 @@
 }
 
 .card-experience h2 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
-  margin: 0;
+  margin-top: 54px;
 }
 
-.card-experience p {
+.card-experience h5 {
   font-size: 16px;
+  font-weight: bolder;
+  color: $midgreen;
+}
+
+.card-experience .experience-description {
+  font-size: 12px;
+  line-height: 1.2;
   opacity: .7;
-  margin: 0;
+  margin-bottom: 0;
+  margin-top: 8px;
 }
 
 .card-experience .card-experience-infos {
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
 }
 
 .card-experience-infos .card-experience-user {
@@ -38,4 +44,15 @@
   right: 16px;
   top: -20px;
   width: 40px;
+}
+
+.icon-experience {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

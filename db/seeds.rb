@@ -40,6 +40,7 @@ costa3 = Travelboard.create(user_id: sophie.id, country: "Costa Rica", name: "Co
 puts "Travelboards ok..."
 
 puts 'Creating experience restaurant...'
+
   doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
   doc.search('.ecotables-ecotable').each do |element|
 
@@ -85,7 +86,7 @@ doc.search('.post').each do |element|
   # Experience criterias
   criteria = element.search('.critereValide span').text.gsub('Criterion respected:', ' ').strip.split(/(?=[A-Z])/).collect(&:strip)
   # Create a hotel
-  Experience.create(category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: 90, country: "france", city: " ", description: "#{description}", booked: false, image_url: "#{image}")
+  Experience.create(category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: nil, country: "france", city: " ", description: "#{description}", booked: false, image_url: "#{image}")
   puts "One hotel created, please wait!"
 end
 browser.quit

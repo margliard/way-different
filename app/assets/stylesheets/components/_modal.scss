@@ -25,14 +25,14 @@
   align-items: flex-start;
 }
 
-#card-travelboard-existing2 {
+.card-travelboard-existing2 {
   display: flex;
   background-color: white;
   align-items: center;
   border: none;
 }
 
-#card-travelboard-existing2 img{
+.card-travelboard-existing2 img{
   width: 75px;
   height: 75px;
   border-radius: 4px;
@@ -40,7 +40,7 @@
   margin-bottom: 8px;
 }
 
-#card-travelboard-existing2 p{
+.card-travelboard-existing2 p{
   line-height: 0.5;
   color: black;
   text-shadow: none;
