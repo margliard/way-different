@@ -43,6 +43,7 @@ puts "Travelboards ok..."
 puts "Creating hotels..."
 # mettre le résultat de la query
 doc = Nokogiri::HTML(URI.open("https://www.ethik-hotels.com/en/infrance"))
+browser = Ferrum::Browser.new
 doc.search('.post').each do |element|
   # Experience name
   title = element.search('.entry-title-post').text.strip
@@ -54,17 +55,15 @@ doc.search('.post').each do |element|
   image = link_show_content.search('a .attachment-post-thumbnail').attribute('data-jpibfi-src').value
   # Experience addresse
   link_show2 = element.search('.more-link').attribute('href').value
-  browser = Ferrum::Browser.new
   browser.go_to(link_show2)
   address = browser.at_css(".leaflet-popup-content").text
-  sleep 10
-  browser.quit
   # Experience criterias
   criteria = element.search('.critereValide span').text.gsub('Criterion respected:', ' ').strip.split(/(?=[A-Z])/).collect(&:strip)
   # Create a hotel
-  Experience.create(category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: 90, country: "#{country}", city: " ", description: "#{description}", booked: false, image_url: "#{image}")
+  Experience.create(category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: 90, country: "france", city: " ", description: "#{description}", booked: false, image_url: "#{image}")
   puts "One hotel created, please wait!"
 end
+browser.quit
 
 puts "Creating experiences..."
 hotel1 = Experience.create(category: "Accommodation", name: "Tranquilo Bay Eco Adventure Lodge", address: "Monteverde Costa Rica", availability: true, price: 80, country: "Costa Rica", city: "Monteverde", description: "Centrally located among the most biologically diverse protected areas in Central America, this adventure eco-lodge in Panama will give you the authentic vacation experience you desire. When you stay in one of Tranquilo Bay’s nine stylish cabanas, you can start your morning by walking out onto the wrap-around elevated porch to get a view of the mangrove forest and the Caribbean Sea meeting the lush green rainforest. You can be sure you’re having a sustainable, environmentally-friendly vacation when you stay at this boutique hotel", booked: false, image_url: "https://regenerativetravel.com/wp-content/uploads/2019/07/4-1024x684-1.jpg")
