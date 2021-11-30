@@ -34,12 +34,19 @@
               <h5>Existing travelboards</h5>
               <% @travelboards.each do |travelboard| %>
                 <%= simple_form_for [@experience, @favorite] do |f| %>
-                  <button id="card-travelboard-existing" type="submit">
+                  <%# <button id="card-travelboard-existing" type="submit"> %>
+                  <button id="card-travelboard-existing" onclick="myFunction()">
                     <img src="https://storage.googleapis.com/chile-travel-newsite-static-content/2021/04/norte.jpg">
+                    <%# <%= travelboard.experiences.first.image_url %>
                     <div id="card-travelboard-existing-details">
                       <p><%= travelboard.name %></p>
                       <p id="date"><%= travelboard.start_date %> to <%= travelboard.end_date %></p>
                     </div>
+                            <script>
+                            function myFunction() {
+                              alert("The Experience was correctly added to you Travelboard :)");
+                            }
+                            </script>
                     <input type="hidden" name="travelboard_id" value='<%= travelboard.id %>'>
                   </button>
                 <% end %>
@@ -77,7 +84,6 @@
         </div>
       </div>
       <% if user_signed_in? %>
-      <button id="sweet-alert-demo" class="btn btn-primary">Click me!</button>
         <a id="btn-add-favorite" id="buttonfav" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-suitcase"></i>  Add to my travelboard</a>
       <% else %>
         <a id="btn-add-favorite" data-bs-toggle="modal" href="#logInModalToggle" role="button">Log-in to add to your favorites !</a>
