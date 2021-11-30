@@ -22,6 +22,7 @@ class FavoritesController < ApplicationController
     @travelday = Travelday.find(params[:travelday])
     @favorite.travelday = @travelday
     @favorite.save
+    authorize @favorite
   end
 
   private
