@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get 'carbon' => 'pages#carbon'
   resources :experiences, only: [:show, :index] do
     resources :review_experiences, only: [ :new, :create, :destroy ]
     resources :favorites, only: [:new, :create]
@@ -13,5 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :favorites, only: [:destroy]
+  resources :favorites, only: [:destroy] do
+    member do
+      patch :changeday
+    end
+  end
 end

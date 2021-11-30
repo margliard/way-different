@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <p><%= pluralize @experiences.length, "experience" %> found in <%= params[:query] %> </p>
+  <p><%= pluralize @experiences.length, "eco-friendly experience" %> found in <%= params[:query] %> </p>
   <div class="container d-flex">
     <div class="col-6">
         <div class="row my-4">
@@ -7,13 +7,24 @@
             <div class="col-6">
             <%= link_to experience_path(experience) do %>
               <div class="card-experience">
-                <img src= <%= experience.image_url%> >
+                <img src= <%= experience.image_url%>>
                 <div class="card-experience-infos">
                   <div>
-                    <p><%= experience.name %> (category: <%= experience.category%>) </p>
-                    <p>Short description here!</p>
+                    <h5 class="experience-title"><%= experience.name %> </h5>
+                    <p class="experience-description"><%= experience.description.truncate(100)%></p>
                   </div>
-                <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
+                  <div class="icon-price">
+
+                      <% if experience.category == "Accommodation" %>
+                        <img class="icon-experience" src="<%= image_path('003home.png') %>" />
+                      <% elsif experience.category == "Restaurant" %>
+                        <img class="icon-experience" src="<%= image_path('003cutlery.png') %>" />
+                      <% elsif experience.category == "Activity" %>
+                        <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
+                    <% end %>
+
+                    <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
+                  </div>
                 </div>
               </div>
             <% end %>

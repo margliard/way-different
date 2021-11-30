@@ -33,6 +33,8 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'pundit'
 gem "geocoder"
+gem 'city-state'
+gem "chartkick"
 
 gem 'pg_search', '~> 2.3.0'
 
@@ -74,3 +76,5 @@ gem 'devise'
 gem 'pundit'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'cloudinary', '~> 1.16.0'
+
+gem "acts_as_list", "~> 1.0"
