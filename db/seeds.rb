@@ -44,22 +44,25 @@ puts "Creating hotels..."
 # mettre le résultat de la query
 doc = Nokogiri::HTML(URI.open("https://www.ethik-hotels.com/en/infrance"))
 doc.search('.post').each do |element|
-  # Experience names
-  titles = element.search('.entry-title-post').text.strip
-  # Experience descriptions
-  descriptions = element.search('.entry-content-post p').text.strip
-  # Experience photos
+  # Experience name
+  title = element.search('.entry-title-post').text.strip
+  # Experience description
+  description = element.search('.entry-content-post p').text.strip
+  # Experience photo
   link_show = element.search('.more-link').attribute('href')
   link_show_content = Nokogiri::HTML(URI.open(link_show))
-  images = link_show_content.search('a .attachment-post-thumbnail').attribute('data-jpibfi-src').value
-  # Experience addresses
-  link2 = element.search('.more-link').attribute('href').value
+  image = link_show_content.search('a .attachment-post-thumbnail').attribute('data-jpibfi-src').value
+  # Experience addresse
+  link_show2 = element.search('.more-link').attribute('href').value
   browser = Ferrum::Browser.new
-  browser.go_to(link2)
+  browser.go_to(link_show2)
   address = browser.at_css(".leaflet-popup-content").text
-  sleep 2
+  sleep 10
   browser.quit
-  Experience.create(category: "Accommodation", name: "#{titles}", address: "#{address}", availability: true, price: 90, country: "France", city: "", description: "#{descriptions}", booked: false, image_url: "#{images}")
+  # Experience criterias
+  criteria = element.search('.critereValide span').text.gsub('Criterion respected:', ' ').strip.split(/(?=[A-Z])/).collect(&:strip)
+  # Create a hotel
+  Experience.create(category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: 90, country: "#{country}", city: " ", description: "#{description}", booked: false, image_url: "#{image}")
   puts "One hotel created, please wait!"
 end
 
