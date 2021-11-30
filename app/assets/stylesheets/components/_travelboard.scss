@@ -13,8 +13,13 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 }
 
 .column3 {
-  flex: 40%;
+  flex: 30%;
 }
+
+.header-and-cards {
+  margin-left: 8px;
+  flex: 50%;
+ }
 
 .column2-if-not-user {
   flex: 50%;
@@ -272,6 +277,7 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   color: $darkgreen;
   margin-top: 36px;
   margin-bottom: 22px;
+  margin-left: 8px;
 }
 
 
@@ -303,11 +309,32 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
     height: 100%;
  }
 
- .header-and-cards {
-  margin-left: 8px;;
- }
-
  .header-and-cards-if-not-user {
   margin-left: 8px;
   flex: 50%
+ }
+
+ .icon-delete {
+   margin-right: 10px;
+   margin-top: 4px;
+ }
+
+
+ // index
+
+ .header-travelboard-index {
+   color: $darkgreen;
+   text-align: center;
+   margin-bottom: 26px;
+   margin-top: 26px;
+ }
+
+ .btn-index-travelboard {
+   display: flex;
+   justify-content: center;
+   margin-top: 40px;
+ }
+
+ .sticky-travelboard {
+
  }
