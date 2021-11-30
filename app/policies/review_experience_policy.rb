@@ -5,6 +5,14 @@ class ReviewExperiencePolicy < ApplicationPolicy
     end
   end
 
+  def new?
+  end
+
   def create?
+    true
+  end
+
+  def destroy?
+    user == record.user #|| user.admin
   end
 end

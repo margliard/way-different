@@ -3,7 +3,9 @@ import "jquery-bar-rating";
 const initStarRating = () => {
   $('#review_experience_rating').barrating({
     theme: 'css-stars',
-    showSelectedRating: true
+    showSelectedRating: true,
+    allowEmpty: true,
+    deselectable: true
   });
 };
 

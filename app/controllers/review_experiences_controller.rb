@@ -2,6 +2,7 @@ class ReviewExperiencesController < ApplicationController
   def new
     @review = ReviewExperience.new
     @experience = Experience.find(params[:experience_id])
+    authorize @review_experience
   end
 
   def create
@@ -11,7 +12,9 @@ class ReviewExperiencesController < ApplicationController
     @review.experience = @experience
     @travelboards = Travelboard.where(user_id: current_user)
     @travelboard = Travelboard.new
+    @nearby_experiences = Experience.near(@experience.to_coordinates, 200)
     @review.user = current_user
+    authorize @review
     if @review.save
       redirect_to experience_path(@experience)
     else
@@ -21,6 +24,7 @@ class ReviewExperiencesController < ApplicationController
 
   def destroy
     @review = ReviewExperience.find(params[:id])
+    authorize @review
     @review.destroy
     redirect_to experience_path(@review.experience)
   end
