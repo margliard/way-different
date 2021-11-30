@@ -10,6 +10,7 @@ class FavoritesController < ApplicationController
     @travelboard = Travelboard.find(params[:travelboard_id])
     @travelday = Travelday.create(day_number: 0, travelboard: @travelboard)
     @favorite = Favorite.create(experience: @experience, travelday: @travelday)
+    authorize @favorite
     redirect_to experience_path(@experience)
   end
 

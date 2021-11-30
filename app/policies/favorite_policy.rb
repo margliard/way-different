@@ -5,7 +5,12 @@ class FavoritePolicy < ApplicationPolicy
     end
   end
 
+  def create?
+    true
+  end
+
   def changeday?
     true
   end
+
 end
