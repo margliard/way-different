@@ -3,26 +3,18 @@
   <div class="banner-show" style="background-color: #95B2A3">
     <div class="container">
       <div class="image-grid">
+        <% if @experience.review_experiences.first %>
         <div class="bubble-review">
-          <img src="https://avatars.githubusercontent.com/u/90713759?v=4">
-          <div class="d-flex align-items-center justify-content-center">
-            <div class="text-center">
-              <i class="fas fa-quote-left" style="font-size: 14px"></i>
-              <span id="bubble-quote">Awesome experience at this place</span>
-              <i class="fas fa-quote-right" style="font-size: 14px"></i>
-            </div>
-          </div>
+          <div><%= image_tag @experience.review_experiences.first.user.profile_photo %><%= @experience.review_experiences.first.user.username %> said:</div>
+          <div><%= @experience.review_experiences.first[:comment] %></div>
         </div>
+        <% end %>
         <img src= <%= @experience.image_url%> id="image-grid-1" >
-        <div class="cards-img-nearby">
-          <div class="card-img-nearby" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-          </div>
-          <div class="card-img-nearby" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-          </div>
-          <div class="card-img-nearby" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-          </div>
-          <div class="card-img-nearby" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-          </div>
+        <div class="mapbox mapboxgl-mapshow"
+          data-controller="mapbox"
+          data-mapbox-markers-value="<%= @markers.to_json %>"
+          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
         </div>
       </div>
       <div class="d-flex justify-content-between align-items-center">
@@ -85,7 +77,7 @@
         </div>
       </div>
       <% if user_signed_in? %>
-        <a id="btn-add-favorite" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-suitcase"></i>  Add to my travelboard</a>
+        <a id="btn-add-favorite" id="buttonfav" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-suitcase"></i>  Add to my travelboard</a>
       <% else %>
         <a id="btn-add-favorite" data-bs-toggle="modal" href="#logInModalToggle" role="button">Log-in to add to your favorites !</a>
       <% end %>
@@ -208,11 +200,6 @@
         <p><%= @experience.country%></p>
       </div>
     </div>
-    <div class="mapbox"
-          data-controller="mapbox"
-          data-mapbox-markers-value="<%= @markers.to_json %>"
-          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
   </div>
 
   <hr class="solid">
@@ -224,11 +211,21 @@
             <div class="list-group-item" style="border-radius: 7px;">
               <div style="color: grey"><%= image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>   <%= review.user.username %> said :</div>
               <div><%= review.comment %></div>
-              <div><strong><%= review.rating %></strong></div>
-              <%# <div><%= link_to "Remove",
+              <div><% review.rating.to_i.times do  %>
+              <span class="fas fa-star"></span>
+              <% end %>
+              <% review.blank_stars.times do  %>
+              <span class="far fa-star"></span>
+              <% end %>
+              </div>
+              <div><% if policy(review).destroy? %>
+                  <%= link_to "Remove",
                             experience_review_experience_path(@experience, review),
                             method: :delete,
-                            data: { confirm: "Are you sure?" }</div> %>
+                            data: { confirm: "Are you sure?" }%>
+                            <% end %>
+                </div>
+
             </div>
         <% end %>
     </div>

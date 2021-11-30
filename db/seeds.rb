@@ -38,6 +38,66 @@ costa1 = Travelboard.create(user_id: margot.id, country: "Costa Rica", name: "My
 costa2 = Travelboard.create(user_id: camille.id, country: "Costa Rica", name: "Costa Rica 2019", start_date: "02/08/19", end_date: "14/08/2019", status: false)
 costa3 = Travelboard.create(user_id: sophie.id, country: "Costa Rica", name: "Costa Rica - East Coast", start_date: "06/07/2021", end_date: "22/07/2021", status: false)
 puts "Travelboards ok..."
+
+puts 'Creating experience restaurant...'
+  doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
+  doc.search('.ecotables-ecotable').each do |element|
+    p '---------------------'
+    p 'LINK-SHOW'
+    p link = element.search('a').attribute('href').value
+    doc2 = Nokogiri::HTML(URI.open(link))
+    doc2.search('.page-ecotable').each do |element2|
+      p 'TITLES'
+      p titles = element2.search('h1').text
+      p '---------------------'
+      p 'DESC'
+      p descriptions = element2.search('.ecotable-paragraph p').text
+      p '---------------------'
+      p 'ADDRESS'
+      p loc= element2.search('.ecotable-address span').text.strip
+      p '---------------------'
+      p 'City'
+      p '---------------------'
+      p city=loc.split(',').last
+      p 'IMG'
+      p '---------------------'
+      p images = element2.search('.lazy-img').attribute('data-lazy-src').value
+      # p 'Price range'
+      # p '---------------------'
+      # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
+      p 'BADGE'
+      p '---------------------'
+      p badges = element2.search('.ecotable-badges').text.split(',')
+      Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+    end
+end
+
+# SCRAPING -- ONLY IN FRANCE !
+puts "Creating hotels..."
+# mettre le résultat de la query
+doc = Nokogiri::HTML(URI.open("https://www.ethik-hotels.com/en/infrance"))
+browser = Ferrum::Browser.new
+doc.search('.post').each do |element|
+  # Experience name
+  title = element.search('.entry-title-post').text.strip
+  # Experience description
+  description = element.search('.entry-content-post p').text.strip
+  # Experience photo
+  link_show = element.search('.more-link').attribute('href')
+  link_show_content = Nokogiri::HTML(URI.open(link_show))
+  image = link_show_content.search('a .attachment-post-thumbnail').attribute('data-jpibfi-src').value
+  # Experience addresse
+  link_show2 = element.search('.more-link').attribute('href').value
+  browser.go_to(link_show2)
+  address = browser.at_css(".leaflet-popup-content").text
+  # Experience criterias
+  criteria = element.search('.critereValide span').text.gsub('Criterion respected:', ' ').strip.split(/(?=[A-Z])/).collect(&:strip)
+  # Create a hotel
+  Experience.create(category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: 90, country: "france", city: " ", description: "#{description}", booked: false, image_url: "#{image}")
+  puts "One hotel created, please wait!"
+end
+browser.quit
+
 puts "Creating experiences..."
 hotel1 = Experience.create(category: "Accommodation", name: "Tranquilo Bay Eco Adventure Lodge", address: "Monteverde Costa Rica", availability: true, price: 80, country: "Costa Rica", city: "Monteverde", description: "Centrally located among the most biologically diverse protected areas in Central America, this adventure eco-lodge in Panama will give you the authentic vacation experience you desire. When you stay in one of Tranquilo Bay’s nine stylish cabanas, you can start your morning by walking out onto the wrap-around elevated porch to get a view of the mangrove forest and the Caribbean Sea meeting the lush green rainforest. You can be sure you’re having a sustainable, environmentally-friendly vacation when you stay at this boutique hotel", booked: false, image_url: "https://regenerativetravel.com/wp-content/uploads/2019/07/4-1024x684-1.jpg")
 restaurant1 = Experience.create(category: "Restaurant", name: "Farm to Table Escondido", address: "Santa Elena Costa Rica", availability: true, country: "Costa Rica", city: "Santa Elena", description: "Little hidden gem of a cafe with a big view to boast. Great seating area upstairs to enjoy the views and with a lovely garden.", booked: false, image_url: "https://media-cdn.tripadvisor.com/media/photo-s/15/9f/ee/5f/cafe-second-floor-view.jpg")
@@ -52,24 +112,28 @@ puts "Experiences ok..."
 
 puts "creating review for experiences"
 
-re1 = ReviewExperience.create(experience_id: hotel1.id, user_id:margot.id, comment: "The comforts of home with the jungle at your doorstep. Many activities to choose from and lots of flora and fauna to see. Stay on the property or take a boat trip to several destinations, accompanied by very knowledgeable guides.", rating: "5")
+re1 = ReviewExperience.create(experience_id: hotel1.id, user_id:margot.id, comment: "The comforts of home with the jungle at your doorstep!", rating: "5")
 re2 = ReviewExperience.create(experience_id: hotel1.id, user_id:sophie.id, comment: "Our recent stay at this fabulous lodge did not disappoint! Everything was truly phenomenal. The lodge is reached by a short boat ride from Bocas del Toro and the ride is gorgeous, with dolphin sightings along the way.
 Our room was on the second story of a solid two story house (cabin 9) with a living area, oriental rugs, king size bed, spacious bathroom with fresh flowers and a lovely patio overlooking the lush grounds.", rating: "5")
 re3 = ReviewExperience.create(experience_id: hotel1.id, user_id:aymeric.id, comment: "Delicious breakfasts, lunches and dinners were served in the main lodge house by ever attentive staff. This area also featured a little bar and a cozy sitting area surrounded by guide and coffee table books about the fauna of the region.
 The great room also featured our absolute favorite component- a large wrap around deck over the jungle from which one could sip a drink, read a book and watch for tropical birds.", rating: "4,6")
 re4 = ReviewExperience.create(experience_id: hotel1.id, user_id:camille.id, comment: "Amazing experiences each and every day. Guides had actual wildlife conservation experience, were super knowledgeable and accommodating. The owners and staff went beyond their way to ensure a top level stay", rating: "4.4")
-re5 = ReviewExperience.create(experience_id: restaurant1.id, user_id: margot.id, comment: "The food was great, and the service was excellent. I've heard that the tomato soup is great also. You can also order coconut water directly from the coconut for just $2.", rating: "4,8")
+re5 = ReviewExperience.create(experience_id: restaurant1.id, user_id: margot.id, comment: "The food was great, the service was excellent!", rating: "4,8")
 re6 = ReviewExperience.create(experience_id: restaurant1.id, user_id: aymeric.id, comment: "As others have shared the Pizza here is wonderful. However all the other food items we tried were fantastic as well. Everything is freshly prepared and the prices were some of the best we saw during our CR adventure.", rating: "5")
 re7 = ReviewExperience.create(experience_id: restaurant1.id, user_id: camille.id, comment: "We loved this place. The staff is fantastic, Gustavo and Helen jr make the best margaritas. Also the view from upstairs is amazing", rating: "4")
 re8 = ReviewExperience.create(experience_id: restaurant1.id, user_id: sophie.id, comment: "Awesome pizza ! After a view days in Costa Rica we were craving for cheese and pizza.", rating: "4")
-re9 = ReviewExperience.create(experience_id:activity1.id, user_id:camille.id, comment: "Nice activity, really fun to discover new flavours. I recommand.", rating: "5")
+re9 = ReviewExperience.create(experience_id: activity1.id, user_id:camille.id, comment: "Nice activity, really fun to discover new flavours. I recommand.", rating: "5")
 re10 = ReviewExperience.create(experience_id: activity1.id, user_id: aymeric.id, comment: "It was really fun, some weird fruits to taste! The guide was really nice, even though he flirted with my 18th year old daughter the entire time.... that's why this gets only 3/5.", rating: "3")
 re11 = ReviewExperience.create(experience_id: activity1.id, user_id: margot.id, comment: "We had soooo much fuuun !! What a great activity to do !", rating: "5")
 re12 = ReviewExperience.create(experience_id: activity1.id, user_id: sophie.id, comment: "Superbe tasting of amazing fruits ! loved it! ", rating: "5")
 re13 = ReviewExperience.create(experience_id: restaurant2.id, user_id: aymeric.id, comment: "$20 for poached eggs. Ouch. Not even good ones. French toast was good. IT was 5 months ago and I'm still mad. the hotel of the restaurant is amazing though.", rating: "3")
-re13 = ReviewExperience.create(experience_id: restaurant2.id, user_id: camille.id, comment: "Super high prices for what it is, you are paying for the location. While we had a few stand outs who treated us very well, at times it felt as if we were bothering the staff. The location is great, right next to the beach but with the hefty price tag", rating: "2")
-re13 = ReviewExperience.create(experience_id: restaurant2.id, user_id: margot.id, comment: "Incredibly expensive, but a lovely time. Absolutely gorgeous. Very expensive. You get what you pay for.", rating: "5")
-re13 = ReviewExperience.create(experience_id: restaurant2.id, user_id: sophie.id, comment: "I’ve only ate at the restaurant which is fantastic. Try there non-alcoholic fizzy’s.", rating: "4")
+re14 = ReviewExperience.create(experience_id: restaurant2.id, user_id: camille.id, comment: "Super high prices for what it is, you are paying for the location. While we had a few stand outs who treated us very well, at times it felt as if we were bothering the staff. The location is great, right next to the beach but with the hefty price tag", rating: "2")
+re15 = ReviewExperience.create(experience_id: restaurant2.id, user_id: margot.id, comment: "Incredibly expensive, but a lovely time. Absolutely gorgeous. Very expensive. You get what you pay for.", rating: "5")
+re16 = ReviewExperience.create(experience_id: restaurant2.id, user_id: sophie.id, comment: "I’ve only ate at the restaurant which is fantastic. Try there non-alcoholic fizzy’s.", rating: "4")
+re17 = ReviewExperience.create(experience_id: activity2.id, user_id: margot.id, comment: "Unforgettable!", rating: "5")
+re18 = ReviewExperience.create(experience_id: activity3.id, user_id: aymeric.id, comment: "Amazing landscape !", rating: "4")
+re19 = ReviewExperience.create(experience_id: hotel2.id, user_id: camille.id, comment: "Very quiet!", rating: "4")
+re20 = ReviewExperience.create(experience_id: restaurant3.id, user_id: sophie.id, comment: "Really good !", rating: "4")
 # re13 = ReviewExperience.create(experience_id: restaurant2.id, user_id: aymeric.id, comment: "", rating: "")
 # re13 = ReviewExperience.create(experience_id: restaurant2.id, user_id: aymeric.id, comment: "", rating: "")
 # re13 = ReviewExperience.create(experience_id: restaurant2.id, user_id: aymeric.id, comment: "", rating: "")
