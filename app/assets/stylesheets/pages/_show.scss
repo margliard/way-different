@@ -16,3 +16,7 @@ list-style-type: none;
 .body {
   font-family: $body-font;
 }
+
+.mapboxgl-mapshow {
+  width: -webkit-fill-available;
+}
