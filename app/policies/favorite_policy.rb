@@ -12,5 +12,4 @@ class FavoritePolicy < ApplicationPolicy
   def changeday?
     true
   end
-
 end

@@ -40,36 +40,29 @@ costa3 = Travelboard.create(user_id: sophie.id, country: "Costa Rica", name: "Co
 puts "Travelboards ok..."
 
 puts 'Creating experience restaurant...'
-doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
-doc.search('.ecotables-ecotable').each do |element|
-  '---------------------'
-  'LINK-SHOW'
-  link = element.search('a').attribute('href').value
-  doc2 = Nokogiri::HTML(URI.open(link))
-  doc2.search('.page-ecotable').each do |element2|
-      'TITLES'
-    titles = element2.search('h1').text
-    '---------------------'
-    'DESC'
-    descriptions = element2.search('.ecotable-paragraph p').text
-    '---------------------'
-    'ADDRESS'
-    loc= element2.search('.ecotable-address span').text.strip
-    '---------------------'
-    'City'
-    '---------------------'
-    city=loc.split(',').last
-    'IMG'
-    '---------------------'
-    images = element2.search('.lazy-img').attribute('data-lazy-src').value
-    # p 'Price range'
-    # p '---------------------'
-    # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
-    'BADGE'
-    '---------------------'
-    badges = element2.search('.ecotable-badges').text.split(',')
-    Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
-  end
+
+  doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
+  doc.search('.ecotables-ecotable').each do |element|
+
+    link = element.search('a').attribute('href').value
+    doc2 = Nokogiri::HTML(URI.open(link))
+    doc2.search('.page-ecotable').each do |element2|
+
+      titles = element2.search('h1').text
+
+      descriptions = element2.search('.ecotable-paragraph p').text
+
+      loc= element2.search('.ecotable-address span').text.strip
+      city=loc.split(',').last
+
+      images = element2.search('.lazy-img').attribute('data-lazy-src').value
+      # p 'Price range'
+      # p '---------------------'
+      # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
+
+      badges = element2.search('.ecotable-badges').text.split(',')
+      Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+    end
 end
 
 # SCRAPING -- ONLY IN FRANCE !
@@ -162,10 +155,12 @@ rt9 = ReviewTravelboard.create(travelboard_id: costa3.id, user_id: camille.id, c
 puts "review travelboards ok"
 
 puts "Traveldays creation..."
+td0 = Travelday.create(travelboard_id: costa1.id, day_number: 0)
 td1 = Travelday.create(travelboard_id: costa1.id, day_number: 1)
 td2 = Travelday.create(travelboard_id: costa1.id, day_number: 2)
 td3 = Travelday.create(travelboard_id: costa1.id, day_number: 3)
 td4 = Travelday.create(travelboard_id: costa1.id, day_number: 4)
+td9 = Travelday.create(travelboard_id: costa2.id, day_number: 0)
 td5 = Travelday.create(travelboard_id: costa2.id, day_number: 1)
 td6 = Travelday.create(travelboard_id: costa2.id, day_number: 2)
 td7 = Travelday.create(travelboard_id: costa2.id, day_number: 3)
@@ -183,6 +178,8 @@ fav8 = Favorite.create(experience_id: hotel2.id, travelday_id: td6.id)
 fav9 = Favorite.create(experience_id: restaurant2.id, travelday_id: td5.id)
 fav10 = Favorite.create(experience_id: activity2.id, travelday_id: td7.id)
 fav11 = Favorite.create(experience_id: restaurant3.id, travelday_id: td7.id)
+fav12 = Favorite.create(experience_id: restaurant3.id, travelday_id: td0.id)
+fav13 = Favorite.create(experience_id: activity1.id, travelday_id: td9.id)
 
 puts "Favorites ok"
 puts "creating chatroom"
