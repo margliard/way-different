@@ -221,24 +221,6 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 	}
 }
 
-.banner {
-  background-size: cover;
-  background-position: center;
-  padding: 150px 0;
-  margin-bottom: 10px;
-}
-
-.banner h2 {
-  margin-bottom: 10px;
-  color: $light-gray;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-family: $headers-font;
-  display: flex;
-  justify-content: center;
-
-}
-
 
 .cards-day-travelboard {
   display: grid;
@@ -267,6 +249,31 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   margin-bottom: 44px;
 }
 
-.header-travelboard p {
+
+.header-travelboard {
+  text-align: center;
+  color: $darkgreen;
+  margin-top: 36px;
+  margin-bottom: 22px;
+}
+
+
+.header-travelboard-details {
   line-height: 1px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.header-travelboard-details p {
+  opacity: 0.7;
+}
+
+.header-travelboard-user {
+  line-height: 1px;
+  display: flex;
+  align-items: center;
+}
+.header-travelboard-user p {
+  margin-left: 10px;
 }
