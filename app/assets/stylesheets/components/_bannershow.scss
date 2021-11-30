@@ -25,23 +25,26 @@
 }
 
 .bubble-review {
-  width: 140px;
+  width: 150px;
   height: 160px;
   background-color: white;
-  opacity: 0.6;
+  opacity: 0.8;
   position: absolute;
   bottom: 220px;
   left: -40px;
   border-radius: 25%;
+  text-align: center;
+    h5 {
+      padding-top: 10px;
+    }
 }
 
 .bubble-review img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-left: 45px;
-  margin-top: 20px;
   margin-bottom: 10px;
+  margin-top: 10px;
   opacity: 1;
 }
 

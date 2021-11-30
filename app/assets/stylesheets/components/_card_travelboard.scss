@@ -1,66 +1,78 @@
 .tb-card-product {
   overflow: hidden;
+  height: 100px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  // display: flex;
-  justify-content: space-around;
-  // align-items: center;
-  padding: 10px 5px;
-  border-radius: 5px;
-  margin: 15px;
+  background-color: white;
+  display: flex;
+  align-items: start;
+  border-radius: 8px;
+  color: black;
+  margin-bottom: 18px;
 }
 
-.tb-card-product-light {
-  background: $green;
-}
-
-.tb-card-product-dark {
-  background: $darkgreen;
+.tb-card-product-day-zero {
+  overflow: hidden;
+  height: 100px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  background-color: white;
+  display: flex;
+  align-items: start;
+  border-radius: 8px;
+  border: dashed darkgrey 1px;
+  color: black;
+  margin-bottom: 18px;
+  margin-left: 18px;
+  width: 310px;
 }
 
 .tb-card-product img {
   height: 100%;
-  width: 120px;
+  width: 100px;
   object-fit: cover;
+  margin-right: 9px;
 }
 
-.tb-card-product h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
+.tb-card-product-day-zero img {
+  height: 100%;
+  width: 100px;
+  object-fit: cover;
+  margin-right: 9px;
+}
+
+.tb-card-product-title {
+  font-size: 14px;
+  font-weight: bolder;
+  color: $darkgreen;
 }
 
 .tb-card-product p {
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 1.2;
   opacity: .7;
   margin-bottom: 0;
   margin-top: 8px;
 }
 
-.tb-card-product .tb-card-product-infos {
-  // padding: 16px;
+.tb-card-product-day-zero p {
+  font-size: 12px;
+  line-height: 1.2;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
 }
+
 
 .tb-card-category {
   border:solid;
+  background-color: $marron;
   border-color: $light-gray;
   border-width: 1px;
   width: fit-content;
   border-radius: 10px;
   padding: 0px 5px;
-
+  color: white;
 }
 
-.tb-card-experience-name {
-  font-family: $headers-font;
-  font-weight: bold;
-  border-bottom: solid;
-  border-width: 1px;
-  border-color: $light-gray;
-}
-
-.tb-card-experience-name {
-  font-family: $headers-font;
-  font-weight: bold;
-
+.title-day-zero {
+  margin-bottom: 18px;
 }

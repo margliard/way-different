@@ -7,8 +7,13 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   display: flex;
 }
 
-.column {
-  flex: 50%;
+.column2 {
+  flex: 35%;
+  margin-bottom: 0px;
+}
+
+.column1 {
+  flex: 65%;
   margin-bottom: 0px;
 }
 
@@ -17,13 +22,13 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 }
 
 // typography
-p {
-  font-family: $body-font;
-  font-weight: 300;
-  line-height: 1.5;
-  font-size: 14px;
-  opacity: .8;
-}
+//p {
+//  font-family: $body-font;
+//  font-weight: 300;
+//  line-height: 1.5;
+ // font-size: 14px;
+ // opacity: .8;
+//}
 
 // h2 {
 //   justify-content: center;
@@ -73,6 +78,7 @@ p {
             p {
                 position: absolute;
                 font-weight: bold;
+                font-size: 16px;
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%, -50%);
@@ -215,20 +221,59 @@ p {
 	}
 }
 
-.banner {
-  background-size: cover;
-  background-position: center;
-  padding: 150px 0;
-  margin-bottom: 10px;
+
+.cards-day-travelboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-right: 24px;
+  grid-gap: 24px;
+  margin-bottom: 24px;
 }
 
-.banner h2 {
-  margin-bottom: 10px;
-  color: $light-gray;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-family: $headers-font;
-  display: flex;
-  justify-content: center;
+.card-day-travelboard {
+  background-color: $lightgreen;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
 
+.card-day-travelboard h5 {
+  color: white;
+  text-align: center;
+}
+
+.card-day-travelboard-container {
+  margin: 14px;
+}
+
+.location-travelboard {
+  margin-bottom: 44px;
+}
+
+
+.header-travelboard {
+  text-align: center;
+  color: $darkgreen;
+  margin-top: 36px;
+  margin-bottom: 22px;
+}
+
+
+.header-travelboard-details {
+  line-height: 1px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.header-travelboard-details p {
+  opacity: 0.7;
+}
+
+.header-travelboard-user {
+  line-height: 1px;
+  display: flex;
+  align-items: center;
+}
+.header-travelboard-user p {
+  margin-left: 10px;
 }

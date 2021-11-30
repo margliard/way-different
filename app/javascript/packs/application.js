@@ -25,22 +25,20 @@ require("channels")
 // External imports
 import "controllers"
 import "bootstrap"
+import { initStarRating } from '../plugins/init_star_rating';
+
+initStarRating();
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-});
+// document.addEventListener('turbolinks:load', () => {
+//   // Call your functions here, e.g:
+//   // initSelect2();
+// });
 
 // ./packs/application.js
-import { Application } from 'stimulus'
-import { definitionsFromContext } from 'stimulus/webpack-helpers'
 
-const application = Application.start()
-const context = require.context('../controllers', true, /\.js$/)
-application.load(definitionsFromContext(context))
 
 // import Flatpickr
 // import Flatpickr from 'stimulus-flatpickr'

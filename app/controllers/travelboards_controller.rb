@@ -1,12 +1,15 @@
 class TravelboardsController < ApplicationController
   # before_action :set_travelboard
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  # before_action :set_experience, only: :show
+
 
   def index
     @travelboard = Travelboard.new
     @travelboards = Travelboard.all
-    # @travelboards = policy_scope(Machine)
     @experience = Experience.new
     @favorite = Favorite.new
+    policy_scope(Travelboard)
   end
 
   def show
@@ -15,22 +18,46 @@ class TravelboardsController < ApplicationController
     @experience = Experience.new
     @reviewtrav = ReviewTravelboard.new
     @review_exp = ReviewExperience.new
+    @experiences = @travelboard.experiences
     @favorite = Favorite.new
+    authorize @travelboard
     # @favorite = Favorite.find(params[:favorite_id])
+    @markers = @experiences.geocoded.map do |experience|
+    if experience.category == "Accommodation"
+        image_url = helpers.asset_url("housethree.png")
+      elsif experience.category == "Activity"
+        image_url = helpers.asset_url("bicycle.png")
+      else
+        image_url = helpers.asset_url("cutlery(3).png")
+    end
+      {
+        lat: experience.latitude,
+        lng: experience.longitude,
+        category: experience.category,
+        info_window: render_to_string(partial: "experiences/info_window", locals: { experience: experience }),
+        image_url: image_url
+      }
+    end
+    # @travelboards = policy_scope(Experience)
+    @chatroom = Chatroom.find(params[:id])
+    @message = Message.new
   end
 
   def new
     @travelboard = Travelboard.new
     @favorite = Favorite.new
+    @chatroom = Chatroom.new
     @user = current_user # devise
     @travelboards = Travelboard.where(user_id: @user)
     # @favorites = Favorite.where(user_id: @user)
-    # authorize @travelboard
+    authorize @travelboard
   end
 
   def create
     @user = current_user
     @travelboard = Travelboard.new(travelboard_params)
+    @chatroom = Chatroom.create
+    @chatroom.travelboard = @travelboard
     @travelboard.user = @user
     if @travelboard.save
       if params[:experience_id]

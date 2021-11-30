@@ -12,15 +12,15 @@ class TravelboardPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    true
   end
 
   def new?
-    true
+    false
   end
 
   def create?
-    true
+    false
   end
 
   # CAN BE EMPTY AS EDIT IS TAKING UPDATE VALUE ACCORDING TO APPLICATION_POLICY
