@@ -55,7 +55,12 @@
               <% end %>
             </div>
             <div id="card-travelboard-existing" class="ml-2">
-              <button class="btn btn-create-travelboard" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">+</button>
+              <button class="btn btn-create-travelboard" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" >+
+              <script>
+                function myFunction() {
+                  alert("The Experience was correctly added to you Travelboard :)");
+                }
+                </script></button>
               <p>Create a new travelboard</p>
             </div>
           </div>
@@ -78,9 +83,6 @@
                 <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
                 <%= f.submit "Create a travelboard", class:"btn btn-ghost" %>
               <% end %>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-ghost" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
             </div>
           </div>
         </div>
