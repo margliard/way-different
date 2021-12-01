@@ -197,11 +197,10 @@
     </div>
       <%# ----------- %>
     </div>
-  </div>
 
 
+  <% if @experience_labels != [] %>
   <hr class="solid">
-
   <div class="main-show">
     <%# <div class="infos-show"> %>
       <div>
@@ -210,21 +209,26 @@
         <div class="exp-labels-block">
           <% @experience_labels.each do |experience_label|%>
             <div class=exp-label>
-              <%= image_tag experience_label.label.label_icon, width:50, height:50 %>
+              <%= image_tag experience_label.label.label_icon, width:40, height:40 %>
             </div>
-          <% end %>
         </div>
       </div>
     <%# </div> %>
   </div>
+  <% end %>
+  <% end %>
+</div>
 
   <hr class="solid">
   <h3 style="color: #3B6363">Reviews from the Way Travellers community</h3>
+  <% unless @experience.review_experiences = []  %>
+    <p><%= "No review from the Way Traveller community yet !" %></p>
+  <% else %>
   <div class="review-show mb-3">
     <div class="infos-show">
         <% @experience.review_experiences.each do |review| %>
 
-            <div class="list-group-item" style="border-radius: 7px;">
+            <div class="list-group-item space-between" style="border-radius: 7px;">
               <div style="color: grey"><%= image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>   <%= review.user.username %> said :</div>
               <div><%= review.comment %></div>
               <div><% review.rating.to_i.times do  %>
@@ -241,10 +245,11 @@
                             data: { confirm: "Are you sure?" }%>
                             <% end %>
                 </div>
-
             </div>
         <% end %>
     </div>
+  <% end %>
+
     <% if user_signed_in? == true %>
     <div class="form-review">
       <h5>Already went to <%= @experience.name%>? Give your feedback</h5>
@@ -257,7 +262,6 @@
     </div>
   </div>
 </div>
-
 
 <div style="background-color: #1A3835">
   <div class="d-flex justify-content-center">
