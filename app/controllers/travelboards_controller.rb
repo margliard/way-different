@@ -59,7 +59,6 @@ class TravelboardsController < ApplicationController
     @travelday1 = Travelday.create(travelboard: @travelboard, day_number: 1)
     @travelday2 = Travelday.create(travelboard: @travelboard, day_number: 2)
     @travelday3 = Travelday.create(travelboard: @travelboard, day_number: 3)
-    @travelday4 = Travelday.create(travelboard: @travelboard, day_number: 4)
     authorize @travelboard
     if @travelboard.save
       if params[:experience_id]
