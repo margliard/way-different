@@ -12,4 +12,8 @@ class FavoritePolicy < ApplicationPolicy
   def changeday?
     true
   end
+
+  def destroy?
+    true
+  end
 end
