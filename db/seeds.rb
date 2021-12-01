@@ -57,7 +57,7 @@ doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
       city=loc.split(',').last
       images = element2.search('.lazy-img').attribute('data-lazy-src').value
       badges = element2.search('.ecotable-badges').text.split(',')
-      experience = Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+      experience = Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
       badges.each do |badge|
         ExperienceLabel.create(experience_id: experience.id, label: Label.find_by(label_name: badge.strip))
       end
@@ -69,46 +69,6 @@ puts "Creating hotels..."
 hotels = JSON.parse(File.read('db/hotels.json'))
 hotels.each do |element|
   Experience.create!(element)
-end
-
-puts 'Creating experience restaurant...'
-
-doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
-doc.search('.ecotables-ecotable').each do |element|
-  link = element.search('a').attribute('href').value
-  doc2 = Nokogiri::HTML(URI.open(link))
-  doc2.search('.page-ecotable').each do |element2|
-    titles = element2.search('h1').text
-    descriptions = element2.search('.ecotable-paragraph p').text
-    loc= element2.search('.ecotable-address span').text.strip
-    city=loc.split(',').last
-    images = element2.search('.lazy-img').attribute('data-lazy-src').value
-    # p 'Price range'
-    # p '---------------------'
-    # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
-    badges = element2.search('.ecotable-badges').text.split(',')
-    Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
-  end
-end
-
-puts 'Creating experience restaurant...'
-
-doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
-doc.search('.ecotables-ecotable').each do |element|
-  link = element.search('a').attribute('href').value
-  doc2 = Nokogiri::HTML(URI.open(link))
-  doc2.search('.page-ecotable').each do |element2|
-    titles = element2.search('h1').text
-    descriptions = element2.search('.ecotable-paragraph p').text
-    loc= element2.search('.ecotable-address span').text.strip
-    city=loc.split(',').last
-    images = element2.search('.lazy-img').attribute('data-lazy-src').value
-    # p 'Price range'
-    # p '---------------------'
-    # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
-    badges = element2.search('.ecotable-badges').text.split(',')
-    Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
-  end
 end
 
 puts "Creating experiences..."
