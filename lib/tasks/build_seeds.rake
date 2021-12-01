@@ -1,7 +1,7 @@
 task build_seeds: :environment do
   puts 'test'
   doc = Nokogiri::HTML(URI.open("https://www.ethik-hotels.com/en/infrance"))
-  browser = Ferrum::Browser.new
+  browser = Ferrum::Browser.new(timeout: 20)
   hotels = []
   doc.search('.post').each do |element|
     # Experience name
