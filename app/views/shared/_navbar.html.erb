@@ -22,11 +22,11 @@
       <% if user_signed_in? == true %>
         <%= image_tag current_user.profile_photo, class: "dropdown-toggle icon", id: "dropdownMenuLink", data: { bs_toggle: "dropdown" }, 'aria-expanded': false %>
       <% else %>
-        <%= image_tag "account.png", class: "dropdown-toggle icon", id: "dropdownMenuLink", data: { bs_toggle: "dropdown" }, 'aria-expanded': false %>
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
       <% end %>
         <ul class="dropdown-menu dropdown-menu-lg-end">
-          <li><%= link_to "My travelboard", "travelboard_path", class: "dropdown-item" %></li>
-          <li><%= link_to "Add a new travelboard", "new_travelboard_path", class: "dropdown-item" %></li>
+          <li><%= link_to "My travelboards", "travelboard_path", class: "dropdown-item" %></li>
+          <li><%= link_to "Create a new travelboard", "new_travelboard_path", class: "dropdown-item" %></li>
           <li><hr class="dropdown-divider"></li>
           <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
         </ul>
