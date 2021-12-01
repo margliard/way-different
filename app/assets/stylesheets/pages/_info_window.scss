@@ -1,4 +1,5 @@
 .map-card h1 {
+  color: black;
   font-size: 16px;
   margin-top: 5px;
   a {
@@ -8,4 +9,18 @@
 
 .map-card p {
   margin-bottom: 0;
+}
+
+.map-card img {
+  border-radius: 4px;
+}
+
+.mapboxgl-popup-content {
+  height: 160px;
+  position: relative;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  padding: 10px 10px 15px;
+  pointer-events: auto;
 }

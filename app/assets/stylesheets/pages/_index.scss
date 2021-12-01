@@ -19,6 +19,7 @@ a {
 a:hover {
   color: #678D7A;
 }
+
 .tb-card-product-light:hover {
   color: #1A3835;
 }
@@ -28,9 +29,22 @@ a:hover {
   padding-right: 3px;
   padding-left: 3px;
 }
- .mapbox {
-    height: 406px;
-    border-radius: 4px;
-    position: -webkit-sticky;
-    position: sticky;
+
+.mapbox {
+  height: 406px;
+  border-radius: 4px;
+  position: -webkit-sticky;
+  position: sticky;
  }
+
+ #mapboxindex {
+  height: calc(100vh - 70px);
+  width: 50%;
+  position: sticky;
+  top: 70px;
+}
+
+#pluralize {
+  color: $darkgreen;
+  font-size: 24px;
+}

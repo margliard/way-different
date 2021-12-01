@@ -1,6 +1,8 @@
-
-
   <div class="banner-show" style="background-color: #95B2A3">
+   <div class="ps-3"style="font-size: 24px"><%= link_to url_for(:back),
+                        method: :get do  %>
+                        <i class="fas fa-arrow-circle-left"></i>
+                        <% end %></div>
     <div class="container">
       <div class="image-grid">
         <% if @experience.review_experiences.first %>
@@ -96,7 +98,7 @@
   </div>
 
 <div class="container">
-  <div class="main-show">
+  <div class="">
     <div class="description-show">
       <h3>Presentation</h3>
       <p><%= @experience.description%></p>
