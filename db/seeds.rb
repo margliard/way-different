@@ -60,9 +60,9 @@ puts 'Creating experience restaurant...'
       # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
 
       badges = element2.search('.ecotable-badges').text.split(',')
-      Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+      Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", availability: true, country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
     end
-end
+  end
 
 # SCRAPING -- ONLY IN FRANCE !
 puts "Creating hotels..."
@@ -181,7 +181,6 @@ puts "creating chatroom"
 
 chat1 = Chatroom.create(travelboard_id: costa1.id, name: "My travel in Costa Rica")
 chat2 = Chatroom.create(travelboard_id: costa2.id, name: "Costa Rica 2019")
-chat3 = Chatroom.create(travelboard_id: costa3.id, name: "Costa Rica - East Coast")
 
 puts "Chatrooms ok"
 puts "Finished"
