@@ -41,7 +41,7 @@ class ExperiencesController < ApplicationController
     @travelboards = Travelboard.where(user_id: current_user)
     @experience_labels = ExperienceLabel.where(experience_id: params[:id])
     @travelboard = Travelboard.new
-    @nearby_experiences = Experience.near(@experience.to_coordinates, 200)
+    @nearby_experiences = Experience.near(@experience.to_coordinates, 50)
 
 
       if @experience.category == "Accommodation"

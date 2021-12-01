@@ -19,8 +19,18 @@
       <div class="flexbox-headers-cards-map">
         <div class="header-and-cards">
           <div class="header-travelboard">
+            <p><%= link_to "Back to travelboards", travelboards_path, class:"btn-back-travelboard" %></p>
             <h2><%= @travelboard.name %></h2>
-            <p><i class="fas fa-map-pin" style="color: #EC1820"></i> <%= @travelboard.country %></p>
+            <div class="header-travelboard-details">
+              <div>
+                <p><i class="fas fa-map-pin" style="color: #EC1820; margin-right: 3px"></i>  <%= @travelboard.country.capitalize %></p>
+                <p><i class="far fa-calendar-check"style="color: #EC1820"></i> From <%= @travelboard.start_date %> to <%= @travelboard.end_date %></p>
+              </div>
+              <div class="header-travelboard-user">
+                <p style="opacity: 0.7">Travelboard created by you</p>
+                <%= image_tag @travelboard.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>
+              </div>
+            </div>
           </div>
           <div class="d-flex">
             <div class="column1">
@@ -31,11 +41,20 @@
                     <% travelday_zero.each do |travelday| %>
                       <%travelday.favorites.each do |favorite| %>
                         <div class="tb-card-product" data-favorite="<%= favorite.id %>">
-                          <%= image_tag favorite.experience.image_url %>
+                          <%= image_tag favorite.experience.image_url, class:"img-favorite-travelboard" %>
                           <div class="d-flex justify-content-between w-100">
                             <div>
                               <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
-                              <p class="tb-card-category"><%= favorite.experience.category %></p>
+                              <div class="d-flex align-items-center">
+                                <% if favorite.experience.category == "Accommodation" %>
+                                <img class="icon-experience" src="<%= image_path('003home.png') %>" />
+                                <% elsif favorite.experience.category == "Restaurant" %>
+                                <img class="icon-experience" src="<%= image_path('003cutlery.png') %>" />
+                                <% elsif favorite.experience.category == "Activity" %>
+                                <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
+                                <% end %>
+                                <p class="tb-card-category"><%= favorite.experience.category %></p>
+                              </div>
                             </div>
                             <div class="icon-delete">
                               <%= link_to favorite_path(favorite),
@@ -62,11 +81,20 @@
                         <div class="cards" data-controller="drag" data-travelday="<%= travelday.id %>">
                           <%travelday.favorites.each do |favorite| %>
                           <div class="tb-card-product" data-favorite="<%= favorite.id %>">
-                            <%= image_tag favorite.experience.image_url %>
+                            <%= image_tag favorite.experience.image_url, class:"img-favorite-travelboard" %>
                             <div class="d-flex justify-content-between w-100">
                               <div>
                                 <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
-                                <p class="tb-card-category"><%= favorite.experience.category %></p>
+                                <div class="d-flex align-items-center">
+                                  <% if favorite.experience.category == "Accommodation" %>
+                                  <img class="icon-experience" src="<%= image_path('003home.png') %>" />
+                                  <% elsif favorite.experience.category == "Restaurant" %>
+                                  <img class="icon-experience" src="<%= image_path('003cutlery.png') %>" />
+                                  <% elsif favorite.experience.category == "Activity" %>
+                                  <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
+                                  <% end %>
+                                  <p class="tb-card-category"><%= favorite.experience.category %></p>
+                                </div>
                               </div>
                               <div class="icon-delete">
                                 <%= link_to favorite_path(favorite),
@@ -101,8 +129,18 @@
       <div class="flexbox-headers-cards-map">
         <div class="header-and-cards-if-not-user">
           <div class="header-travelboard">
+            <p><%= link_to "Back to travelboards", travelboards_path, class:"btn-back-travelboard" %></p>
             <h2><%= @travelboard.name %></h2>
-            <p><i class="fas fa-map-pin" style="color: #EC1820"></i> <%= @travelboard.country %></p>
+            <div class="header-travelboard-details">
+              <div>
+                <p><i class="fas fa-map-pin" style="color: #EC1820; margin-right: 3px"></i>  <%= @travelboard.country.capitalize %></p>
+                <p><i class="far fa-calendar-check"style="color: #EC1820"></i> From <%= @travelboard.start_date %> to <%= @travelboard.end_date %></p>
+              </div>
+              <div class="header-travelboard-user">
+                <p style="opacity: 0.7">Travelboard created by <%= @travelboard.user.username %></p>
+                <%= image_tag @travelboard.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>
+              </div>
+            </div>
           </div>
           <div class="column2-if-not-user">
             <div class="cards-day-travelboard">
@@ -114,11 +152,20 @@
                         <div>
                           <%travelday.favorites.each do |favorite| %>
                             <div class="tb-card-product">
-                              <%= image_tag favorite.experience.image_url %>
+                              <%= image_tag favorite.experience.image_url, class:"img-favorite-travelboard" %>
                               <div>
                                 <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
                                 <p class="tb-card-experience-address"><i class="fas fa-map-pin"></i> <%= favorite.experience.address %></p>
-                                <p class="tb-card-category"><%= favorite.experience.category %></p>
+                                <div class="d-flex align-items-center" style="margin-top: 6px">
+                                  <% if favorite.experience.category == "Accommodation" %>
+                                  <img class="icon-experience" src="<%= image_path('003home.png') %>" />
+                                  <% elsif favorite.experience.category == "Restaurant" %>
+                                  <img class="icon-experience" src="<%= image_path('003cutlery.png') %>" />
+                                  <% elsif favorite.experience.category == "Activity" %>
+                                  <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
+                                  <% end %>
+                                  <p class="tb-card-category"><%= favorite.experience.category %></p>
+                                </div>
                               </div>
                             </div>
                           <% end %>
@@ -145,25 +192,46 @@
 
 <%# Chatroom part %>
 <div class="wrapper-chatroom">
-  <div class="container chatroom">
-    <% if @travelboard.user == current_user %>
-      <h3 class="chatroom-title">Answer questions from Way Travellers on your travelboard</h3>
-    <% else %>
-      <h3 class="chatroom-title">Ask the Way travellers for advice</h3>
-    <% end %>
-
-    <div class="messages" data-controller="chatroom-subscription"
-      data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
-    >
-      <% @chatroom.messages.each do |message| %>
-        <%= render "messages/message", message: message %>
+  <div style="flex: 50%">
+    <div id="header-chat">
+      <% if @travelboard.user == current_user %>
+          <h3 class="chatroom-title" style="font-size: 20px; padding-bottom: 10px">Answer questions from Way Travellers on your travelboard</h3>
+      <% else %>
+        <h3 class="chatroom-title" style="font-size: 20px; padding-bottom: 10px">Ask the Way travellers for advice</h3>
       <% end %>
     </div>
+    <div class="container chatroom" style="width: 750px; margin-left: 20px">
 
-    <%= simple_form_for [@travelboard, @chatroom, @message], remote: true do |f| %>
-    <%= f.input :content, label: false, placeholder: "Ask a question on this travelboard" %>
-    <% end %>
+      <div class="messages" data-controller="chatroom-subscription"
+        data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+      >
+        <% @chatroom.messages.each do |message| %>
+          <%= render "messages/message", message: message %>
+        <% end %>
+      </div>
+
+      <%= simple_form_for [@travelboard, @chatroom, @message], remote: true do |f| %>
+      <%= f.input :content, label: false, placeholder: "Ask a question on this travelboard" %>
+      <% end %>
+    </div>
   </div>
-
-  <p><%= link_to "Back to home", root_path %></p>
+  <div class="similar-itineraries" style="flex: 50%">
+    <h3 style="font-size: 20px; color: white; padding-bottom: 10px">Similar travelboard in <%= @travelboard.country %></h3>
+    <div class="cards-home-similar-itineraries">
+        <%= link_to travelboard_path(@travelboards_similar.first) do %>
+          <div class="card-trip-inspo" style="width: 250px">
+            <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://source.unsplash.com/featured/?<%=@travelboards_similar.first.country.downcase.gsub(/\s+/, "")%>)">
+              <div class="card-trip-infos-inspo">
+                <div>
+                  <h2><%= @travelboards_similar.first.name  %></h2>
+                  <p><%= @travelboards_similar.first.country %></p>
+                  <p>created by <%= @travelboard.user.username %></p>
+                </div>
+                <%= image_tag @travelboards_similar.first.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
 </div>
