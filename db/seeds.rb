@@ -32,6 +32,24 @@ margot = User.create(email: "margot@gmail.com", password: "password", profile_ph
 camille = User.create(email: "camille@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Camille")
 sophie = User.create(email: "sophie@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1499887142886-791eca5918cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Sophie")
 aymeric = User.create(email: "aymeric@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1484186139897-d5fc6b908812?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Aymeric")
+
+# From github
+source = "àâçèéêëîôùû"
+dest= "aaceeeeiouu"
+f= File.open("./app/assets/images/user-seed/users.html").read
+doc = Nokogiri::HTML(f)
+# p doc
+doc.search('.classmates-background-gray').each do |element|
+  photo = element.search('.img-thumbnail').attribute('src').value
+  photo = photo.gsub("./","")
+  photo = "app/assets/images/user-seed/#{photo}"
+  name = element.search('.clasmates-student-links strong').text.tr(source, dest)
+  name_array = name.split(" ")
+  email = "#{name_array[0].downcase}-#{name_array[1].downcase}@gmail.com"
+  password = "password"
+  User.create(email: email, profile_photo: photo, username: name[0], password: password)
+end
+
 puts "users ok"
 puts "Creating travelboards..."
 costa1 = Travelboard.create(user_id: margot.id, country: "Costa Rica", name: "My travel in Costa Rica", start_date: "05/08/2021", end_date: "20/08/2021", status: false)
