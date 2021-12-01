@@ -27,15 +27,12 @@ import "controllers"
 import "bootstrap"
 import { initStarRating } from '../plugins/init_star_rating';
 
-initStarRating();
-
-import { initSweetalert } from '../plugins/init_sweetalert';
-initSweetalert('#sweet-alert-demo', {
-  title: "Added to Travelboards",
-  text: "Favorite added to your travelboard :) tqt ça marche",
-  icon: "success",
+document.addEventListener('turbolinks:load', () => {
+  // Call your functions here, e.g:
+  initStarRating();
 
 });
+
 
 
 
