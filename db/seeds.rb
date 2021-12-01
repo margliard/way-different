@@ -39,38 +39,32 @@ costa2 = Travelboard.create(user_id: camille.id, country: "Costa Rica", name: "C
 costa3 = Travelboard.create(user_id: sophie.id, country: "Costa Rica", name: "Costa Rica - East Coast", start_date: "06/07/2021", end_date: "22/07/2021", status: false)
 puts "Travelboards ok..."
 
+puts "Creating Labels ...."
+restaurant_labels = ["Organic", "Zero waste", "Sustainable meat", "Container accepted", "Locavore", "Short Circuit", "Sustainable fishing", "Veggie"]
+restaurant_labels.each do |restaurant_label|
+  Label.create(label_name: restaurant_label, label_icon: "#{restaurant_label.gsub(" ", "_").downcase}.png")
+end
+puts 'Label OK'
+
 puts 'Creating experience restaurant...'
-  doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
+doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
   doc.search('.ecotables-ecotable').each do |element|
-    p '---------------------'
-    p 'LINK-SHOW'
-    p link = element.search('a').attribute('href').value
+    link = element.search('a').attribute('href').value
     doc2 = Nokogiri::HTML(URI.open(link))
     doc2.search('.page-ecotable').each do |element2|
-      p 'TITLES'
-      p titles = element2.search('h1').text
-      p '---------------------'
-      p 'DESC'
-      p descriptions = element2.search('.ecotable-paragraph p').text
-      p '---------------------'
-      p 'ADDRESS'
-      p loc= element2.search('.ecotable-address span').text.strip
-      p '---------------------'
-      p 'City'
-      p '---------------------'
-      p city=loc.split(',').last
-      p 'IMG'
-      p '---------------------'
-      p images = element2.search('.lazy-img').attribute('data-lazy-src').value
-      # p 'Price range'
-      # p '---------------------'
-      # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
-      p 'BADGE'
-      p '---------------------'
-      p badges = element2.search('.ecotable-badges').text.split(',')
-      Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+      titles = element2.search('h1').text
+      descriptions = element2.search('.ecotable-paragraph p').text
+      loc= element2.search('.ecotable-address span').text.strip
+      city=loc.split(',').last
+      images = element2.search('.lazy-img').attribute('data-lazy-src').value
+      badges = element2.search('.ecotable-badges').text.split(',')
+      experience = Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+      badges.each do |badge|
+        ExperienceLabel.create(experience_id: experience.id, label: Label.find_by(label_name: badge.strip))
+      end
     end
 end
+puts 'restaurant OK'
 
 # SCRAPING -- ONLY IN FRANCE !
 puts "Creating hotels..."
