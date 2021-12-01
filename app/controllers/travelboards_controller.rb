@@ -5,7 +5,7 @@ class TravelboardsController < ApplicationController
 
   def index
     @travelboard = Travelboard.new
-    @travelboards = Travelboard.all
+    @travelboards = Travelboard.where(user_id: current_user)
     @experience = Experience.new
     @favorite = Favorite.new
     policy_scope(Travelboard)
@@ -55,6 +55,10 @@ class TravelboardsController < ApplicationController
     @user = current_user
     @travelboard = Travelboard.new(travelboard_params)
     @travelboard.user = @user
+    @travelday1 = Travelday.create(travelboard: @travelboard, day_number: 1)
+    @travelday2 = Travelday.create(travelboard: @travelboard, day_number: 2)
+    @travelday3 = Travelday.create(travelboard: @travelboard, day_number: 3)
+    @travelday4 = Travelday.create(travelboard: @travelboard, day_number: 4)
     authorize @travelboard
     if @travelboard.save
       if params[:experience_id]

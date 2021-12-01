@@ -16,7 +16,8 @@ class FavoritesController < ApplicationController
 
   def destroy
     @favorite.destroy
-    redirect_to travelboard_path(@favorite.travelboard)
+    redirect_to travelboard_path(@favorite.travelday.travelboard)
+    authorize @favorite
   end
 
   def changeday

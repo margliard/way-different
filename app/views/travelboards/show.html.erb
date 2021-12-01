@@ -25,16 +25,25 @@
           <div class="d-flex">
             <div class="column1">
               <div class="cards-day-travelboard">
-                <div class="card-day-travelboard-day-zero">
+                <div class="card-day-travelboard-day-zero sticky-travelboard">
                   <h5 class="title-day">Add experiences</h5>
                   <div class="cards" data-controller="drag" data-travelday="<%= travelday_zero.first.id %>">
                     <% travelday_zero.each do |travelday| %>
                       <%travelday.favorites.each do |favorite| %>
-                        <div class="tb-card-product-day-zero" data-favorite="<%= favorite.id %>">
+                        <div class="tb-card-product" data-favorite="<%= favorite.id %>">
                           <%= image_tag favorite.experience.image_url %>
-                          <div>
-                            <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
-                            <p class="tb-card-category"><%= favorite.experience.category %></p>
+                          <div class="d-flex justify-content-between w-100">
+                            <div>
+                              <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
+                              <p class="tb-card-category"><%= favorite.experience.category %></p>
+                            </div>
+                            <div class="icon-delete">
+                              <%= link_to favorite_path(favorite),
+                              method: :delete,
+                              data: { confirm: "Are you sure?" } do %>
+                              <i class="fas fa-times" style="color: #A0BAAD"></i>
+                              <% end %>
+                            </div>
                           </div>
                         </div>
                       <% end %>
@@ -54,9 +63,18 @@
                           <%travelday.favorites.each do |favorite| %>
                           <div class="tb-card-product" data-favorite="<%= favorite.id %>">
                             <%= image_tag favorite.experience.image_url %>
-                            <div>
-                              <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
-                              <p class="tb-card-category"><%= favorite.experience.category %></p>
+                            <div class="d-flex justify-content-between w-100">
+                              <div>
+                                <p><%= link_to favorite.experience.name, experience_path(favorite.experience), class:"tb-card-product-title" %></p>
+                                <p class="tb-card-category"><%= favorite.experience.category %></p>
+                              </div>
+                              <div class="icon-delete">
+                                <%= link_to favorite_path(favorite),
+                                method: :delete,
+                                data: { confirm: "Are you sure?" } do %>
+                                <i class="fas fa-times" style="color: #A0BAAD"></i>
+                                <% end %>
+                              </div>
                             </div>
                           </div>
                           <% end %>
