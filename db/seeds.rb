@@ -143,6 +143,7 @@ rt3 = ReviewTravelboard.create(travelboard_id: costa1.id, user_id:aymeric.id, co
 rt4 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: aymeric.id, comment: "OOOh waw Waytraveller !  You are very creative, that trip looks so fun!", rating: "5")
 rt5 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: margot.id, comment: "HI Waytraveller ! I love how you manage to do so much in so little time ! I'm going to get some really good inspirations here!", rating: "4")
 rt6 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: sophie.id, comment: "Great trip ! Were the prices low at this time of the year ? I tend to go on trip in the low season like you ! It looked fun, can't wait to see your next trip!", rating: "5")
+
 # rt11 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
 # rt12 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
 # rt13 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
@@ -181,7 +182,6 @@ puts "creating chatroom"
 
 chat1 = Chatroom.create(travelboard_id: costa1.id, name: "My travel in Costa Rica")
 chat2 = Chatroom.create(travelboard_id: costa2.id, name: "Costa Rica 2019")
-chat3 = Chatroom.create(travelboard_id: costa3.id, name: "Costa Rica - East Coast")
 
 puts "Chatrooms ok"
 puts "Finished"
