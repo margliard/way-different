@@ -13,6 +13,7 @@
 .navbar .navbar-brand img {
   width: 250px;
   cursor: pointer;
+  border-radius: 20px;
 }
 
 .navbar-nav {
@@ -20,8 +21,9 @@
 }
 
 .dropdown-toggle {
-  width: 30px;
+  width: 35px;
   margin-left: 20px;
+  border-radius: 16px;
 }
 
 .dropdown-toggle:hover {

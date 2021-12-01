@@ -28,11 +28,6 @@ puts "Creating database..."
 # sophie = User.create(first_name: "Sophie", last_name: "Callault", email: "sophie@gmail.com", password: "password")
 # aymeric = User.create(first_name: "Aymeric", last_name: "Payen", email: "aymeric@gmail.com", password: "password")
 puts "Creating Users..."
-margot = User.create(email: "margot@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Margot")
-camille = User.create(email: "camille@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Camille")
-sophie = User.create(email: "sophie@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1499887142886-791eca5918cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Sophie")
-aymeric = User.create(email: "aymeric@gmail.com", password: "password", profile_photo: "https://images.unsplash.com/photo-1484186139897-d5fc6b908812?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80", username: "Aymeric")
-
 # From github
 source = "àâçèéêëîôùû"
 dest= "aaceeeeiouu"
@@ -49,6 +44,12 @@ doc.search('.classmates-background-gray').each do |element|
   password = "password"
   User.create(email: email, profile_photo: photo, username: name[0], password: password)
 end
+
+margot = User.create(email: "margot@gmail.com", password: "password", profile_photo: "https://pbs.twimg.com/profile_images/932603275265880066/4GMvyQaw_400x400.jpg", username: "Margot")
+camille = User.create(email: "camille@gmail.com", password: "password", profile_photo: "https://media-exp1.licdn.com/dms/image/C4D03AQFZXD9yY1VO2g/profile-displayphoto-shrink_200_200/0/1522616037980?e=1643241600&v=beta&t=thr7EEPiWQdTZ_WIterKAL3lui_nNFxlNwm52OXK87Y", username: "Camille")
+sophie = User.create(email: "sophie@gmail.com", password: "password", profile_photo: "https://ca.slack-edge.com/T02NE0241-U02G8J3UGH4-7e00009b17a6-512", username: "Sophie")
+aymeric = User.create(email: "aymeric@gmail.com", password: "password", profile_photo: "https://ca.slack-edge.com/T02NE0241-U02FLRDV86S-e6a34883f5c0-512", username: "Aymeric")
+
 
 puts "users ok"
 puts "Creating travelboards..."
@@ -99,6 +100,8 @@ activity2 = Experience.create(category: "Activity", name: "Release baby sea turt
 hotel3 = Experience.create(category: "Accommodation", name: "Chira Eco-camping Monteverde", address: "Miramar Costa Rica", availability: true, price: 90, country: "Costa Rica", city: "Miramar", description: "You can be sure you’re having a sustainable, environmentally-friendly vacation when you stay at this boutique hotel. It uses the smallest amount of plastic possible when sending guests on excursions, and it sources large amounts of its food from within Panama, preparing as much of it onsite as possible. Tranquilo Bay even captures and purifies natural rainwater in its pledge to use water responsibly.", booked: false, image_url: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/276345931.jpg?k=fed6534332914d30787162a98011d4626cc2a77a962c1d2d2898bad58324dab9&o=&hp=1")
 restaurant3 = Experience.create(category: "Restaurant", name: "El Mangroove", address: "Barranca Costa Rica", availability: true, country: "Costa Rica", city: "Barranca", description: "This is a restaurant run by people with a passion for providing excellent food and service. As well as a charming ambience and well spaced tables, the views over the mountain are stunning. It uses the smallest amount of plastic possible when sending guests on excursions, and it sources large amounts of its food from within Panama, preparing as much of it onsite as possible.", booked: false, image_url: "https://www.archi-living.com/wp-content/uploads/AW%C2%B2-Kasiiya-Papagayo-eco-resort-restaurant-design-photo-Kenny-Viese-Archi-living-D.jpg")
 activity3 = Experience.create(category: "Activity", name: "Mountain Biking at Las Catalinas", address: "Bajamar Costa Rica", availability: true, price: 50, country: "Costa Rica", city: "Bajamar", description: "Cycling or biking in Costa Rica can be a lot of fun as the incredible scenery and challenging roads make for a great ride.  One can choose their challenge with mountainous rides, off road track riding, cruising along the flat coastal roads or a mix of all of them.", booked: false, image_url: "https://www.backroads.com/sites/default/files/trips/2018/slideshow/BCRI-costa-rica-bike-tour-1.jpg")
+activity4 = Experience.create(category: "Activity", name: "Canoe-kayaking and water hiking", address: "Lac de Bournazel, 19700 SEILHAC", availability: true, price: 35, country: "France", city: "Seilhac", description: "Rental of canoes, pedalos and paddles, initiation and private lessons possible in summer on request and availability of an executive (+ kayak school all year round), rafting, aquarando in the Gorges de la Corrèze from 10 years old for beginners or initiated. For any nautical activity, it is imperative to know how to swim.", booked: false, image_url: "https://www.tulle-en-correze.com/wp-content/uploads/wpetourisme/155000609_27.jpg")
+activity4 = Experience.create(category: "Activity", name: "Paragliding over the Corrèze", address: "Suc au May, Chaumeil, Corrèze", availability: true, price: 110, country: "France", city: "Chaumeil", description: "Do you dream of doing your paragliding baptism in a sumptuous setting? The dream is within reach with this tandem paragliding flight with an experienced instructor. 1 hour from Brive and Ussel, 45 minutes from Tulle and only 35 minutes from Egletons, you will fly above the Millevaches en Limousin regional natural park for unforgettable moments in the air.", booked: false, image_url: "https://img.adrenactive.com/img/3561/800_600/3561-11536-bapteme-parapente-suc-au-may-chaumeil-800.jpg")
 puts "Experiences ok..."
 
 puts "creating review for experiences"

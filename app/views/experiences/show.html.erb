@@ -162,7 +162,7 @@
           <a id="bouton-sticky" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-plus"></i></a>
         </div>
       <% end %>
-      <div class="hide stickytext"><button id="sweet-alert-demo" id="buttonfav"><i class="fas fa-suitcase"></i>  Add to my travelboard</button></div>
+      <div class="hide stickytext"><button id="sweet-alert-demo" id="buttonfav" style="background-color: #1A3835; color: white"><i class="fas fa-suitcase"></i>  Add to my travelboard</button></div>
       <%# ----------- %>
       <div class="modal fade" id="logInModalToggle" tabindex="-1" role="dialog" aria-labelledby="logInLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -209,7 +209,7 @@
         <p>Here below, find the labels owned by <%= @experience.name%>:</p>
         <div class="exp-labels-block">
           <% @experience_labels.each do |experience_label|%>
-            <div class=exp-label>
+            <div class= "exp-label">
               <%= image_tag experience_label.label.label_icon, width:50, height:50 %>
             </div>
           <% end %>
