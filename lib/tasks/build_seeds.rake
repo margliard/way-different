@@ -21,7 +21,7 @@ task build_seeds: :environment do
     # Create a hotel
     hotel = {category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: nil, country: "france", city: " ", description: "#{description}", booked: false, image_url: "#{image}"}
     puts "One hotel created, please wait!"
-    p hotel
+    hotel
     hotels << hotel
   end
   browser.quit
