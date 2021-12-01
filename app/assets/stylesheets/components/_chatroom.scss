@@ -1,22 +1,37 @@
 .wrapper-chatroom {
   background-color: $darkgreen;
-  padding-top: 18px;;
+  padding-top: 40px;
+  padding-bottom: 22px;
+  display: flex;
+}
+
+.container-chatroom {
+  width: 775px;
+}
+
+#header-chat {
+  color:white;
+  text-align: center;
 }
 
 .chatroom {
   background: white;
   margin-top: 9px;
-  height: calc(75vh - 75px);
+  height: calc(65vh - 75px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+  border-radius: 4px;
+
 
   .chatroom-title {
     border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
     padding: 1rem;
-    color: $darkgreen;
+    color: white;
+    text-align: center;
+    font-size: 18px;
   }
 
   .image-chatbot {
@@ -26,7 +41,7 @@
   .content-chatbot {
     font-size: 20px;
     line-height: 0em;
-    width: 800px;
+    width: 425px;
   }
 
   .username-chatbot {
@@ -59,4 +74,17 @@
       margin-bottom: 0;
     }
   }
+}
+
+.similar-itineraries {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards-home-similar-itineraries {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
 }

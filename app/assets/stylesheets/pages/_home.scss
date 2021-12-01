@@ -1,10 +1,17 @@
 // Specific CSS for your home-page
 
 .title-ideas {
-  margin: 40px 0px;
+  margin: 10px 0px;
   text-align: center;
   color: $green;
 }
+
+.subtitle-ideas {
+  text-align: center;
+  color: $green;
+  margin-bottom: 30px;
+}
+
 
 .color-block {
   display: flex;

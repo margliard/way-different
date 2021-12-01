@@ -21,7 +21,7 @@
                         <img class="icon-experience" src="<%= image_path('003cutlery.png') %>" />
                       <% elsif experience.category == "Activity" %>
                         <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
-                    <% end %>
+                      <% end %>
 
                     <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
                   </div>
@@ -49,14 +49,14 @@
   <div class="cards-home-index">
     <% @travelboards.each do |travelboard| %>
     <div class="card-trip-inspo">
-      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://source.unsplash.com/featured/?<%=travelboard.country.downcase.gsub(/\s+/, "")%>)">
         <div class="card-trip-infos-inspo">
           <div class="link-white">
             <h2><%= link_to travelboard.name, travelboard_path(travelboard) %></h2>
             <p><%= travelboard.country %></p>
             <p>created by <%= travelboard.user.username %></p>
           </div>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          <%= image_tag travelboard.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
         </div>
       </div>
     </div>

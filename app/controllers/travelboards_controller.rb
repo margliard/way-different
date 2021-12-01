@@ -14,6 +14,7 @@ class TravelboardsController < ApplicationController
   def show
     @travelboard = Travelboard.find(params[:id])
     @travelboards = Travelboard.where(user_id: current_user)
+    @travelboards_similar = Travelboard.where(country: @travelboard.country)
     @experience = Experience.new
     @reviewtrav = ReviewTravelboard.new
     @review_exp = ReviewExperience.new

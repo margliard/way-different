@@ -210,7 +210,7 @@
   </div>
 
   <hr class="solid">
-  <h3 style="color: #1A3835">Reviews from the Way Travellers community</h3>
+  <h3 style="color: #3B6363">Reviews from the Way Travellers community</h3>
   <div class="review-show mb-3">
     <div class="infos-show">
         <% @experience.review_experiences.each do |review| %>
@@ -263,10 +263,21 @@
                 <img src= <%= experience.image_url%> >
                 <div class="card-experience-infos">
                   <div>
-                    <p><%= experience.name %> (category: <%= experience.category%>) </p>
-                    <p>Short description here!</p>
+                    <h5 class="experience-title"><%= experience.name %> </h5>
+                    <p class="experience-description"><%= experience.description.truncate(100)%></p>
                   </div>
-                  <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
+                  <div class="icon-price">
+
+                      <% if experience.category == "Accommodation" %>
+                        <img class="icon-experience" src="<%= image_path('003home.png') %>" />
+                      <% elsif experience.category == "Restaurant" %>
+                        <img class="icon-experience" src="<%= image_path('003cutlery.png') %>" />
+                      <% elsif experience.category == "Activity" %>
+                        <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
+                      <% end %>
+
+                    <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
+                  </div>
                 </div>
               </div>
           <% end %>

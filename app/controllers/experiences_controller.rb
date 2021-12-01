@@ -37,7 +37,7 @@ class ExperiencesController < ApplicationController
     @review = ReviewExperience.new
     @travelboards = Travelboard.where(user_id: current_user)
     @travelboard = Travelboard.new
-    @nearby_experiences = Experience.near(@experience.to_coordinates, 200)
+    @nearby_experiences = Experience.near(@experience.to_coordinates, 50)
 
       if @experience.category == "Accommodation"
         image_url = helpers.asset_url("housethree.png")

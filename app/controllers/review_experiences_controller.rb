@@ -12,7 +12,7 @@ class ReviewExperiencesController < ApplicationController
     @review.experience = @experience
     @travelboards = Travelboard.where(user_id: current_user)
     @travelboard = Travelboard.new
-    @nearby_experiences = Experience.near(@experience.to_coordinates, 200)
+    @nearby_experiences = Experience.near(@experience.to_coordinates, 50)
     @review.user = current_user
     authorize @review
     if @review.save

@@ -17,7 +17,7 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 }
 
 .header-and-cards {
-  margin-left: 8px;
+  margin-left: 12px;
   flex: 50%;
  }
 
@@ -275,31 +275,36 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 .header-travelboard {
   text-align: start;
   color: $darkgreen;
-  margin-top: 36px;
+  margin-top: 24px;
   margin-bottom: 22px;
   margin-left: 8px;
 }
 
+.header-travelboard p {
+  margin-bottom: 30px;
+}
 
 .header-travelboard-details {
-  line-height: 1px;
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 18px;
 }
 
 .header-travelboard-details p {
+  margin: 2px;
   opacity: 0.7;
 }
 
 .header-travelboard-user {
-  line-height: 1px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  margin-right: 18px;
 }
+
 .header-travelboard-user p {
-  margin-left: 10px;
+  opacity: 1;
 }
+
 
 .flexbox-headers-cards-map {
   display: flex;
@@ -310,8 +315,8 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
  }
 
  .header-and-cards-if-not-user {
-  margin-left: 8px;
-  flex: 50%
+  margin-left: 12px;
+  flex: 70%
  }
 
  .icon-delete {
