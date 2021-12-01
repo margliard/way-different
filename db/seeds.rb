@@ -36,7 +36,6 @@ puts "users ok"
 puts "Creating travelboards..."
 costa1 = Travelboard.create(user_id: margot.id, country: "Costa Rica", name: "My travel in Costa Rica", start_date: "05/08/2021", end_date: "20/08/2021", status: false)
 costa2 = Travelboard.create(user_id: camille.id, country: "Costa Rica", name: "Costa Rica 2019", start_date: "02/08/19", end_date: "14/08/2019", status: false)
-costa3 = Travelboard.create(user_id: sophie.id, country: "Costa Rica", name: "Costa Rica - East Coast", start_date: "06/07/2021", end_date: "22/07/2021", status: false)
 puts "Travelboards ok..."
 
 
@@ -119,10 +118,7 @@ rt3 = ReviewTravelboard.create(travelboard_id: costa1.id, user_id:aymeric.id, co
 rt4 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: aymeric.id, comment: "OOOh waw Waytraveller !  You are very creative, that trip looks so fun!", rating: "5")
 rt5 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: margot.id, comment: "HI Waytraveller ! I love how you manage to do so much in so little time ! I'm going to get some really good inspirations here!", rating: "4")
 rt6 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: sophie.id, comment: "Great trip ! Were the prices low at this time of the year ? I tend to go on trip in the low season like you ! It looked fun, can't wait to see your next trip!", rating: "5")
-rt7 = ReviewTravelboard.create(travelboard_id: costa3.id, user_id: margot.id, comment: "Such a Looovely trip Waytraveller ! I'm getting a lot of inspirations here ! Can't wait to see the next trip you're going to plan :)", rating: "5")
-rt8 = ReviewTravelboard.create(travelboard_id: costa3.id, user_id: aymeric.id, comment: "Hey Waytraveller ! Was the weather pleasant this time of year in Costa Rica ? Great diversity of activities you've chosen ! ", rating: "5")
-rt9 = ReviewTravelboard.create(travelboard_id: costa3.id, user_id: camille.id, comment: "Looked fun !", rating: "5")
-# rt10 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
+
 # rt11 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
 # rt12 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
 # rt13 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
@@ -161,7 +157,6 @@ puts "creating chatroom"
 
 chat1 = Chatroom.create(travelboard_id: costa1.id, name: "My travel in Costa Rica")
 chat2 = Chatroom.create(travelboard_id: costa2.id, name: "Costa Rica 2019")
-chat3 = Chatroom.create(travelboard_id: costa3.id, name: "Costa Rica - East Coast")
 
 puts "Chatrooms ok"
 puts "Finished"
