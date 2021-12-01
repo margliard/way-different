@@ -39,57 +39,32 @@ costa2 = Travelboard.create(user_id: camille.id, country: "Costa Rica", name: "C
 costa3 = Travelboard.create(user_id: sophie.id, country: "Costa Rica", name: "Costa Rica - East Coast", start_date: "06/07/2021", end_date: "22/07/2021", status: false)
 puts "Travelboards ok..."
 
+
+puts "Creating hotels..."
+hotels = JSON.parse(File.read('db/hotels.json'))
+hotels.each do |element|
+  Experience.create!(element)
+end
+
 puts 'Creating experience restaurant...'
 
-  doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
-  doc.search('.ecotables-ecotable').each do |element|
-
-    link = element.search('a').attribute('href').value
-    doc2 = Nokogiri::HTML(URI.open(link))
-    doc2.search('.page-ecotable').each do |element2|
-
-      titles = element2.search('h1').text
-
-      descriptions = element2.search('.ecotable-paragraph p').text
-
-      loc= element2.search('.ecotable-address span').text.strip
-      city=loc.split(',').last
-
-      images = element2.search('.lazy-img').attribute('data-lazy-src').value
-      # p 'Price range'
-      # p '---------------------'
-      # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
-
-      badges = element2.search('.ecotable-badges').text.split(',')
-      Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
-    end
+doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
+doc.search('.ecotables-ecotable').each do |element|
+  link = element.search('a').attribute('href').value
+  doc2 = Nokogiri::HTML(URI.open(link))
+  doc2.search('.page-ecotable').each do |element2|
+    titles = element2.search('h1').text
+    descriptions = element2.search('.ecotable-paragraph p').text
+    loc= element2.search('.ecotable-address span').text.strip
+    city=loc.split(',').last
+    images = element2.search('.lazy-img').attribute('data-lazy-src').value
+    # p 'Price range'
+    # p '---------------------'
+    # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
+    badges = element2.search('.ecotable-badges').text.split(',')
+    Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+  end
 end
-
-# SCRAPING -- ONLY IN FRANCE !
-puts "Creating hotels..."
-# mettre le résultat de la query
-doc = Nokogiri::HTML(URI.open("https://www.ethik-hotels.com/en/infrance"))
-browser = Ferrum::Browser.new
-doc.search('.post').each do |element|
-  # Experience name
-  title = element.search('.entry-title-post').text.strip
-  # Experience description
-  description = element.search('.entry-content-post p').text.strip
-  # Experience photo
-  link_show = element.search('.more-link').attribute('href')
-  link_show_content = Nokogiri::HTML(URI.open(link_show))
-  image = link_show_content.search('a .attachment-post-thumbnail').attribute('data-jpibfi-src').value
-  # Experience addresse
-  link_show2 = element.search('.more-link').attribute('href').value
-  browser.go_to(link_show2)
-  address = browser.at_css(".leaflet-popup-content").text
-  # Experience criterias
-  criteria = element.search('.critereValide span').text.gsub('Criterion respected:', ' ').strip.split(/(?=[A-Z])/).collect(&:strip)
-  # Create a hotel
-  Experience.create(category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: nil, country: "france", city: " ", description: "#{description}", booked: false, image_url: "#{image}")
-  puts "One hotel created, please wait!"
-end
-browser.quit
 
 puts "Creating experiences..."
 hotel1 = Experience.create(category: "Accommodation", name: "Tranquilo Bay Eco Adventure Lodge", address: "Monteverde Costa Rica", availability: true, price: 80, country: "Costa Rica", city: "Monteverde", description: "Centrally located among the most biologically diverse protected areas in Central America, this adventure eco-lodge in Panama will give you the authentic vacation experience you desire. When you stay in one of Tranquilo Bay’s nine stylish cabanas, you can start your morning by walking out onto the wrap-around elevated porch to get a view of the mangrove forest and the Caribbean Sea meeting the lush green rainforest. You can be sure you’re having a sustainable, environmentally-friendly vacation when you stay at this boutique hotel", booked: false, image_url: "https://regenerativetravel.com/wp-content/uploads/2019/07/4-1024x684-1.jpg")
