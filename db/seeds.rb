@@ -60,9 +60,9 @@ puts 'Creating experience restaurant...'
       # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
 
       badges = element2.search('.ecotable-badges').text.split(',')
-      Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", availability: true, country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+      Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
     end
-  end
+end
 
 # SCRAPING -- ONLY IN FRANCE !
 puts "Creating hotels..."
@@ -143,6 +143,7 @@ rt3 = ReviewTravelboard.create(travelboard_id: costa1.id, user_id:aymeric.id, co
 rt4 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: aymeric.id, comment: "OOOh waw Waytraveller !  You are very creative, that trip looks so fun!", rating: "5")
 rt5 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: margot.id, comment: "HI Waytraveller ! I love how you manage to do so much in so little time ! I'm going to get some really good inspirations here!", rating: "4")
 rt6 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: sophie.id, comment: "Great trip ! Were the prices low at this time of the year ? I tend to go on trip in the low season like you ! It looked fun, can't wait to see your next trip!", rating: "5")
+
 # rt11 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
 # rt12 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
 # rt13 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
