@@ -1,6 +1,8 @@
-
-
   <div class="banner-show" style="background-color: #95B2A3">
+   <div class="ps-3"style="font-size: 24px"><%= link_to url_for(:back),
+                        method: :get do  %>
+                        <i class="fas fa-arrow-circle-left"></i>
+                        <% end %></div>
     <div class="container">
       <div class="image-grid">
         <% if @experience.review_experiences.first %>
@@ -96,7 +98,7 @@
   </div>
 
 <div class="container">
-  <div class="main-show">
+  <div class="">
     <div class="description-show">
       <h3>Presentation</h3>
       <p><%= @experience.description%></p>
@@ -201,12 +203,19 @@
   <hr class="solid">
 
   <div class="main-show">
-    <div class="infos-show">
+    <%# <div class="infos-show"> %>
       <div>
-        <h3 class="mb-3">Infos</h3>
-        <p><%= @experience.country%></p>
+        <h3 class="mb-3">Labels</h3>
+        <p>Here below, find the labels owned by <%= @experience.name%>:</p>
+        <div class="exp-labels-block">
+          <% @experience_labels.each do |experience_label|%>
+            <div class=exp-label>
+              <%= image_tag experience_label.label.label_icon, width:50, height:50 %>
+            </div>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <%# </div> %>
   </div>
 
   <hr class="solid">

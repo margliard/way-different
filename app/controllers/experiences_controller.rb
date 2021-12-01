@@ -4,6 +4,9 @@ class ExperiencesController < ApplicationController
 
   def index
     @experiences = policy_scope(Experience)
+    @experience = Experience.new
+    @experience_label=ExperienceLabel.new
+    @label = Label.new
     # Experience.where(category: params[:filter])
     if params[:query].present?
       @experiences = Experience.search_by_city_and_country(params[:query])
@@ -36,8 +39,10 @@ class ExperiencesController < ApplicationController
     @favorite = Favorite.new
     @review = ReviewExperience.new
     @travelboards = Travelboard.where(user_id: current_user)
+    @experience_labels = ExperienceLabel.where(experience_id: params[:id])
     @travelboard = Travelboard.new
     @nearby_experiences = Experience.near(@experience.to_coordinates, 50)
+
 
       if @experience.category == "Accommodation"
         image_url = helpers.asset_url("housethree.png")

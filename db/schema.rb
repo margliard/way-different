@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_104530) do
+ActiveRecord::Schema.define(version: 2021_11_30_152408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2021_11_29_104530) do
     t.index ["travelboard_id"], name: "index_chatrooms_on_travelboard_id"
   end
 
+  create_table "experience_labels", force: :cascade do |t|
+    t.bigint "experience_id", null: false
+    t.bigint "label_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["experience_id"], name: "index_experience_labels_on_experience_id"
+    t.index ["label_id"], name: "index_experience_labels_on_label_id"
+  end
+
   create_table "experiences", force: :cascade do |t|
     t.string "category"
     t.string "name"
@@ -68,6 +77,14 @@ ActiveRecord::Schema.define(version: 2021_11_29_104530) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["experience_id"], name: "index_favorites_on_experience_id"
     t.index ["travelday_id"], name: "index_favorites_on_travelday_id"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "label_name"
+    t.text "label_description"
+    t.string "label_icon"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -138,6 +155,8 @@ ActiveRecord::Schema.define(version: 2021_11_29_104530) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chatrooms", "travelboards"
+  add_foreign_key "experience_labels", "experiences"
+  add_foreign_key "experience_labels", "labels"
   add_foreign_key "favorites", "experiences"
   add_foreign_key "favorites", "traveldays"
   add_foreign_key "messages", "chatrooms"
