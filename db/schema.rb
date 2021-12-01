@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2021_11_30_152408) do
     t.string "name"
     t.string "address"
     t.boolean "availability"
-    t.integer "price"
+    t.string "price"
     t.string "city"
     t.string "country"
     t.float "latitude"

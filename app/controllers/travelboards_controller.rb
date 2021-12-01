@@ -3,10 +3,9 @@ class TravelboardsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   # before_action :set_experience, only: :show
 
-
   def index
     @travelboard = Travelboard.new
-    @travelboards = Travelboard.all
+    @travelboards = Travelboard.where(user_id: current_user)
     @experience = Experience.new
     @favorite = Favorite.new
     policy_scope(Travelboard)
@@ -38,8 +37,7 @@ class TravelboardsController < ApplicationController
         image_url: image_url
       }
     end
-    # @travelboards = policy_scope(Experience)
-    @chatroom = Chatroom.find(params[:id])
+    @chatroom = @travelboard.chatrooms.first
     @message = Message.new
   end
 
@@ -56,11 +54,17 @@ class TravelboardsController < ApplicationController
   def create
     @user = current_user
     @travelboard = Travelboard.new(travelboard_params)
-    @chatroom = Chatroom.create
-    @chatroom.travelboard = @travelboard
     @travelboard.user = @user
+    @travelday1 = Travelday.create(travelboard: @travelboard, day_number: 1)
+    @travelday2 = Travelday.create(travelboard: @travelboard, day_number: 2)
+    @travelday3 = Travelday.create(travelboard: @travelboard, day_number: 3)
+    @travelday4 = Travelday.create(travelboard: @travelboard, day_number: 4)
+    authorize @travelboard
     if @travelboard.save
       if params[:experience_id]
+        @chatroom = Chatroom.new
+        @chatroom.travelboard = @travelboard
+        @chatroom.save
         @experience = Experience.find(params[:experience_id])
         @travelday = Travelday.create(travelboard: @travelboard, day_number: 0)
         @favorite = Favorite.create(experience: @experience, travelday: @travelday)

@@ -1,15 +1,19 @@
-class MessagePolicy < ApplicationPolicy
+class FavoritePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
 
-  def show?
+  def create?
     true
   end
 
-  def create?
+  def changeday?
+    true
+  end
+
+  def destroy?
     true
   end
 end

@@ -3,18 +3,30 @@
 $timeline-body-round: 3px;
 $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 
-.row {
-  display: flex;
+
+.column1 {
+  flex: 25%;
 }
 
 .column2 {
-  flex: 35%;
-  margin-bottom: 0px;
+  flex: 40%;
 }
 
-.column1 {
-  flex: 65%;
-  margin-bottom: 0px;
+.column3 {
+  flex: 30%;
+}
+
+.header-and-cards {
+  margin-left: 8px;
+  flex: 50%;
+ }
+
+.column2-if-not-user {
+  flex: 50%;
+}
+
+.column3-if-not-user {
+  flex: 50%;
 }
 
 .review {
@@ -224,9 +236,9 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 
 .cards-day-travelboard {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-right: 24px;
-  grid-gap: 24px;
+  grid-template-columns: 1fr;
+  margin-right: 8px;
+  grid-gap: 8px;
   margin-bottom: 24px;
 }
 
@@ -234,6 +246,16 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   background-color: $lightgreen;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 8px;
+  padding: 10px;
+}
+
+.card-day-travelboard-day-zero {
+  background-color: $beige;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 8px;
+  padding: 10px;
 }
 
 .card-day-travelboard h5 {
@@ -241,20 +263,21 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   text-align: center;
 }
 
-.card-day-travelboard-container {
-  margin: 14px;
+.card-day-travelboard-day-zero h5 {
+  color: white;
+  text-align: center;
 }
 
 .location-travelboard {
   margin-bottom: 44px;
 }
 
-
 .header-travelboard {
-  text-align: center;
+  text-align: start;
   color: $darkgreen;
   margin-top: 36px;
   margin-bottom: 22px;
+  margin-left: 8px;
 }
 
 
@@ -277,3 +300,41 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
 .header-travelboard-user p {
   margin-left: 10px;
 }
+
+.flexbox-headers-cards-map {
+  display: flex;
+}
+
+ .travelboardmap {
+    height: 100%;
+ }
+
+ .header-and-cards-if-not-user {
+  margin-left: 8px;
+  flex: 50%
+ }
+
+ .icon-delete {
+   margin-right: 10px;
+   margin-top: 4px;
+ }
+
+
+ // index
+
+ .header-travelboard-index {
+   color: $darkgreen;
+   text-align: center;
+   margin-bottom: 26px;
+   margin-top: 26px;
+ }
+
+ .btn-index-travelboard {
+   display: flex;
+   justify-content: center;
+   margin-top: 40px;
+ }
+
+ .sticky-travelboard {
+
+ }

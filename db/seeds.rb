@@ -36,7 +36,6 @@ puts "users ok"
 puts "Creating travelboards..."
 costa1 = Travelboard.create(user_id: margot.id, country: "Costa Rica", name: "My travel in Costa Rica", start_date: "05/08/2021", end_date: "20/08/2021", status: false)
 costa2 = Travelboard.create(user_id: camille.id, country: "Costa Rica", name: "Costa Rica 2019", start_date: "02/08/19", end_date: "14/08/2019", status: false)
-costa3 = Travelboard.create(user_id: sophie.id, country: "Costa Rica", name: "Costa Rica - East Coast", start_date: "06/07/2021", end_date: "22/07/2021", status: false)
 puts "Travelboards ok..."
 
 puts "Creating Labels ...."
@@ -66,31 +65,31 @@ doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
 end
 puts 'restaurant OK'
 
-# SCRAPING -- ONLY IN FRANCE !
 puts "Creating hotels..."
-# mettre le résultat de la query
-doc = Nokogiri::HTML(URI.open("https://www.ethik-hotels.com/en/infrance"))
-browser = Ferrum::Browser.new
-doc.search('.post').each do |element|
-  # Experience name
-  title = element.search('.entry-title-post').text.strip
-  # Experience description
-  description = element.search('.entry-content-post p').text.strip
-  # Experience photo
-  link_show = element.search('.more-link').attribute('href')
-  link_show_content = Nokogiri::HTML(URI.open(link_show))
-  image = link_show_content.search('a .attachment-post-thumbnail').attribute('data-jpibfi-src').value
-  # Experience addresse
-  link_show2 = element.search('.more-link').attribute('href').value
-  browser.go_to(link_show2)
-  address = browser.at_css(".leaflet-popup-content").text
-  # Experience criterias
-  criteria = element.search('.critereValide span').text.gsub('Criterion respected:', ' ').strip.split(/(?=[A-Z])/).collect(&:strip)
-  # Create a hotel
-  Experience.create(category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: 90, country: "france", city: " ", description: "#{description}", booked: false, image_url: "#{image}")
-  puts "One hotel created, please wait!"
+hotels = JSON.parse(File.read('db/hotels.json'))
+hotels.each do |element|
+  Experience.create!(element)
 end
-browser.quit
+
+puts 'Creating experience restaurant...'
+
+doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
+doc.search('.ecotables-ecotable').each do |element|
+  link = element.search('a').attribute('href').value
+  doc2 = Nokogiri::HTML(URI.open(link))
+  doc2.search('.page-ecotable').each do |element2|
+    titles = element2.search('h1').text
+    descriptions = element2.search('.ecotable-paragraph p').text
+    loc= element2.search('.ecotable-address span').text.strip
+    city=loc.split(',').last
+    images = element2.search('.lazy-img').attribute('data-lazy-src').value
+    # p 'Price range'
+    # p '---------------------'
+    # p price_range=element2.search('.ecotable-infos').text.gsub(" ", "").split(',')
+    badges = element2.search('.ecotable-badges').text.split(',')
+    Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", city: "#{city}", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+  end
+end
 
 puts "Creating experiences..."
 hotel1 = Experience.create(category: "Accommodation", name: "Tranquilo Bay Eco Adventure Lodge", address: "Monteverde Costa Rica", availability: true, price: 80, country: "Costa Rica", city: "Monteverde", description: "Centrally located among the most biologically diverse protected areas in Central America, this adventure eco-lodge in Panama will give you the authentic vacation experience you desire. When you stay in one of Tranquilo Bay’s nine stylish cabanas, you can start your morning by walking out onto the wrap-around elevated porch to get a view of the mangrove forest and the Caribbean Sea meeting the lush green rainforest. You can be sure you’re having a sustainable, environmentally-friendly vacation when you stay at this boutique hotel", booked: false, image_url: "https://regenerativetravel.com/wp-content/uploads/2019/07/4-1024x684-1.jpg")
@@ -145,10 +144,7 @@ rt3 = ReviewTravelboard.create(travelboard_id: costa1.id, user_id:aymeric.id, co
 rt4 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: aymeric.id, comment: "OOOh waw Waytraveller !  You are very creative, that trip looks so fun!", rating: "5")
 rt5 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: margot.id, comment: "HI Waytraveller ! I love how you manage to do so much in so little time ! I'm going to get some really good inspirations here!", rating: "4")
 rt6 = ReviewTravelboard.create(travelboard_id: costa2.id, user_id: sophie.id, comment: "Great trip ! Were the prices low at this time of the year ? I tend to go on trip in the low season like you ! It looked fun, can't wait to see your next trip!", rating: "5")
-rt7 = ReviewTravelboard.create(travelboard_id: costa3.id, user_id: margot.id, comment: "Such a Looovely trip Waytraveller ! I'm getting a lot of inspirations here ! Can't wait to see the next trip you're going to plan :)", rating: "5")
-rt8 = ReviewTravelboard.create(travelboard_id: costa3.id, user_id: aymeric.id, comment: "Hey Waytraveller ! Was the weather pleasant this time of year in Costa Rica ? Great diversity of activities you've chosen ! ", rating: "5")
-rt9 = ReviewTravelboard.create(travelboard_id: costa3.id, user_id: camille.id, comment: "Looked fun !", rating: "5")
-# rt10 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
+
 # rt11 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
 # rt12 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
 # rt13 = ReviewTravelboard.create(travelboard_id:, user_id:, comment: "", rating: "")
@@ -156,10 +152,12 @@ rt9 = ReviewTravelboard.create(travelboard_id: costa3.id, user_id: camille.id, c
 puts "review travelboards ok"
 
 puts "Traveldays creation..."
+td0 = Travelday.create(travelboard_id: costa1.id, day_number: 0)
 td1 = Travelday.create(travelboard_id: costa1.id, day_number: 1)
 td2 = Travelday.create(travelboard_id: costa1.id, day_number: 2)
 td3 = Travelday.create(travelboard_id: costa1.id, day_number: 3)
 td4 = Travelday.create(travelboard_id: costa1.id, day_number: 4)
+td9 = Travelday.create(travelboard_id: costa2.id, day_number: 0)
 td5 = Travelday.create(travelboard_id: costa2.id, day_number: 1)
 td6 = Travelday.create(travelboard_id: costa2.id, day_number: 2)
 td7 = Travelday.create(travelboard_id: costa2.id, day_number: 3)
@@ -177,13 +175,14 @@ fav8 = Favorite.create(experience_id: hotel2.id, travelday_id: td6.id)
 fav9 = Favorite.create(experience_id: restaurant2.id, travelday_id: td5.id)
 fav10 = Favorite.create(experience_id: activity2.id, travelday_id: td7.id)
 fav11 = Favorite.create(experience_id: restaurant3.id, travelday_id: td7.id)
+fav12 = Favorite.create(experience_id: restaurant3.id, travelday_id: td0.id)
+fav13 = Favorite.create(experience_id: activity1.id, travelday_id: td9.id)
 
 puts "Favorites ok"
 puts "creating chatroom"
 
 chat1 = Chatroom.create(travelboard_id: costa1.id, name: "My travel in Costa Rica")
 chat2 = Chatroom.create(travelboard_id: costa2.id, name: "Costa Rica 2019")
-chat3 = Chatroom.create(travelboard_id: costa3.id, name: "Costa Rica - East Coast")
 
 puts "Chatrooms ok"
 puts "Finished"
