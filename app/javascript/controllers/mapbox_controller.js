@@ -49,7 +49,9 @@ export default class extends Controller {
       // Pass the element as an argument to the new marker
       new mapboxgl.Marker(customMarker)
         .setLngLat([marker.lng, marker.lat])
-        .setPopup(popup)
+        .setPopup(popup, {
+          "focusAfterOpen":false
+        })
         .addTo(this.map);
     });
     console.log(this.markerTargets)
