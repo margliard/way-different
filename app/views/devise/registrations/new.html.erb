@@ -20,7 +20,7 @@
       <%= f.input :password_confirmation,
                   required: true,
                   input_html: { autocomplete: "new-password" } %>
-      <%= f.input :profile_photo,
+      <%= f.input :profile_photo, as: :file,
                   required: false,
                   input_html: { autocomplete: "profile picture" }%>
     </div>
