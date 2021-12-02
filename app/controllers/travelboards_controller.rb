@@ -94,7 +94,7 @@ class TravelboardsController < ApplicationController
   # end
 
   def travelboard_params
-    params.require(:travelboard).permit(:name, :user_id, :start_date, :end_date, :status, :country)
+    params.require(:travelboard).permit(:name, :user_id, :start_date, :end_date, :status, :country, :photo)
   end
 
   def favorite_params
