@@ -2,28 +2,34 @@
 <div class="banner banner-bg" ;>
   <h1 class="title-banner">Find ecofriendly experiences all around the world</h1>
   <div class="search-bar">
-    <div class="container" style="text-align:center">
-      <input class="checkbox1" type="checkbox" id="accommodation">
-      <label for="accommodation">Accommodations</label>
-      <input class="checkbox1" type="checkbox" id="restaurants">
-      <label for="restaurants">Restaurants</label>
-      <input class="checkbox1" type="checkbox" id="activities">
-      <label for="activities">Activities</label>
-      <input class="checkbox1" type="checkbox" id="inspirations">
-      <label for="inspirations">Inspirations</label>
-      <hr class="solid">
-
+    <div class="location-block">
+      <h4 class="title-location">Location</h4>
       <%= form_tag experiences_path, method: :get do %>
-        <div class="search-form-control input-group d-flex">
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "In which city or country you want to go?"
-          %>
-          <% end %>
-          <%= submit_tag "Let's go!", class: "btn btn-ghost" %>
+      <div class="search-form-control input-group d-flex">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Where do you want to go?" %>
+        <% end %>
       </div>
     </div>
+
+    <div>
+      <h4 class="title-type">Type</h4>
+      <div class="container" style="text-align:center">
+        <input class="checkbox1" type="checkbox" id="accommodation">
+        <label for="accommodation">Accommodations</label>
+        <input class="checkbox1" type="checkbox" id="restaurants">
+        <label for="restaurants">Restaurants</label>
+        <input class="checkbox1" type="checkbox" id="activities">
+        <label for="activities">Activities</label>
+        <input class="checkbox1" type="checkbox" id="inspirations">
+        <label for="inspirations">Inspirations</label>
+      </div>
+    </div>
+    <div>
+        <%= submit_tag "Let's go!", class: "btn btn-ghost" %>
+      </div>
   </div>
 </div>
 
@@ -34,48 +40,44 @@
     <div class="card-trip-inspo">
       <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80)">
         <div class="card-trip-infos-inspo">
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
           <div>
             <h2>Roadtrip in Brazil</h2>
             <p>Brazil</p>
-            <p>Created by Peter</p>
           </div>
-          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
         </div>
       </div>
     </div>
     <div class="card-trip-inspo">
       <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1494822493217-c9840aba840c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80)">
         <div class="card-trip-infos-inspo">
+          <img src="https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
           <div>
-            <h2>Winter in North America</h2>
+            <h2>Winter in Canada</h2>
             <p>Canada</p>
-            <p>Created by Matt</p>
           </div>
-          <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
         </div>
       </div>
     </div>
     <div class="card-trip-inspo">
       <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1529686342540-1b43aec0df75?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)">
         <div class="card-trip-infos-inspo">
+          <img src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
           <div>
             <h2>Paradise islands</h2>
             <p>Philippines</p>
-            <p>Created by Anna</p>
           </div>
-          <img src="https://images.unsplash.com/photo-1499887142886-791eca5918cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
         </div>
       </div>
     </div>
     <div class="card-trip-inspo">
       <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://images.unsplash.com/photo-1529655683826-aba9b3e77383?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1065&q=80)">
         <div class="card-trip-infos-inspo">
+          <img src="https://images.unsplash.com/photo-1627910002390-9312430eabf3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1495&q=80" class="card-trip-user avatar-bordered" />
           <div>
             <h2>London trip</h2>
             <p>United Kingdom</p>
-            <p>Created by Marie</p>
           </div>
-          <img src="https://images.unsplash.com/photo-1484186139897-d5fc6b908812?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" class="card-trip-user avatar-bordered" />
         </div>
       </div>
     </div>

@@ -2,16 +2,25 @@
 
 .title-ideas {
   margin: 10px 0px;
-  text-align: center;
+  text-align: left;
+  padding-left: 30px;
   color: $green;
+}
+
+.title-location {
+  color: $darkgreen;
+}
+
+.title-type {
+  color: $darkgreen;
 }
 
 .subtitle-ideas {
-  text-align: center;
+  text-align: left;
+  padding-left: 30px;
   color: $green;
   margin-bottom: 30px;
 }
-
 
 .color-block {
   display: flex;
@@ -62,15 +71,33 @@
 }
 
 .search-bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0 auto;
-  background-color: #ffffff30;
+  background-color: #ffffff;
   padding: 20px;
+  border-radius: 30px;
+  width: 880px;
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translate(-50%);
+  box-shadow: 5px 1px 29px rgba(0, 0, 0, 0.201);
+}
+
+.search-bar .btn-ghost {
+  color: white;
+  background-color: $green;
+  padding: 8px 24px;
   border-radius: 10px;
-  width: 600px;
+  opacity: 1;
+  transition: 0,5s ease;
+  height: 60px;
 }
 
 .container-inspo {
-  margin-top: 50px;
+  margin-top: 140px;
   margin-bottom: 50px;
 }
 
@@ -85,11 +112,10 @@
   display: inline-block;
   border-radius: 50rem;
   padding: 3px 6px;
-  background-color: #F4F4F4;
-  color: $darkgreen;
-  border: 2px solid $darkgreen;
+  color: #717980;;
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
+  font-size: 13px;
 }
 
 .checkbox1+label:hover {
@@ -98,15 +124,17 @@
   display: inline-block;
   border-radius: 50rem;
   padding: 3px 6px;
-  background-color: #F4F4F4;
-  color: $darkgreen;
-  border: 2px solid $darkgreen;
+  background-color: #e0ebe6fc;
+  color: $green;
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
-  box-shadow: #274335bb 0px 1px 2px 0px, #274335bb 0px 2px 6px 2px;
 }
 
 .checkbox1:checked+label {
-  background-color: $darkgreen;
-  color: #F4F4F4;
+  background-color: #e0ebe6fc;
+  color: $green;
+}
+
+.location-block {
+  width: 188px;
 }

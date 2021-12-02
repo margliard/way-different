@@ -1,5 +1,11 @@
 .form-control {
   border-radius: 10px;
-  border: 1px solid #F4F4F4;
-  color: $darkgreen;
+  border: 1px solid white;
+  color: $lightgreen;
+  font-size: 13px;
+  background-color: white;
+}
+
+.form-control ::placeholder{
+  color: $lightgreen;
 }
