@@ -34,22 +34,23 @@ dest= "aaceeeeiouu"
 f= File.open("./app/assets/images/user-seed/users.html").read
 doc = Nokogiri::HTML(f)
 # p doc
-doc.search('.classmates-background-gray').each do |element|
+doc.search('.col-12.d-flex.p-3').each do |element|
+  # p element
+  name = element.search('.clasmates-student-links strong').text.tr(source, dest)
+  name
+  name_array = name.split(" ")
   photo = element.search('.img-thumbnail').attribute('src').value
   photo = photo.gsub("./","")
-  photo = "app/assets/images/user-seed/#{photo}"
-  name = element.search('.clasmates-student-links strong').text.tr(source, dest)
-  name_array = name.split(" ")
+  photo = "/user-seed/#{photo}"
   email = "#{name_array[0].downcase}-#{name_array[1].downcase}@gmail.com"
   password = "password"
-  User.create(email: email, profile_photo: photo, username: name[0], password: password)
+  user = User.create!(email: email, profile_photo: photo, username: "#{name_array[0]} #{name_array[1][0]}", password: "password")
 end
 
 margot = User.create(email: "margot@gmail.com", password: "password", profile_photo: "https://pbs.twimg.com/profile_images/932603275265880066/4GMvyQaw_400x400.jpg", username: "Margot")
 camille = User.create(email: "camille@gmail.com", password: "password", profile_photo: "https://media-exp1.licdn.com/dms/image/C4D03AQFZXD9yY1VO2g/profile-displayphoto-shrink_200_200/0/1522616037980?e=1643241600&v=beta&t=thr7EEPiWQdTZ_WIterKAL3lui_nNFxlNwm52OXK87Y", username: "Camille")
 sophie = User.create(email: "sophie@gmail.com", password: "password", profile_photo: "https://ca.slack-edge.com/T02NE0241-U02G8J3UGH4-7e00009b17a6-512", username: "Sophie")
 aymeric = User.create(email: "aymeric@gmail.com", password: "password", profile_photo: "https://ca.slack-edge.com/T02NE0241-U02FLRDV86S-e6a34883f5c0-512", username: "Aymeric")
-
 
 puts "users ok"
 puts "Creating travelboards..."
