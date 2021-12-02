@@ -19,6 +19,7 @@ class ExperiencesController < ApplicationController
     else
       @travelboards = Travelboard.all
     end
+    # Mapbox
     @markers = @experiences.geocoded.map do |experience|
       if experience.category == "Accommodation"
         image_url = helpers.asset_url("housethree.png")

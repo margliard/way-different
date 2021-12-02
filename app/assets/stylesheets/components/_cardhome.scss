@@ -5,6 +5,7 @@
   margin-top: 45px;
 }
 .card-trip-inspo {
+  cursor: pointer;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.227);
   // box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -34,7 +35,7 @@
   width: 100%;
   padding: 4px 0px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
   background-color: #00000022;
@@ -42,8 +43,7 @@
 }
 
 .card-trip-infos-inspo .card-trip-user {
-  right: 16px;
-  top: -20px;
+  margin: 5px 16px;
   width: 40px;
 }
 

@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   def home
     @experiences = Experience.where(params[:id])
     @travelboards = Travelboard.where(params[:id])
+    @categories = Experience.where(params[:category])
   end
 
   def carbon
