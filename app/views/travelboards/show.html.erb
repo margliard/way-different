@@ -140,13 +140,13 @@
             <div class="header-travelboard-details">
               <div>
                 <p><i class="fas fa-map-pin" style="color: #EC1820; margin-right: 3px"></i>  <%= @travelboard.country.capitalize %></p>
-                <p><i class="far fa-calendar-check"style="color: #EC1820"></i> From <%= @travelboard.start_date %> to <%= @travelboard.end_date %></p>
+                <p><i class="far fa-calendar-check"style="color: #EC1820"></i> From <%= @travelboard.start_date.strftime('%A,%B %d, %Y') %> to <%= @travelboard.end_date.strftime('%A,%B %d, %Y') %></p>
               </div>
+            </div>
               <div class="header-travelboard-user">
                 <p style="opacity: 0.7">Travelboard created by <%= @travelboard.user.username %></p>
                 <%= image_tag @travelboard.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>
               </div>
-            </div>
           </div>
           <div class="column2-if-not-user">
             <div class="cards-day-travelboard">
@@ -164,13 +164,16 @@
                                 <p class="tb-card-experience-address"><i class="fas fa-map-pin"></i> <%= favorite.experience.address %></p>
                                 <div class="d-flex align-items-center" style="margin-top: 6px">
                                   <% if favorite.experience.category == "Accommodation" %>
-                                  <img class="icon-experience" src="<%= image_path('003home.png') %>" />
+                                    <img class="icon-experience" src="<%= image_path('003home.png') %>" />
+                                    <p class="tb-card-category-accommodation"><%= favorite.experience.category %></p>
                                   <% elsif favorite.experience.category == "Restaurant" %>
-                                  <img class="icon-experience" src="<%= image_path('003cutlery.png') %>" />
+                                    <img class="icon-experience" src="<%= image_path('003cutlery.png') %>" />
+                                    <p class="tb-card-category-restaurant"><%= favorite.experience.category %></p>
                                   <% elsif favorite.experience.category == "Activity" %>
-                                  <img class="icon-experience" src="<%= image_path('003bike.png') %>" />
+                                    <img class="icon-experience" src="<%= image_path('003bike.png') %>" />
+                                    <p class="tb-card-category-activity"><%= favorite.experience.category %></p>
                                   <% end %>
-                                  <p class="tb-card-category"><%= favorite.experience.category %></p>
+
                                 </div>
                               </div>
                             </div>
