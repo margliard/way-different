@@ -117,7 +117,7 @@
               <% @travelboards.each do |travelboard| %>
                 <%= simple_form_for [@experience, @favorite] do |f| %>
                   <button id="sweet-alert-demo" class="card-travelboard-existing2" type="submit">
-                    <img src="https://source.unsplash.com/featured/?<%=travelboard.country.downcase.gsub(/\s+/, "")%>">
+                    <img src="https://unsplash.com/s/photos/landscapes-<%=travelboard.country.downcase.gsub(/\s+/, "")%>">
                     <div id="card-travelboard-existing-details2">
                       <p><%= travelboard.name %></p>
                       <p id="date"><%= travelboard.start_date %> to <%= travelboard.end_date %></p>
@@ -153,9 +153,9 @@
                 <%= f.submit "Create a travelboard", class:"btn-ghost" %>
               <% end %>
             </div>
-            <div class="modal-footer">
+            <%# <div class="modal-footer">
               <button class="btn btn-ghost" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
-            </div>
+            </div> %>
           </div>
         </div>
       </div>
@@ -274,8 +274,7 @@
                       <% elsif experience.category == "Activity" %>
                         <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
                       <% end %>
-
-                    <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
+                    <p class="card-experience-pricing" style="font-size: 13px; margin-top: 20px"><%= experience.price if experience.price? %></p>
                   </div>
                 </div>
               </div>

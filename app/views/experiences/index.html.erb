@@ -15,6 +15,7 @@
               <div>
                 <h5 class="experience-title"><%= experience.name %> </h5>
                 <p class="experience-description"><%= experience.description.truncate(100)%></p>
+                <p class="card-experience-pricing"><%= experience.price if experience.price? %></p>
               </div>
               <div class="icon-price">
 
@@ -25,8 +26,6 @@
                       <% elsif experience.category == "Activity" %>
                         <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
                       <% end %>
-
-                <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
               </div>
             </div>
           </div>
@@ -52,14 +51,17 @@
   <div class="cards-home-index">
     <% @travelboards.each do |travelboard| %>
     <div class="card-trip-inspo">
+
       <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)), url('<%= cl_image_path travelboard.photo.key %>')">
+
+      
         <div class="card-trip-infos-inspo">
+          <%= image_tag travelboard.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
           <div class="link-white">
             <h2><%= link_to travelboard.name, travelboard_path(travelboard) %></h2>
             <p><%= travelboard.country %></p>
             <p>created by <%= travelboard.user.username %></p>
           </div>
-          <%= image_tag travelboard.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
         </div>
       </div>
     </div>

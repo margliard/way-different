@@ -11,11 +11,11 @@
       <div class="card-trip-inspo">
         <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)), url('<%= cl_image_path travelboard.photo.key %>')">
           <div class="card-trip-infos-inspo">
+            <%= image_tag travelboard.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
             <div>
               <h2><%= travelboard.name  %></h2>
               <p><%= travelboard.country %></p>
             </div>
-            <%= image_tag travelboard.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
           </div>
         </div>
       </div>
@@ -25,7 +25,7 @@
     <div class="new-card">
       <div>
         <span class="test" data-hover="Create a travelboard">
-        <i class="fas fa-plus-circle fa-4x test" ></i>
+        <i class="fas fa-plus-circle" ></i>
         </span>
       </div>
     </div>

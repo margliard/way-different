@@ -251,6 +251,7 @@
     <% end %>
   </div>
   <div class="similar-itineraries" style="flex: 50%">
+
     <h3 style="font-size: 20px; color: white; padding-bottom: 10px">Similar travelboards in <%= @travelboard.country %></h3>
     <% if @travelboards_similar == [] || @travelboards_similar.first.user == @travelboard.user %>
     <div>
@@ -262,12 +263,12 @@
           <div class="card-trip-inspo" style="width: 250px">
             <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://source.unsplash.com/featured/?<%=@travelboards_similar.first.country.downcase.gsub(/\s+/, "")%>)">
               <div class="card-trip-infos-inspo">
+                <%= image_tag @travelboards_similar.first.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
                 <div>
                   <h2><%= @travelboards_similar.first.name  %></h2>
                   <p><%= @travelboards_similar.first.country %></p>
                   <p>created by <%= @travelboards_similar.first.user.username %></p>
                 </div>
-                <%= image_tag @travelboards_similar.first.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
               </div>
             </div>
           </div>
