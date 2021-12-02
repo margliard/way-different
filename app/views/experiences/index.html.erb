@@ -1,7 +1,7 @@
 <div class="d-flex">
   <div class="p-3"style="font-size: 24px"><%= link_to url_for(:back),
                     method: :get do  %>
-                    <i class="fas fa-arrow-circle-left"></i>
+                    <i class="fas fa-arrow-circle-left" style="color: #1A3835"></i>
                     <% end %></div>
   <div class="container col-6 mt-4">
     <p id="pluralize"><%= pluralize @experiences.length, "eco-friendly experience" %> found in <%= params[:query] %> </p>
