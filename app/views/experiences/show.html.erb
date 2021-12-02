@@ -151,9 +151,9 @@
                 <%= f.submit "Create a travelboard", class:"btn-ghost" %>
               <% end %>
             </div>
-            <div class="modal-footer">
+            <%# <div class="modal-footer">
               <button class="btn btn-ghost" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
-            </div>
+            </div> %>
           </div>
         </div>
       </div>
@@ -272,8 +272,7 @@
                       <% elsif experience.category == "Activity" %>
                         <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
                       <% end %>
-
-                    <h2 class="card-experience-pricing"><%= experience.price if experience.price? %>€</h2>
+                    <p class="card-experience-pricing" style="font-size: 13px; margin-top: 20px"><%= experience.price if experience.price? %></p>
                   </div>
                 </div>
               </div>

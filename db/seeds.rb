@@ -101,7 +101,8 @@ doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
       city=loc.split(',').last
       images = element2.search('.lazy-img').attribute('data-lazy-src').value
       badges = element2.search('.ecotable-badges').text.split(',')
-      experience = Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", description: "#{descriptions}", price: rand(20..50), booked: false, image_url: "#{images}")
+      price = ["€","€€","€€€","€€€€"]
+      experience = Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", description: "#{descriptions}", price: price.shuffle.first, booked: false, image_url: "#{images}")
       badges.each do |badge|
         ExperienceLabel.create(experience_id: experience.id, label: Label.find_by(label_name: badge.strip))
       end
