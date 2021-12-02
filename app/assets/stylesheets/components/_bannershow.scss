@@ -1,7 +1,18 @@
 .banner-show {
   background-size: cover;
   background-position: center;
-  padding: 10px 0 50px;
+  padding: 40px 0 50px;
+}
+
+#backbtnshow {
+  position: relative;
+  top: -32px;
+  left: 19px;
+  color: #1A3835;
+}
+
+#backbtnshow:hover {
+  color: #678D7A;
 }
 
 #image-grid-1 {
@@ -52,12 +63,6 @@
   opacity: 1;
 }
 
-#bubble-quote {
-  color: black;
-  font-size: 14px;
-  font-weight: bolder;
-  text-align: center;
-}
 
 #image-grid-2 {
   height: 300px;
