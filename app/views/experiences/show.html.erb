@@ -56,7 +56,12 @@
               <% end %>
             </div>
             <div id="card-travelboard-existing" class="ml-2">
-              <button class="btn btn-create-travelboard" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">+</button>
+              <button class="btn btn-create-travelboard" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" >+
+              <script>
+                function myFunction() {
+                  alert("The Experience was correctly added to you Travelboard :)");
+                }
+                </script></button>
               <p>Create a new travelboard</p>
             </div>
           </div>
@@ -79,9 +84,6 @@
                 <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
                 <%= f.submit "Create a travelboard", class:"btn btn-ghost" %>
               <% end %>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-ghost" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back</button>
             </div>
           </div>
         </div>
@@ -163,7 +165,7 @@
           <a id="bouton-sticky" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i class="fas fa-plus"></i></a>
         </div>
       <% end %>
-      <div class="hide stickytext"><button id="sweet-alert-demo" id="buttonfav"><i class="fas fa-suitcase"></i>  Add to my travelboard</button></div>
+      <div class="hide stickytext"><button id="sweet-alert-demo" id="buttonfav" style="background-color: #1A3835; color: white"><i class="fas fa-suitcase"></i>  Add to my travelboard</button></div>
       <%# ----------- %>
       <div class="modal fade" id="logInModalToggle" tabindex="-1" role="dialog" aria-labelledby="logInLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -198,7 +200,6 @@
     </div>
       <%# ----------- %>
     </div>
-
 
   <% if @experience_labels != [] %>
     <hr class="solid">

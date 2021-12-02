@@ -9,7 +9,8 @@ class ExperiencesController < ApplicationController
     @label = Label.new
     # Experience.where(category: params[:filter])
     if params[:query].present?
-      @experiences = Experience.search_by_city_and_country(params[:query])
+      # @experiences = Experience.search_by_city_and_country(params[:query])
+      @experiences = Experience.near(params[:query], 200)
     else
       @experiences = Experience.all
     end
@@ -41,7 +42,7 @@ class ExperiencesController < ApplicationController
     @travelboards = Travelboard.where(user_id: current_user)
     @experience_labels = ExperienceLabel.where(experience_id: params[:id])
     @travelboard = Travelboard.new
-    @nearby_experiences = Experience.near(@experience.to_coordinates, 50)
+    @nearby_experiences = Experience.near(@experience.to_coordinates, 120)
 
 
       if @experience.category == "Accommodation"

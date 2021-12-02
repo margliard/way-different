@@ -6,10 +6,9 @@
 
 .banner h1 {
   text-align: center;
-  margin-bottom: 30px;
   color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
+  text-shadow: 4px 1px 3px rgba(0, 0, 0, 0.229);
+  font-size: 40px;
 }
 
 .banner p {
@@ -20,8 +19,8 @@
 }
 
 .banner-bg {
-  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset_url('road.jpg');
+  background-image: linear-gradient(rgba(26, 55, 39, 0.222),rgba(26, 55, 39, 0.222)), asset_url('orange-forest');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 91vh;
+  height: 60vh;
 }
