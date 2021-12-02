@@ -7,7 +7,7 @@
     <p id="pluralize"><%= pluralize @experiences.length, "eco-friendly experience" %> found in <%= params[:query] %> </p>
     <div class="row ps-3 my-4">
       <% @experiences.each do |experience|%>
-        <div class="col-6">
+        <div class="col-6" id="experience-<%= experience.id %>">
         <%= link_to experience_path(experience) do %>
           <div class="card-experience">
             <img src= <%= experience.image_url%>>

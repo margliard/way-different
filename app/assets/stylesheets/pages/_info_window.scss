@@ -16,7 +16,8 @@
 }
 
 .mapboxgl-popup-content {
-  height: 160px;
+  width: auto;
+  height: auto;
   position: relative;
   background: #fff;
   border-radius: 8px;

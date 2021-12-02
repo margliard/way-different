@@ -7,6 +7,8 @@ export default class extends Controller {
     markers: Array
   }
 
+  static targets = ["marker"]
+
   connect() {
     console.log(this.markersValue)
     mapboxgl.accessToken = this.apiKeyValue;
@@ -20,6 +22,13 @@ export default class extends Controller {
     console.log(this.map);
   }
 
+  displaycard(event) {
+    console.log(event);
+    const card = document.querySelector(`#experience-${event.target.dataset.mapboxExperienceValue}`)
+    const y = card.getBoundingClientRect().top + window.pageYOffset;
+    scrollTo({top: y, behavior: 'smooth'})
+  }
+
   _addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window); // add this
@@ -30,6 +39,10 @@ export default class extends Controller {
       customMarker.style.backgroundSize = 'contain';
       customMarker.style.width = '40px';
       customMarker.style.height = '40px';
+      customMarker.dataset.mapboxTarget = "marker"
+      customMarker.dataset.mapboxExperienceValue = marker.experience_id;
+      customMarker.dataset.experienceUrl = marker.experience_url;
+      customMarker.dataset.action = "click->mapbox#displaycard";
 
       // Pass the element as an argument to the new marker
       new mapboxgl.Marker(customMarker)
@@ -37,22 +50,9 @@ export default class extends Controller {
         .setPopup(popup)
         .addTo(this.map);
     });
+    console.log(this.markerTargets)
   }
-  // _addMarkersToMap() {
-  //     this.markersValue.forEach((marker) => {
-  //       if (this.markersValue.length == 1) {
-  //         new mapboxgl.Marker()
-  //           .setLngLat([marker.lng, marker.lat])
-  //           .addTo(this.map);
-  //       } else {
-  //         new mapboxgl.Marker()
-  //           .setLngLat([marker.lng, marker.lat])
-  //           .setPopup(new mapboxgl.Popup()
-  //           .setHTML(marker.info_window))
-  //           .addTo(this.map);
-  //       }
-  //     });
-  //   }
+
   _fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds();
     this.markersValue.forEach(marker => bounds.extend([marker.lng, marker.lat]));

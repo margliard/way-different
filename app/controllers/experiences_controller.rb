@@ -31,7 +31,9 @@ class ExperiencesController < ApplicationController
         lat: experience.latitude,
         lng: experience.longitude,
         info_window: render_to_string(partial: "info_window", locals: { experience: experience }),
-        image_url: image_url
+        image_url: image_url,
+        experience_id: experience.id,
+        experience_url: experiences_path(anchor: "experience-#{experience.id}")
       }
     end
   end
