@@ -20,24 +20,24 @@
         <div class="header-and-cards">
           <div class="header-travelboard">
             <p><%= link_to "Back to travelboards", travelboards_path, class:"btn-back-travelboard" %></p>
-            <h2><%= @travelboard.name %></h2>
+            <h2 class="name-travelboard"><%= @travelboard.name %></h2>
             <div class="header-travelboard-details">
               <div>
                 <p><i class="fas fa-map-pin" style="color: #EC1820; margin-right: 3px"></i>  <%= @travelboard.country.capitalize %></p>
-                <p><i class="far fa-calendar-check"style="color: #EC1820"></i> From <%= @travelboard.start_date %> to <%= @travelboard.end_date %></p>
-              </div>
-              <div class="header-travelboard-user">
-                <p style="opacity: 0.7">Travelboard created by you</p>
-                <%= image_tag @travelboard.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>
+                <p><i class="far fa-calendar-check"style="color: #EC1820"></i> From <%= @travelboard.start_date.strftime('%A,%B %d, %Y') %> to <%= @travelboard.end_date.strftime('%A,%B %d, %Y') %></p>
               </div>
             </div>
+            <div class="header-travelboard-user">
+              <p>Travelboard created by you</p>
+              <%= image_tag @travelboard.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>
+            </div>
           </div>
-          <div class="d-flex">
+          <div class="d-flex" data-controller="drag" >
             <div class="column1">
               <div class="cards-day-travelboard" id="sticky-travelboard">
                 <div class="card-day-travelboard-day-zero">
                   <h5 class="title-day">Experiences to organize</h5>
-                  <div class="cards" data-controller="drag" data-travelday="<%= travelday_zero.first.id %>">
+                  <div class="cards" data-drag-target="column" data-travelday="<%= travelday_zero.first.id %>">
                     <% travelday_zero.each do |travelday| %>
                       <%travelday.favorites.each do |favorite| %>
                         <div class="tb-card-product" data-favorite="<%= favorite.id %>">
@@ -48,12 +48,14 @@
                               <div class="d-flex align-items-center">
                                 <% if favorite.experience.category == "Accommodation" %>
                                 <img class="icon-experience" src="<%= image_path('003home.png') %>" />
+                                <p class="tb-card-category-accommodation"><%= favorite.experience.category %></p>
                                 <% elsif favorite.experience.category == "Restaurant" %>
                                 <img class="icon-experience" src="<%= image_path('003cutlery.png') %>" />
+                                <p class="tb-card-category-restaurant"><%= favorite.experience.category %></p>
                                 <% elsif favorite.experience.category == "Activity" %>
                                 <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
+                                <p class="tb-card-category-activity"><%= favorite.experience.category %></p>
                                 <% end %>
-                                <p class="tb-card-category"><%= favorite.experience.category %></p>
                               </div>
                             </div>
                             <div class="icon-delete">
@@ -67,10 +69,9 @@
                         </div>
                       <% end %>
                     <% end %>
+                    <p class="text-center" style="display: none; color: white; font-style: italic; font-weight: lighter" data-drag-target="nothing">Nothing to organize</p>
                   </div>
-                  <% if Favorite.where("travelday_id": travelday_zero.first.id) == [] %>
-                   <p class="text-center" style="color: white; font-style: italic; font-weight: lighter">Nothing to organize</p>
-                  <% end %>
+
                 </div>
               </div>
             </div>
@@ -81,7 +82,7 @@
                     <% if travelday.day_number > 0 %>
                       <div class="card-day-travelboard">
                         <h5 class="title-day">DAY <%= travelday.day_number %></h5>
-                        <div class="cards" data-controller="drag" data-travelday="<%= travelday.id %>">
+                        <div class="cards" data-drag-target="column" data-travelday="<%= travelday.id %>">
                           <%travelday.favorites.each do |favorite| %>
                           <div class="tb-card-product" data-favorite="<%= favorite.id %>">
                             <%= image_tag favorite.experience.image_url, class:"img-favorite-travelboard" %>
@@ -91,12 +92,14 @@
                                 <div class="d-flex align-items-center">
                                   <% if favorite.experience.category == "Accommodation" %>
                                   <img class="icon-experience" src="<%= image_path('003home.png') %>" />
+                                  <p class="tb-card-category-accommodation"><%= favorite.experience.category %></p>
                                   <% elsif favorite.experience.category == "Restaurant" %>
                                   <img class="icon-experience" src="<%= image_path('003cutlery.png') %>" />
+                                  <p class="tb-card-category-restaurant"><%= favorite.experience.category %></p>
                                   <% elsif favorite.experience.category == "Activity" %>
                                   <img class="icon-experience" src="<%= image_path('003backpack.png') %>" />
-                                  <% end %>
-                                  <p class="tb-card-category"><%= favorite.experience.category %></p>
+                                  <p class="tb-card-category-activity"><%= favorite.experience.category %></p>
+                                <% end %>
                                 </div>
                               </div>
                               <div class="icon-delete">
@@ -133,7 +136,7 @@
         <div class="header-and-cards-if-not-user">
           <div class="header-travelboard">
             <p><%= link_to "Back to travelboards", travelboards_path, class:"btn-back-travelboard" %></p>
-            <h2><%= @travelboard.name %></h2>
+            <h2 class="name-travelboard"><%= @travelboard.name %></h2>
             <div class="header-travelboard-details">
               <div>
                 <p><i class="fas fa-map-pin" style="color: #EC1820; margin-right: 3px"></i>  <%= @travelboard.country.capitalize %></p>
@@ -198,16 +201,16 @@
   <div style="flex: 50%">
     <div id="header-chat">
       <% if @travelboard.user == current_user %>
-          <h3 class="chatroom-title" style="font-size: 20px; padding-bottom: 10px">Answer questions from Way Travellers on your travelboard</h3>
+          <h3 class="chatroom-title" style="font-size: 20px; padding-bottom: 10px">Way Travellers are asking for your advice, answer them!</h3>
       <% else %>
-        <h3 class="chatroom-title" style="font-size: 20px; padding-bottom: 10px">Ask the Way travellers for advice</h3>
+        <h3 class="chatroom-title" style="font-size: 20px; padding-bottom: 10px">Got a question on this travelboard? Ask Way Travellers for advice!</h3>
       <% end %>
     </div>
     <% if @travelboard.user == current_user && @chatroom.messages == []%>
       <div class="container chatroom-empty" style="width: 750px; margin-left: 20px">
         <p><i class="far fa-comments"></i> You don't have any messages from the community yet <i class="far fa-comments"></i></p>
       </div>
-    <% else %>
+    <% elsif @travelboard.user != current_user && @chatroom.messages == []%>
       <div class="container chatroom" style="width: 750px; margin-left: 20px">
           <div class="messages" data-controller="chatroom-subscription"
             data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
@@ -216,28 +219,54 @@
             <% end %>
           </div>
           <%= simple_form_for [@travelboard, @chatroom, @message], remote: true do |f| %>
-          <%= f.input :content, label: false, placeholder: "Ask a question on this travelboard" %>
+          <%= f.input :content, label: false, placeholder: "Got a question on this travelboard? Be the first to ask a question to #{@travelboard.user.username}" %>
           <% end %>
+      </div>
+    <% elsif @travelboard.user == current_user && @chatroom.messages %>
+      <div class="container chatroom" style="width: 750px; margin-left: 20px" data-controller="chatinput">
+        <div class="messages" data-controller="chatroom-subscription"
+          data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+          <% @chatroom.messages.each do |message| %>
+            <%= render "messages/message", message: message %>
+          <% end %>
+        </div>
+        <%= simple_form_for([@travelboard, @chatroom, @message], data: {
+                      action: 'submit->chatinput#clearinput'
+                    }, remote: true) do |f| %>
+        <%= f.input :content, label: false, placeholder: "Type your answers and give your tips here!", input_html: { data: { chatinput_target: "input" } } %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="container chatroom" style="width: 750px; margin-left: 20px" >
+        <div class="messages" data-controller="chatroom-subscription"
+          data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+          <% @chatroom.messages.each do |message| %>
+            <%= render "messages/message", message: message %>
+          <% end %>
+        </div>
+        <%= simple_form_for [@travelboard, @chatroom, @message], remote: true do |f| %>
+        <%= f.input :content, label: false, placeholder: "Ask #{@travelboard.user.username} for advice, type your question here!" %>
+        <% end %>
       </div>
     <% end %>
   </div>
   <div class="similar-itineraries" style="flex: 50%">
     <h3 style="font-size: 20px; color: white; padding-bottom: 10px">Similar travelboard in <%= @travelboard.country %></h3>
     <div class="cards-home-similar-itineraries">
-        <%= link_to travelboard_path(@travelboards_similar.first) do %>
-          <div class="card-trip-inspo" style="width: 250px">
-            <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://source.unsplash.com/featured/?<%=@travelboards_similar.first.country.downcase.gsub(/\s+/, "")%>)">
-              <div class="card-trip-infos-inspo">
-                <div>
-                  <h2><%= @travelboards_similar.first.name  %></h2>
-                  <p><%= @travelboards_similar.first.country %></p>
-                  <p>created by <%= @travelboard.user.username %></p>
-                </div>
-                <%= image_tag @travelboards_similar.first.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
+      <%= link_to travelboard_path(@travelboards_similar.first) do %>
+        <div class="card-trip-inspo" style="width: 250px">
+          <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://source.unsplash.com/featured/?<%=@travelboards_similar.first.country.downcase.gsub(/\s+/, "")%>)">
+            <div class="card-trip-infos-inspo">
+              <div>
+                <h2><%= @travelboards_similar.first.name  %></h2>
+                <p><%= @travelboards_similar.first.country %></p>
+                <p>created by <%= @travelboards_similar.first.user.username %></p>
               </div>
+              <%= image_tag @travelboards_similar.first.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
             </div>
           </div>
-        <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

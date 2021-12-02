@@ -24,7 +24,14 @@ class FavoritesController < ApplicationController
     @travelday = Travelday.find(params[:travelday])
     @favorite.travelday = @travelday
     @favorite.save
+    @travelboard = @travelday.travelboard
+    @travelday_zero = @travelboard.travelday_zero
+    @favorite_empty = Favorite.where("travelday_id": @travelday_zero.first.id) == []
     authorize @favorite
+
+    respond_to do |format|
+      format.text { render json: { favorite_empty: @favorite_empty } }
+    end
   end
 
   private

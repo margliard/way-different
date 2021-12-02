@@ -12,9 +12,6 @@
   cursor: grab;
 }
 
-.tb-card-product:active {
-  cursor: grabbing;
-}
 
 .tb-card-product-day-zero {
   overflow: hidden;
@@ -30,11 +27,6 @@
   margin-bottom: 8px;
   cursor: grab;
 }
-
-.tb-card-product-day-zero:active {
-  cursor: grabbing;
-}
-
 
 .img-favorite-travelboard {
   height: 100%;
@@ -73,9 +65,9 @@
 }
 
 
-.tb-card-category {
+.tb-card-category-accommodation {
   border:solid;
-  background-color: $marron;
+  background-color: #884D12;
   border-color: $light-gray;
   border-width: 1px;
   width: fit-content;
@@ -84,6 +76,31 @@
   color: white;
   margin-left: 4px;
 }
+
+.tb-card-category-activity {
+  border:solid;
+  background-color: #B57839;
+  border-color: $light-gray;
+  border-width: 1px;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 0px 5px;
+  color: white;
+  margin-left: 4px;
+}
+
+.tb-card-category-restaurant {
+  border:solid;
+  background-color: $darkgreen;
+  border-color: $light-gray;
+  border-width: 1px;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 0px 5px;
+  color: white;
+  margin-left: 4px;
+}
+
 
 
 .title-day{

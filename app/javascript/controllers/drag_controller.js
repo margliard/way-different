@@ -12,13 +12,15 @@ import Sortable from "sortablejs"
 import { csrfToken } from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = ["card"]
+  static targets = ["column", "card", "nothing"]
 
   connect() {
-    this.sortable = Sortable.create(this.element, {
-      group: 'shared',
-      animation: 150,
-      onEnd: this.end.bind(this),
+    this.columnTargets.forEach((column) => {
+      Sortable.create(column, {
+        group: 'shared',
+        animation: 150,
+        onEnd: this.end.bind(this),
+      })
     })
   }
 
@@ -32,9 +34,17 @@ export default class extends Controller {
     fetch(`/favorites/${favoriteid}/changeday?travelday=${newtraveldayid}`, {
       method: "PATCH",
       headers: {
-        'X-CSRF-Token': csrfToken()
+        'X-CSRF-Token': csrfToken(),
+        'Accept': 'text/plain'
       }
     })
-    location.reload()
-  }
+    .then(response => response.json())
+    .then((data) => {
+      if (data.favorite_empty === true) {
+        this.nothingTarget.style.display = "block";
+      } else {
+        this.nothingTarget.style.display = "none";
+      }
+    })
+}
 }

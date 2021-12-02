@@ -5,6 +5,7 @@ export default class extends Controller {
   static values = { chatroomId: Number }
 
   connect() {
+    console.log(document.querySelector("#message_content"))
     console.log(`Subscribe to the chatroom with the id ${this.chatroomIdValue}.`);
     this.channel = consumer.subscriptions.create(
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
