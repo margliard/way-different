@@ -1,16 +1,25 @@
 
 <div class="banner banner-bg" ;>
   <h1 class="title-banner">Find ecofriendly experiences all around the world</h1>
+  <%= form_tag experiences_path, method: :get do %>
   <div class="search-bar">
     <div class="location-block">
       <h4 class="title-location">Location</h4>
-      <%= form_tag experiences_path, method: :get do %>
-      <div class="search-form-control input-group d-flex">
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "Where do you want to go?" %>
-        <% end %>
+      <div
+        class="search-form-control input-group d-flex"
+        data-controller="geocoder"
+        data-geocoder-api-key-value= "<%= ENV['MAPBOX_API_KEY'] %>"
+        placeholder= "Where do you want to go?"
+        aria-label= "Where do you want to go?"
+      >
+        <%=
+          text_field_tag(
+            :query,
+            params[:query],
+            class: "form-control d-none",
+            data: { geocoder_target: "address" }
+          )
+        %>
       </div>
     </div>
 
@@ -27,10 +36,13 @@
         <label for="inspirations">Inspirations</label>
       </div>
     </div>
+
     <div>
-        <%= submit_tag "Let's go!", class: "btn btn-ghost" %>
-      </div>
+      <%= submit_tag "Let's go!", class: "btn btn-ghost" %>
+    </div>
+
   </div>
+  <% end %>
 </div>
 
 <div class="container-inspo">

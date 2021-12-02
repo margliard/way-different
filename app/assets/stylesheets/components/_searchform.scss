@@ -3,9 +3,23 @@
   border: 1px solid white;
   color: $lightgreen;
   font-size: 13px;
-  background-color: white;
+  background-color: rgba(237, 246, 240, 0.92);
 }
 
 .form-control ::placeholder{
   color: $lightgreen;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+  background-color: #f2f6f2;
+  color: #717980;
+  font-size: 13px;
+  box-shadow: none;
+  border: none;
+}
+
+.mapboxgl-ctrl-geocoder {
+  border-radius: 10px;
+  box-shadow: none;
+  border: none;
 }

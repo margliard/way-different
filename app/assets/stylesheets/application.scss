@@ -8,6 +8,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'mapbox-gl/dist/mapbox-gl';
+@import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder';
 @import "jquery-bar-rating/dist/themes/css-stars";
 
 // Your CSS partials
@@ -22,6 +23,7 @@
 @import "pages/show";
 @import "components/travelboard";
 @import "experiences/index";
+
 
 .content-wrapper {
   min-height: calc(100vh - 70px - 80px);
