@@ -9,7 +9,8 @@ class ExperiencesController < ApplicationController
     @label = Label.new
     # Experience.where(category: params[:filter])
     if params[:query].present?
-      @experiences = Experience.search_by_city_and_country(params[:query])
+      # @experiences = Experience.search_by_city_and_country(params[:query])
+      @experiences = Experience.near(params[:query], 200)
     else
       @experiences = Experience.all
     end
