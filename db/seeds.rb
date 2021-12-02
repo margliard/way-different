@@ -149,7 +149,11 @@ end
 puts "Creating hotels..."
 hotels = JSON.parse(File.read('db/hotels.json'))
 hotels.each do |element|
+  hotel_random_labels = random_labels
   Experience.create!(element)
+  hotel_random_labels.each do |label|
+    ExperienceLabel.create(experience_id: Experience.last.id, label: Label.find_by(label_name: label.strip))
+  end
 end
 puts 'Hotel OK'
 puts 'Creating experience restaurant...'
