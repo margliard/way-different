@@ -15,6 +15,7 @@ class TravelboardsController < ApplicationController
     @travelboard = Travelboard.find(params[:id])
     @travelboards = Travelboard.where(user: current_user)
     @travelboards_similar = Travelboard.where(country: @travelboard.country).where.not(user: current_user)
+    @travelboard_for_similar = @travelboards_similar.sample
     @experience = Experience.new
     @reviewtrav = ReviewTravelboard.new
     @review_exp = ReviewExperience.new
