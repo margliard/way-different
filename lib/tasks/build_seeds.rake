@@ -19,7 +19,8 @@ task build_seeds: :environment do
     # Experience criterias
     criteria = element.search('.critereValide span').text.gsub('Criterion respected:', ' ').strip.split(/(?=[A-Z])/).collect(&:strip)
     # Create a hotel
-    hotel = {category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: nil, country: "france", city: " ", description: "#{description}", booked: false, image_url: "#{image}"}
+    price = ["€", "€€", "€€€", "€€€€"]
+    hotel = {category: "Accommodation", name: "#{title}", address: "#{address}", availability: true, price: price.shuffle.first, country: "france", city: " ", description: "#{description}", booked: false, image_url: "#{image}"}
     puts "One hotel created, please wait!"
     hotel
     hotels << hotel
