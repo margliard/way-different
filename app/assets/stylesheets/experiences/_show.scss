@@ -27,7 +27,7 @@
 
 .infos-show {
   width: 700px;
-  margin-bottom: 14px;
+  grid-gap: 20px;
 }
 
 .infos-show h3 {
@@ -38,9 +38,16 @@
   color: white;
 }
 
+.list-group-item + .list-group-item {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.list-group-item a {
+  padding-left: 240px;
+}
 .mapboxgl-mapshow {
   width: -webkit-fill-available;
 }
+
 .exp-labels-block {
   display: inline-flex;
 }

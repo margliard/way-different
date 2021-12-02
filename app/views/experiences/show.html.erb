@@ -1,14 +1,15 @@
   <div class="banner-show" style="background-color: #95B2A3">
-   <div class="ps-3"style="font-size: 24px"><%= link_to url_for(:back),
+
+  <div class="ps-3"style="font-size: 24px"><%= link_to url_for(:back),
                         method: :get do  %>
                         <i class="fas fa-arrow-circle-left"></i>
                         <% end %></div>
-    <div class="container">
+  <div class="container">
       <div class="image-grid">
         <% if @experience.review_experiences.first %>
         <div class="bubble-review">
           <div><%= image_tag @experience.review_experiences.first.user.profile_photo %><%= @experience.review_experiences.first.user.username %> said:</div>
-          <div><%= @experience.review_experiences.first[:comment] %></div>
+          <div><i class="fas fa-quote-right" style="font-size: 12px"></i><%= @experience.review_experiences.first[:comment] %><i class="fas fa-quote-right"style="font-size: 12px"></i></div>
         </div>
         <% end %>
         <img src= <%= @experience.image_url%> id="image-grid-1" >
@@ -200,65 +201,49 @@
 
 
   <% if @experience_labels != [] %>
-  <hr class="solid">
-  <div class="main-show">
-    <%# <div class="infos-show"> %>
-      <div>
-        <h3 class="mb-3">Labels</h3>
-        <p>Here below, find the labels owned by <%= @experience.name%>:</p>
-        <div class="exp-labels-block">
-          <% @experience_labels.each do |experience_label|%>
-            <div class=exp-label>
-              <%= image_tag experience_label.label.label_icon, width:40, height:40 %>
-            </div>
-        </div>
-      </div>
-    <%# </div> %>
-  </div>
-  <% end %>
-  <% end %>
-</div>
-
-  <hr class="solid">
-  <h3 style="color: #3B6363">Reviews from the Way Travellers community</h3>
-  <% unless @experience.review_experiences = []  %>
-    <p><%= "No review from the Way Traveller community yet !" %></p>
-  <% else %>
-  <div class="review-show mb-3">
-    <div class="infos-show">
-        <% @experience.review_experiences.each do |review| %>
-
-            <div class="list-group-item space-between" style="border-radius: 7px;">
-              <div style="color: grey"><%= image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>   <%= review.user.username %> said :</div>
-              <div><%= review.comment %></div>
-              <div><% review.rating.to_i.times do  %>
-              <span class="fas fa-star"></span>
-              <% end %>
-              <% review.blank_stars.times do  %>
-              <span class="far fa-star"></span>
-              <% end %>
-              </div>
-              <div><% if policy(review).destroy? %>
-                  <%= link_to "Remove",
-                            experience_review_experience_path(@experience, review),
-                            method: :delete,
-                            data: { confirm: "Are you sure?" }%>
-                            <% end %>
-                </div>
-            </div>
+    <hr class="solid">
+    <div class="main-show">
+      <h3 class="mb-3">Labels</h3>
+      <p>Here below, find the labels owned by <%= @experience.name%>:</p>
+      <div class="exp-labels-block">
+        <% @experience_labels.each do |experience_label|%>
+          <div class=exp-label>
+            <%= image_tag experience_label.label.label_icon, width:40, height:40 %>
+          </div>
         <% end %>
+      </div>
     </div>
   <% end %>
+  </div>
+</div>
 
-    <% if user_signed_in? == true %>
-    <div class="form-review">
-      <h5>Already went to <%= @experience.name%>? Give your feedback</h5>
-        <%= simple_form_for [ @experience, @review] do |f| %>
-        <%= f.input :comment, :label => "How was your experience?", :placeholder => "Great stay and wonderful hosts" %>
-        <%= f.input :rating, collection: (1..5).to_a, :label => "Rate your experience"%>
-        <%= f.submit "Submit your review", class: "btn btn-ghost" %>
+
+<hr class="solid">
+  <div class="container mb-3">
+    <h3 style="color: #3B6363">Reviews from the Way Travellers community</h3>
+    <div class="review-show mb-3">
+      <% if @experience.review_experiences != [] %>
+        <div class="infos-show">
+            <% @experience.review_experiences.each do |review| %>
+              <%= render "review", review: review %>
+            <% end %>
+        </div>
+      <% else %>
+        <div class="mb-3">
+          <p><%= "No review from the Way Traveller community yet !" %></p>
+        </div>
       <% end %>
-     <% end %>
+
+      <% if user_signed_in? == true %>
+        <div class="form-review">
+          <h5>Already went to <%= @experience.name%>? Give your feedback</h5>
+          <%= simple_form_for [ @experience, @review] do |f| %>
+            <%= f.input :comment, :label => "How was your experience?", :placeholder => "Great stay and wonderful hosts" %>
+            <%= f.input :rating, collection: (1..5).to_a, :label => "Rate your experience"%>
+            <%= f.submit "Submit your review", class: "btn btn-ghost" %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
