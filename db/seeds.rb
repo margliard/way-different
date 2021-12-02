@@ -21,6 +21,17 @@ ReviewTravelboard.destroy_all
 Travelboard.destroy_all
 Travelday.destroy_all
 
+def random_labels()
+  number_of_label = rand(1..4)
+  array_of_labels = ["Renewable energies", "Recycling waste", "No single use plastics", "Vegetable garden"]
+  i = 1
+  while i < number_of_label
+    array_of_labels.delete_at(rand(array_of_labels.length))
+    i+=1
+  end
+  array_of_labels
+end
+
 puts "Creating database..."
 # USER CONTROLLER NOT CREATED YET
 # margot = User.create(first_name: "Margot", last_name: "Liard", email: "margot@gmail.com", password: "password")
@@ -68,21 +79,73 @@ restaurant_labels = ["Organic", "Zero waste", "Sustainable meat", "Container acc
 restaurant_labels.each do |restaurant_label|
   Label.create(label_name: restaurant_label, label_icon: "#{restaurant_label.gsub(" ", "_").downcase}.png")
 end
+
+hotels_label = ["Renewable energies", "Recycling waste", "No single use plastics", "Vegetable garden"]
+hotels_label.each do |hotel_label|
+  Label.create(label_name: hotel_label, label_icon: "#{hotel_label.gsub(" ", "_").downcase}.png")
+end
 puts 'Label OK'
 
 # Hotels
 # hotel# = Experience.create(category:"Accommodation", name: "", address: "", availability: true , price:, country: "", city: "", image_url: "", description: "")
+
 price = ["€","€€","€€€","€€€€"]
 hotel1 = Experience.create(category: "Accommodation", name: "Tranquilo Bay Eco Adventure Lodge", address: "Monteverde Costa Rica", availability: true, price: price.shuffle.first, country: "Costa Rica", city: "Monteverde", description: "Centrally located among the most biologically diverse protected areas in Central America, this adventure eco-lodge in Panama will give you the authentic vacation experience you desire. When you stay in one of Tranquilo Bay’s nine stylish cabanas, you can start your morning by walking out onto the wrap-around elevated porch to get a view of the mangrove forest and the Caribbean Sea meeting the lush green rainforest. You can be sure you’re having a sustainable, environmentally-friendly vacation when you stay at this boutique hotel", booked: false, image_url: "https://regenerativetravel.com/wp-content/uploads/2019/07/4-1024x684-1.jpg")
+hotel1_random_labels = random_labels
+hotel1_random_labels.each do |label|
+  p label
+  p ExperienceLabel.create(experience_id: hotel1.id, label: Label.find_by(label_name: label.strip))
+end
 hotel2 = Experience.create(category: "Accommodation", name: "Finca Luna Nueva", address: "Manzanillo Costa Rica", availability: true, price: price.shuffle.first, country: "Costa Rica", city: "Manzanillo", description: "ack your binoculars and prepare yourself for a relaxing and educational vacation at this birder’s paradise in Peñas Blancas, Costa Rica. With charming bungalow rooms and traditional woven hammocks scattered across the property, this boutique eco-lodge is located in an environment that combines biodiversity, birdsong, and beauty. Adjacent to the 50,000-acre Children’s Eternal Rainforest conservation area, this hotel gives you the chance to connect with the pristine nature of Central America in a sustainable way, soaking in all that a thriving tropical rainforest has to offer.", booked: false, image_url: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/59894488.jpg?k=81f28cb57f993a682315bdc140582698c8512cb155959a4ae57cda036d80c9ea&o=&hp=1")
+hotel2_random_labels = random_labels
+hotel2_random_labels.each do |label|
+  p label
+  p ExperienceLabel.create(experience_id: hotel2.id, label: Label.find_by(label_name: label.strip))
+end
 hotel3 = Experience.create(category: "Accommodation", name: "Chira Eco-camping Monteverde", address: "Miramar Costa Rica", availability: true, price: price.shuffle.first, country: "Costa Rica", city: "Miramar", description: "You can be sure you’re having a sustainable, environmentally-friendly vacation when you stay at this boutique hotel. It uses the smallest amount of plastic possible when sending guests on excursions, and it sources large amounts of its food from within Panama, preparing as much of it onsite as possible. Tranquilo Bay even captures and purifies natural rainwater in its pledge to use water responsibly.", booked: false, image_url: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/276345931.jpg?k=fed6534332914d30787162a98011d4626cc2a77a962c1d2d2898bad58324dab9&o=&hp=1")
+hotel3_random_labels = random_labels
+hotel3_random_labels.each do |label|
+  p label
+  p ExperienceLabel.create(experience_id: hotel3.id, label: Label.find_by(label_name: label.strip))
+end
 hotel4 = Experience.create(category: "Accommodation", name: "Chalet du Lys", address: "Val-Cenis, France", availability: true , price: price.shuffle.first, country: "France", city: "Termignon", image_url:"https://img.ecobnb.net/media/cache/wide_8/media/uploads/60e0ce82c1c11e7ebee50aaf0675d43f2d45df07.jpeg", description: "Elise and Fred welcome you all year at Chalet du Lys in Haute Maurienne Vanoise. Located 2 minutes from the village of Termignon (Station Val Cenis), surrounded by nature, overlooking the Dent Parrachée (3rd summit of the Vanoise National Park), the Chalet du Lys offers a warm atmosphere in a sunny and calm. Chalet du Lys was honored for his commitment to nature and sustainable mobility by labeling 'Accommodation Alpine Pearls'")
-hotel5 = Experience.create(category: "Accommodation", name: "Nuit a Pleiney - Natura e Relax", address: "Saint Rhemy, Italy", availability: true , price: price.shuffle.first, country: "Italy", city: "Saint Rhemy", image_url: "https://img.ecobnb.net/media/cache/wide_8/media/uploads/9e73b21bfc686dcb7b554b45a468cc69b8360d8f.jpeg", description: "Larch and fir trees all around, the stream that keeps company, large green spaces and a wellness area with Scandinavian tub, Finnish sauna, old wooden chalets to give you a living room to tell. Ideal place for winter and summer sports.")
-hotel6 = Experience.create(category: "Accommodation", name: "Mystic Marmot chalet in the alps", address: "Saint-Ferréol, France", availability: true , price: price.shuffle.first, country: "France", city: "Leschaux",image_url: "https://img.ecobnb.net/media/cache/wide_8/media/uploads/11b296980f278fc74d4234ab1b8024e25398d10f.jpeg", description: "High in the Alps at 1000 meters above sea level, this chalet offers a unique off-the-grid experience. It sits on an immense 12 hectare property deep in nature, surrounded by mountains and has great outdoor activities and adventures year-round. The mystic Marmot gives guests the impression of being secluded from everyday worries, nestled cosy in their home away from home. There are endless adventures to be had here with stunning views, nature and wildlife. If you like hiking, skiing, mushroom picking or relaxing in front of a fireplace, this place is for you. Everyone's welcome from couples, solo adventurers, families, big groups, and furry friends.")
-hotel7 = Experience.create(category: "Accommodation", name: "Residence Le Petit Coeur - La Salle", address: "La Salle, Italie", availability: true , price: price.shuffle.first, country: "Italy", city: "La Salle", image_url: "https://img.ecobnb.net/media/cache/wide_8/media/uploads/08076cabd3dfa8e86bb877503729ec32fcb78112.jpeg", description: "An ancient farm house carefully transformed into a small 3-star eco-friendly residence, surrounded by greenery at the foot of Mont-Blanc in the Aosta Valley. An eco-friendly house at the foot of Mount Blanc. Seven beautiful apartments full of charm and tradition, built in the old barn. The furnishings are in wood recovered from the old floors. The materials used recall the history and beauty of ancient Alpine traditions.")
-hotel8 = Experience.create(category: "Accommodation", name: "Relais du Paradis Chambres d'Hôtes", address: "Frazione Villes Dessous, 53 Introd", availability: true , price: price.shuffle.first, country: "Italy", city: "Aosta", image_url: "https://img.ecobnb.net/media/cache/wide_8/media/uploads/7c2bb8c3ce4e58a2d9f2516d8e65a96fa2c0feab.jpeg", description: "A cozy B & B in the heart of wood Gran Paradiso National Park, ideal for a holiday with children, but also for a romantic nature and wellness. Relais du Paradis is a cozy B & B in the heart of the National Park of Gran Paradiso, in Villes Dessus, a small hamlet situated at the beginning of the town of Introd, surrounded by meadows where graze freely goats, sheep, cows and horses.")
-hotel9 = Experience.create(category:"Accommodation", name: "Auberge La Clusaz", address: "La Clusaz, France", availability: true , price: price.shuffle.first, country: "France", city: "La Clusaz", image_url: "https://img.ecobnb.net/media/cache/wide_8/media/uploads/6aaa4e2932eccf56570cb81b6199f8e7d6c08468.jpeg", description: "Auberge La Clusaz offers a warm lodging, the cottage, covered, in its two adjoining cottages. One is an old farmhouse Aravis early 20th century, completely restored to showcase its traditional character Savoie chalet. The adjacent cottage is in the style of mountain habitat. Both enjoy an exceptional view of the Aravis Valley.")
-#hotel10 = Experience.create(category:"Accommodation", name: "", address: "", availability: true , price: price.shuffle.first, country: "France", city: "", image_url: "", description: "")
+hotel4_random_labels = random_labels
+hotel4_random_labels.each do |label|
+  p label
+  p ExperienceLabel.create(experience_id: hotel4.id, label: Label.find_by(label_name: label.strip))
+end
+hotel5 = Experience.create(category: "Accommodation", name: "Nuit a Pleiney - Natura e Relax", address: "Saint Rhemy, Italy", availability: true , price:price.shuffle.first, country: "Italy", city: "Saint Rhemy", image_url: "https://img.ecobnb.net/media/cache/wide_8/media/uploads/9e73b21bfc686dcb7b554b45a468cc69b8360d8f.jpeg", description: "Larch and fir trees all around, the stream that keeps company, large green spaces and a wellness area with Scandinavian tub, Finnish sauna, old wooden chalets to give you a living room to tell. Ideal place for winter and summer sports.")
+hotel5_random_labels = random_labels
+hotel5_random_labels.each do |label|
+  p label
+  p ExperienceLabel.create(experience_id: hotel5.id, label: Label.find_by(label_name: label.strip))
+end
+hotel6 = Experience.create(category: "Accommodation", name: "Mystic Marmot chalet in the alps", address: "Saint-Ferréol, France", availability: true , price:price.shuffle.first, country: "France", city: "Leschaux",image_url: "https://img.ecobnb.net/media/cache/wide_8/media/uploads/11b296980f278fc74d4234ab1b8024e25398d10f.jpeg", description: "High in the Alps at 1000 meters above sea level, this chalet offers a unique off-the-grid experience. It sits on an immense 12 hectare property deep in nature, surrounded by mountains and has great outdoor activities and adventures year-round. The mystic Marmot gives guests the impression of being secluded from everyday worries, nestled cosy in their home away from home. There are endless adventures to be had here with stunning views, nature and wildlife. If you like hiking, skiing, mushroom picking or relaxing in front of a fireplace, this place is for you. Everyone's welcome from couples, solo adventurers, families, big groups, and furry friends.")
+hotel6_random_labels = random_labels
+hotel6_random_labels.each do |label|
+  p label
+  p ExperienceLabel.create(experience_id: hotel6.id, label: Label.find_by(label_name: label.strip))
+end
+hotel7 = Experience.create(category: "Accommodation", name: "Residence Le Petit Coeur - La Salle", address: "La Salle, Italie", availability: true , price:price.shuffle.first, country: "Italy", city: "La Salle", image_url: "https://img.ecobnb.net/media/cache/wide_8/media/uploads/08076cabd3dfa8e86bb877503729ec32fcb78112.jpeg", description: "An ancient farm house carefully transformed into a small 3-star eco-friendly residence, surrounded by greenery at the foot of Mont-Blanc in the Aosta Valley. An eco-friendly house at the foot of Mount Blanc. Seven beautiful apartments full of charm and tradition, built in the old barn. The furnishings are in wood recovered from the old floors. The materials used recall the history and beauty of ancient Alpine traditions.")
+hotel7_random_labels = random_labels
+hotel7_random_labels.each do |label|
+  p label
+  p ExperienceLabel.create(experience_id: hotel7.id, label: Label.find_by(label_name: label.strip))
+end
+hotel8 = Experience.create(category: "Accommodation", name: "Relais du Paradis Chambres d'Hôtes", address: "Frazione Villes Dessous, 53 Introd", availability: true , price:price.shuffle.first, country: "Italy", city: "Aosta", image_url: "https://img.ecobnb.net/media/cache/wide_8/media/uploads/7c2bb8c3ce4e58a2d9f2516d8e65a96fa2c0feab.jpeg", description: "A cozy B & B in the heart of wood Gran Paradiso National Park, ideal for a holiday with children, but also for a romantic nature and wellness. Relais du Paradis is a cozy B & B in the heart of the National Park of Gran Paradiso, in Villes Dessus, a small hamlet situated at the beginning of the town of Introd, surrounded by meadows where graze freely goats, sheep, cows and horses.")
+hotel8_random_labels = random_labels
+hotel8_random_labels.each do |label|
+  p label
+  p ExperienceLabel.create(experience_id: hotel8.id, label: Label.find_by(label_name: label.strip))
+end
+hotel9 = Experience.create(category:"Accommodation", name: "Auberge La Clusaz", address: "La Clusaz, France", availability: true , price:price.shuffle.first, country: "France", city: "La Clusaz", image_url: "https://img.ecobnb.net/media/cache/wide_8/media/uploads/6aaa4e2932eccf56570cb81b6199f8e7d6c08468.jpeg", description: "Auberge La Clusaz offers a warm lodging, the cottage, covered, in its two adjoining cottages. One is an old farmhouse Aravis early 20th century, completely restored to showcase its traditional character Savoie chalet. The adjacent cottage is in the style of mountain habitat. Both enjoy an exceptional view of the Aravis Valley.")
+hotel9_random_labels = random_labels
+hotel9_random_labels.each do |label|
+  p label
+  p ExperienceLabel.create(experience_id: hotel9.id, label: Label.find_by(label_name: label.strip))
+end
+#hotel10 = Experience.create(category:"Accommodation", name: "", address: "", availability: true , price:, country: "France", city: "", image_url: "", description: "")
+
 puts "Creating hotels..."
 hotels = JSON.parse(File.read('db/hotels.json'))
 hotels.each do |element|
