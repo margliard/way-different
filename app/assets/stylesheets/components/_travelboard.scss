@@ -340,6 +340,7 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
    margin-top: 40px;
  }
 
- .sticky-travelboard {
-
+ #sticky-travelboard {
+  position: sticky;
+  top: 70px;
  }
