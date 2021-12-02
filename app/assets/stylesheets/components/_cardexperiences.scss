@@ -48,9 +48,10 @@
 
 .card-experience-pricing {
   font-size: 13px;
-  margin-top: 5px;
-  position: relative;
-  left: 250px;
+  margin-top: -7px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .icon-experience {
