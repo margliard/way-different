@@ -52,14 +52,14 @@
   <div class="cards-home-index">
     <% @travelboards.each do |travelboard| %>
     <div class="card-trip-inspo">
-      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://source.unsplash.com/featured/?<%=travelboard.country.downcase.gsub(/\s+/, "")%>)">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://unsplash.com/s/photos/<%=travelboard.country.downcase.gsub(/\s+/, "")%>)">
         <div class="card-trip-infos-inspo">
+          <%= image_tag travelboard.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
           <div class="link-white">
             <h2><%= link_to travelboard.name, travelboard_path(travelboard) %></h2>
             <p><%= travelboard.country %></p>
             <p>created by <%= travelboard.user.username %></p>
           </div>
-          <%= image_tag travelboard.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
         </div>
       </div>
     </div>
