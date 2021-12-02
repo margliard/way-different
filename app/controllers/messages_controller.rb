@@ -7,6 +7,7 @@ skip_before_action :verify_authenticity_token
     @message = Message.new(message_params)
     @message.chatroom = @chatroom
     @message.user = current_user
+    authorize @message
     if @message.save
       redirect_to travelboard_path(@travelboard, anchor: "message-#{@message.id}")
       ChatroomChannel.broadcast_to(

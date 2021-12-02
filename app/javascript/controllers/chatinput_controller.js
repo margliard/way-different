@@ -7,6 +7,6 @@ export default class extends Controller {
   }
 
   clearinput(event) {
-    this.inputTarget.value = ""
+    // setTimeout(console.log("coucou"), 200)
   }
 }

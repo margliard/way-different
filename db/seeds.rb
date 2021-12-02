@@ -55,7 +55,11 @@ aymeric = User.create(email: "aymeric@gmail.com", password: "password", profile_
 puts "users ok"
 puts "Creating travelboards..."
 costa1 = Travelboard.create(user_id: margot.id, country: "Costa Rica", name: "My travel in Costa Rica", start_date: "05/08/2021", end_date: "20/08/2021", status: false)
+file1 = URI.open("https://blog.vamosrentacar.fr/wp-content/uploads/2019/10/gardens-costa-rica-arenal-volcano-in-costa-rica-hero-730x300.jpg")
+costa1.photo.attach(io: file1, filename: 'file1.jpeg', content_type: 'image/jpeg')
 costa2 = Travelboard.create(user_id: camille.id, country: "Costa Rica", name: "Costa Rica 2019", start_date: "02/08/19", end_date: "14/08/2019", status: false)
+file2 = URI.open("https://www.destinationcocktails.fr/wp-content/uploads/2020/01/costa-rica1.-1.jpg")
+costa2.photo.attach(io: file2, filename: 'file2.jpeg', content_type: 'image/jpeg')
 puts "Travelboards ok..."
 
 puts "Creating Labels ...."

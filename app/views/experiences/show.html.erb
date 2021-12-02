@@ -75,6 +75,7 @@
                 <%= f.input :country, as: :string %>
                 <%= f.input :start_date, :label => "Start of my trip" %>
                 <%= f.input :end_date, :label => "End of my trip"  %>
+                <%= f.input :photo, as: :file %>
                 <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
                 <%= f.submit "Create a travelboard", class:"btn btn-ghost" %>
               <% end %>
@@ -147,6 +148,7 @@
                 <%= f.input :country, as: :string %>
                 <%= f.input :start_date, :label => "Start of my trip" %>
                 <%= f.input :end_date, :label => "End of my trip" %>
+                <%= f.input :photo, as: :file %>
                 <input type="hidden" name="experience_id" value='<%= @experience.id %>' >
                 <%= f.submit "Create a travelboard", class:"btn-ghost" %>
               <% end %>

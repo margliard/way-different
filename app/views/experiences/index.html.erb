@@ -52,7 +52,7 @@
   <div class="cards-home-index">
     <% @travelboards.each do |travelboard| %>
     <div class="card-trip-inspo">
-      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url(https://source.unsplash.com/featured/?<%=travelboard.country.downcase.gsub(/\s+/, "")%>)">
+      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)), url('<%= cl_image_path travelboard.photo.key %>')">
         <div class="card-trip-infos-inspo">
           <div class="link-white">
             <h2><%= link_to travelboard.name, travelboard_path(travelboard) %></h2>
