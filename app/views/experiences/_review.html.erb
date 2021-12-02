@@ -1,0 +1,24 @@
+<div class="list-group-item space-between" style="border-radius: 7px;">
+  <div style="color: grey" class="p-2"><%= image_tag review.user.profile_photo, class: "avatar", height: 40, crop: :thumb, gravity: :face%>
+    <%= review.user.username %> said :
+  </div>
+  <div>
+    <%= review.comment %>
+  </div>
+  <div class="pt-2">
+    <% review.rating.to_i.times do  %>
+      <span class="fas fa-star"></span>
+    <% end %>
+    <% review.blank_stars.times do  %>
+      <span class="far fa-star"></span>
+    <% end %>
+  </div>
+  <div>
+    <% if policy(review).destroy? %>
+      <%= link_to "Remove",
+                experience_review_experience_path(@experience, review),
+                method: :delete,
+                data: { confirm: "Are you sure?" }%>
+    <% end %>
+  </div>
+</div>
