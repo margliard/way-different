@@ -13,4 +13,10 @@ class Travelboard < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def travelday_zero
+    self.traveldays.select do |travelday|
+      travelday.day_number == 0
+    end
+  end
 end
