@@ -15,7 +15,6 @@
               <div>
                 <h5 class="experience-title"><%= experience.name %> </h5>
                 <p class="experience-description"><%= experience.description.truncate(100)%></p>
-                <p class="card-experience-pricing"><%= experience.price if experience.price? %></p>
               </div>
               <div class="icon-price">
 
@@ -27,6 +26,9 @@
                         <img class="icon-experience" src="<%= image_path('003bike.png') %>" />
                       <% end %>
               </div>
+            </div>
+            <div>
+              <p class="card-experience-pricing"><%= experience.price if experience.price? %></p>
             </div>
           </div>
         <% end %>
