@@ -53,7 +53,7 @@ doc.search('.col-12.d-flex.p-3').each do |element|
   name_array = name.split(" ")
   photo = element.search('.img-thumbnail').attribute('src').value
   photo = photo.gsub("./","")
-  photo = "/user-seed/#{photo}"
+  photo = "user-seed/#{photo}"
   email = "#{name_array[0].downcase}-#{name_array[1].downcase}@gmail.com"
   password = "password"
   user = User.create!(email: email, profile_photo: photo, username: "#{name_array[0]} #{name_array[1][0]}", password: "password")
