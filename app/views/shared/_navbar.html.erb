@@ -20,7 +20,7 @@
       <% end %>
       <li class="nav-item dropdown">
       <% if user_signed_in? == true %>
-        <%= image_tag current_user.profile_photo[1..-1], class: "dropdown-toggle icon", id: "dropdownMenuLink", data: { bs_toggle: "dropdown" }, 'aria-expanded': false %>
+        <%= image_tag current_user.profile_photo[0] == '/' ? current_user.profile_photo[1..-1] : current_user.profile_photo, class: "dropdown-toggle icon", id: "dropdownMenuLink", data: { bs_toggle: "dropdown" }, 'aria-expanded': false %>
       <% else %>
         <%= link_to "Login", new_user_session_path, class: "nav-link" %>
       <% end %>
