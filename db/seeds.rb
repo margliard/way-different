@@ -163,27 +163,23 @@ restaurant1 = Experience.create(category: "Restaurant", name: "Farm to Table Esc
 restaurant2 = Experience.create(category: "Restaurant", name: "Harmony Restaurant", address: "Las Juntas Costa Rica", availability: true, country: "Costa Rica", city: "Las Juntas", description: "This is a restaurant run by people with a passion for providing excellent food and service. As well as a charming ambience and well spaced tables, the views over Monteverde are stunning", booked: false, image_url: "https://www.yonder.fr/sites/default/files/destinations/Hotel_Tiskita_Lodge_4.jpg")
 restaurant3 = Experience.create(category: "Restaurant", name: "El Mangroove", address: "Barranca Costa Rica", availability: true, country: "Costa Rica", city: "Barranca", description: "This is a restaurant run by people with a passion for providing excellent food and service. As well as a charming ambience and well spaced tables, the views over the mountain are stunning. It uses the smallest amount of plastic possible when sending guests on excursions, and it sources large amounts of its food from within Panama, preparing as much of it onsite as possible.", booked: false, image_url: "https://www.archi-living.com/wp-content/uploads/AW%C2%B2-Kasiiya-Papagayo-eco-resort-restaurant-design-photo-Kenny-Viese-Archi-living-D.jpg")
 doc = Nokogiri::HTML(URI.open("https://ecotable.fr/en/ecotables"))
-p 'outise the loop'
-  doc.search('.ecotables-ecotable').each do |element|
-    p 'inside the loop'
-    link = element.search('a').attribute('href').value
-    doc2 = Nokogiri::HTML(URI.open(link))
-    if element.search('.lazy-holder.no-js').attribute('src').present?
-      p images = element.search('.lazy-holder.no-js').attribute('src').value
-      doc2.search('.page-ecotable').each do |element2|
-        titles = element2.search('h1').text
-        descriptions = element2.search('.ecotable-paragraph p').text
-        loc= element2.search('.ecotable-address span').text.strip
-        city=loc.split(',').last
-        badges = element2.search('.ecotable-badges').text.split(',')
-        price = ["€","€€","€€€","€€€€"]
-        experience = Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", description: "#{descriptions}", price: price.shuffle.first, booked: false, image_url: "#{images}")
-        badges.each do |badge|
-          ExperienceLabel.create(experience_id: experience.id, label: Label.find_by(label_name: badge.strip))
-        end
-      end
+doc.search('.ecotables-ecotable').each do |element|
+  link = element.search('a').attribute('href').value
+  doc2 = Nokogiri::HTML(URI.open(link))
+  doc2.search('.page-ecotable').each do |element2|
+    titles = element2.search('h1').text
+    descriptions = element2.search('.ecotable-paragraph p').text
+    loc= element2.search('.ecotable-address span').text.strip
+    city=loc.split(',').last
+    images = element2.search('.lazy-img').attribute('data-lazy-src').value
+    badges = element2.search('.ecotable-badges').text.split(',')
+    price = ["€","€€","€€€","€€€€"]
+    experience = Experience.create(category: "Restaurant", name: "#{titles}", address: "#{loc}", city: "#{city}", availability: true , country: "France", description: "#{descriptions}", price: price.shuffle.first, booked: false, image_url: "#{images}")
+    badges.each do |badge|
+      ExperienceLabel.create(experience_id: experience.id, label: Label.find_by(label_name: badge.strip))
     end
   end
+end
 puts 'restaurant OK'
 #Activities
 # Experience.create(category:"Activity", name: "", address: "", availability: true , price:, country: "", city: "", image_url: "", description: "")
