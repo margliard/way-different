@@ -52,21 +52,20 @@
   <% if @travelboards.empty? == false  %>
   <div class="cards-home-index">
     <% @travelboards.each do |travelboard| %>
-    <div class="card-trip-inspo">
-
-      <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)), url('<%= cl_image_path travelboard.photo.key %>')">
-
-
-        <div class="card-trip-infos-inspo">
-          <%= image_tag travelboard.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
-          <div class="link-white">
-            <h2><%= link_to travelboard.name, travelboard_path(travelboard) %></h2>
-            <p><%= travelboard.country %></p>
-            <p>created by <%= travelboard.user.username %></p>
+      <%= link_to travelboard_path(travelboard) do %>
+      <div class="card-trip-inspo">
+        <div class="card-category-inspo" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)), url('<%= cl_image_path travelboard.photo.key %>')">
+          <div class="card-trip-infos-inspo">
+            <%= image_tag travelboard.user.profile_photo, class: "card-trip-user avatar", height: 40, crop: :thumb, gravity: :face %>
+            <div class="link-white">
+              <h2><%= travelboard.name %></h2>
+              <p><%= travelboard.country %></p>
+              <p>created by <%= travelboard.user.username %></p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <% end %>
     <% end %>
     </div>
     </div>
