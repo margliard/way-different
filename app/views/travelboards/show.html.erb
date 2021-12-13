@@ -19,7 +19,13 @@
       <div class="flexbox-headers-cards-map">
         <div class="header-and-cards">
           <div class="header-travelboard">
-            <p><%= link_to "Back to travelboards", travelboards_path, class:"btn-back-travelboard" %></p>
+            <div class="header-travelboard-links">
+              <p><%= link_to "Back to travelboards", travelboards_path, class:"btn-back-travelboard" %></p>
+              <p><%= link_to "Delete travelboard",
+                travelboard_path(@travelboard), class:"btn-back-travelboard",
+                method: :delete,
+                data: { confirm: "Are you sure?" }%></p>
+            </div>
             <h2 class="name-travelboard"><%= @travelboard.name %></h2>
             <div class="header-travelboard-details">
               <div>

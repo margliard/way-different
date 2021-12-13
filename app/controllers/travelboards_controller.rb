@@ -85,6 +85,10 @@ class TravelboardsController < ApplicationController
   end
 
   def destroy
+    @travelboard = Travelboard.find(params[:id])
+    @travelboard.destroy
+    authorize @travelboard
+    redirect_to travelboards_path
   end
 
   private
