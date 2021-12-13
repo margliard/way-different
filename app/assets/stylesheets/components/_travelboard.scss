@@ -284,6 +284,12 @@ $timeline-body-shadow: 1px 3px 9px rgba(0,0,0, .1);
   margin-bottom: 30px;
 }
 
+.header-travelboard-links {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 18px;
+}
+
 .header-travelboard-details {
   display: flex;
   align-items: flex-end;

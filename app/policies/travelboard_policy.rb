@@ -31,6 +31,10 @@ class TravelboardPolicy < ApplicationPolicy
     user == record.user || user.admin
   end
 
+  def destroy?
+    user == record.user || user.admin
+  end
+
   def destroy_all
     user == record.user || user.admin
   end
